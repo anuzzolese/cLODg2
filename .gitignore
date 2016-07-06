@@ -1,2 +1,5 @@
 /target/
 /clodg.properties
+.project
+.settings
+.classpath
