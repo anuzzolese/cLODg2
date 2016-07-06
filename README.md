@@ -1,6 +1,6 @@
 # cLODg2 -- conference Linked Open Data generator version 2
 
-cLODg2 is the enhanced version of [cLODg](https://github.com/AnLiGentile/cLODg). It implements a methodology to produce Linked Data to describe a scientific conference and its publications, participants and events. To generate conference metadata we assume that you have initial data available (with some specific format). We then use use D2R conversion rules to produce metadata described with [Conference Ontology](http://w3id.org/scholarlydata/ontology/conference-ontology.owl). The current workflow is the following:
+cLODg2 is the enhanced version of [cLODg](https://github.com/AnLiGentile/cLODg). It implements a methodology to produce Linked Data to describe a scientific conference and its publications, participants and events. To generate conference metadata we assume that you have initial data available (with some specific format). We then use use D2R conversion rules to produce metadata described with [Conference Ontology](http://w3id.org/scholarlydata/ontology/conference-ontology.owl). The workflow (modelled as an UML activity diagram in the following figure) includes two main activities, i.e., (i) Linked Data generation and (ii) Linked Data enrichment that start after an initialisation step required to customise the Linked Data generation process properly according to the inputs that consist of the CSV files containing the input data and the D2RQ mapping that will serve for converting CSV files to RDF.
 
 ![Workflow](clodg2_workflow.png)
 
