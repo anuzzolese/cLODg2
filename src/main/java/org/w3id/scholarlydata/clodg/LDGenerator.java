@@ -16,6 +16,7 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
@@ -55,8 +56,13 @@ public class LDGenerator {
 		
 		if(!properties.isEmpty()){
 			
-			FMTemplate fmTemplate = new FMTemplate(properties);
-			Model d2rqMapping = fmTemplate.generateMapping();
+			Model d2rqMapping = ModelFactory.createDefaultModel();
+			for(String template : FMTemplate.getTemplateNames()){
+				FMTemplate fmTemplate = new FMTemplate(template, properties);
+				Model tmpD2rqMapping = fmTemplate.generateMapping();
+				d2rqMapping.add(tmpD2rqMapping);
+			}
+			
 			
 			model = new EasychairModel(d2rqMapping);
 			

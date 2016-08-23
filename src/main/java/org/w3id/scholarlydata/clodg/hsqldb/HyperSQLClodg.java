@@ -16,11 +16,11 @@ public class HyperSQLClodg {
 		this.conn = conn;
 	}
 	
-	public HyperSQLClodg() {
+	public HyperSQLClodg(String dbAddress) {
 		try {
 			Class.forName("org.hsqldb.jdbcDriver");
 			
-			this.conn = DriverManager.getConnection("jdbc:hsqldb:file:/Users/andrea/Documents/workspaceMars/clodg2/clodg", "SA", "");
+			this.conn = DriverManager.getConnection("jdbc:hsqldb:file:" + dbAddress, "SA", "");
 			
 			System.out.println("Database connected.");
 			
@@ -125,60 +125,6 @@ public class HyperSQLClodg {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public static void main(String[] args) {
-		HyperSQLClodg hyperSQLClodg = new HyperSQLClodg();
-		try {
-			hyperSQLClodg.query("SELECT \"ORGANISING\".\"email\", (\"ORGANISING\".\"email\" <> '') AS expr18ed4c53, (\"ORGANISING\".\"email\" <> \"\") AS expr18ed4bb3, \"ORGANISING\".\"Web site\", (ORGANISING.`Web site` <> '') AS expr857fa612, \"ORGANISING\".\"last name\", \"ORGANISING\".\"first name\", \"ORGANISING\".\"organization\", (SHA1(CONCAT(\"mailto:\", \"ORGANISING\".\"email\"))) AS expre3201e94, \"ORGANISING\".\"role\" FROM \"ORGANISING\" WHERE ((\"ORGANISING\".\"Web site\" IS NOT NULL AND \"ORGANISING\".\"first name\" IS NOT NULL AND \"ORGANISING\".\"last name\" IS NOT NULL AND (ORGANISING.`Web site` <> '')) OR (\"ORGANISING\".\"email\" IS NOT NULL AND \"ORGANISING\".\"first name\" IS NOT NULL AND \"ORGANISING\".\"last name\" IS NOT NULL AND (\"ORGANISING\".\"email\" <> '')) OR (\"ORGANISING\".\"first name\" IS NOT NULL AND \"ORGANISING\".\"last name\" IS NOT NULL AND \"ORGANISING\".\"organization\" IS NOT NULL) OR (\"ORGANISING\".\"first name\" IS NOT NULL AND \"ORGANISING\".\"last name\" IS NOT NULL AND \"ORGANISING\".\"role\" IS NOT NULL) OR (\"ORGANISING\".\"first name\" IS NOT NULL AND \"ORGANISING\".\"last name\" IS NOT NULL AND (\"ORGANISING\".\"email\" <> \"\") AND (SHA1(CONCAT(\"mailto:\", \"ORGANISING\".\"email\"))) IS NOT NULL) OR (\"ORGANISING\".\"first name\" IS NOT NULL AND \"ORGANISING\".\"last name\" IS NOT NULL))");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		//String expression = "CREATE TABLE sample_table ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER)";
-		try {
-			/*
-			//hyperSQLClodg.update(expression);
-			
-			hyperSQLClodg.update(
-	                "INSERT INTO sample_table(str_col,num_col) VALUES('Ford', 100)");
-			hyperSQLClodg.update(
-	                "INSERT INTO sample_table(str_col,num_col) VALUES('Toyota', 200)");
-			hyperSQLClodg.update(
-	                "INSERT INTO sample_table(str_col,num_col) VALUES('Honda', 300)");
-			hyperSQLClodg.update(
-	                "INSERT INTO sample_table(str_col,num_col) VALUES('GM', 400)");
-			
-			
-			InputStream is = HyperSQLClodg.class.getClassLoader().getResourceAsStream("hsqldb/easychair_schema.sql");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-			
-			String content = "";
-			String line = null;
-			
-			while((line = reader.readLine()) != null){
-				content += line + '\n';
-			}
-			
-			reader.close();
-			is.close();
-					
-			
-			hyperSQLClodg.query("SELECT * FROM sample_table WHERE num_col < 250");
-			
-			hyperSQLClodg.query("SELECT * FROM sample_table WHERE num_col < 250");
-			
-			
-			*
-			hyperSQLClodg.loadCSV(new File("demo/submission.csv"));
-			 */
-			// at end of program
-			hyperSQLClodg.shutdown();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
 	}
 	
 }
