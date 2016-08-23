@@ -19,11 +19,11 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Option.Builder;
-import org.scholarlydata.builder.ScholarlyData;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3id.scholarlydata.clodg.dogfood.ScholarlyData;
 import org.w3id.scholarlydata.clodg.hsqldb.CSVLoader;
 
 import com.hp.hpl.jena.rdf.model.Model;

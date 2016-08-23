@@ -1,4 +1,4 @@
-package org.scholarlydata.builder;
+package org.w3id.scholarlydata.clodg.dogfood;
 
 import java.io.File;
 import java.io.FileNotFoundException;
