@@ -19,6 +19,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Option.Builder;
+import org.scholarlydata.builder.ScholarlyData;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
@@ -68,10 +69,10 @@ public class Clodg {
                                  .build();
         
         optionBuilder = Option.builder(OUTPUT_FILE);
-        Option outputFileOption = optionBuilder.argName("file")
+        Option outputFileOption = optionBuilder.argName("folder")
                                  .hasArg()
-                                 .required(false)
-                                 .desc("OPTIONAL - Output file for the final RDF model. If no value is provided, then system out is used by default.")
+                                 .required(true)
+                                 .desc("MANDATORY - Output directory used to storethe final RDF models.")
                                  .longOpt(OUTPUT_FILE_LONG)
                                  .build();
         
@@ -159,9 +160,17 @@ public class Clodg {
 		            		model.add(FileManager.get().loadModel(inputModelPath));
 		            	
 		            	try {
+		            		/*
 		            		if(outputFile != null && !outputFile.trim().isEmpty())
 		            			model.write(new FileOutputStream(new File(outputFile)), "TURTLE");
 		            		else model.write(System.out, "TURTLE");
+		            		*/
+		            		File outFolder = new File(outputFile);
+		            		if(!outFolder.exists()) outFolder.mkdirs();
+		            		model.write(new FileOutputStream(new File(outputFile, "dogfood.ttl")), "TURTLE");
+		            		
+		            		ScholarlyData.convert(model, new File(outputFile));
+		            		
 		    			} catch (FileNotFoundException e) {
 		    				// TODO Auto-generated catch block
 		    				e.printStackTrace();

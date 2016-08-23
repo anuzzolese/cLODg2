@@ -1,0 +1,1198 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY schor "http://www.scholarlydata.org/resource/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.scholarlydata.org/ontology/conference-ontology.owl#"
+     xml:base="http://www.scholarlydata.org/ontology/conference-ontology.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:schor="http://www.scholarlydata.org/resource/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#during -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#during">
+        <rdfs:label xml:lang="en">during</rdfs:label>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#TimeIndexedSituation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAddress -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAddress">
+        <rdfs:label xml:lang="en">has address</rdfs:label>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Address"/>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Site"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAffiliation -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAffiliation">
+        <rdfs:label xml:lang="en">has affiliation</rdfs:label>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationDuringEvent"/>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Person"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAuthorList -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAuthorList">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#List"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasContent -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasContent">
+        <rdfs:label xml:lang="en">associated with</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+        <rdfs:range rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasFirstItem -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasFirstItem">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">first author</rdfs:label>
+        <rdfs:label xml:lang="en">has first item</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#List"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasItem"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#previous"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasItem -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasItem">
+        <rdfs:label xml:lang="en">has item</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#List"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLastItem -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLastItem">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has last item</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#List"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasItem"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#next"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLocation -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLocation">
+        <rdfs:label xml:lang="en">has location</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Site"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasPart">
+        <rdfs:label xml:lang="en">has part</rdfs:label>
+        <rdfs:range rdf:resource="&owl;Thing"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasSite -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasSite">
+        <rdfs:label xml:lang="en">has site</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Organisation"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Site"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasSubEvent -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasSubEvent">
+        <rdfs:label xml:lang="en">has sub event</rdfs:label>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#hasTopic -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasTopic">
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Topic"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#holdsRole -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#holdsRole">
+        <rdfs:label xml:lang="en">holds role</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Agent"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#inAffiliationDuringEvent -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#inAffiliationDuringEvent">
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#withOrganisation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isAddressOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isAddressOf">
+        <rdfs:label xml:lang="en">is address of</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAddress"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isAffiliationOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isAffiliationOf">
+        <rdfs:label xml:lang="en">is affiliation of</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationDuringEvent"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Person"/>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAffiliation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isDocumentRelatedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isDocumentRelatedTo">
+        <rdfs:label xml:lang="en">is document related to</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isFirstItemOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isFirstItemOf">
+        <rdfs:label xml:lang="en">is first item of</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasFirstItem"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#isItemOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isHeldBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isHeldBy">
+        <rdfs:label xml:lang="en">is held by</rdfs:label>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Agent"/>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent"/>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#holdsRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isItemOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isItemOf">
+        <rdfs:label xml:lang="en">is item of</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isLastItemOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isLastItemOf">
+        <rdfs:label xml:lang="en">is last item of</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLastItem"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#isItemOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isLocationFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isLocationFor">
+        <rdfs:label xml:lang="en">is location for</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLocation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isPartOf">
+        <rdfs:label xml:lang="en">is part of</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasPart"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isSiteOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isSiteOf">
+        <rdfs:label xml:lang="en">is site of</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasSite"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isSubEventOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isSubEventOf">
+        <rdfs:label xml:lang="en">is sub event of</rdfs:label>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasSubEvent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#isTopicOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#isTopicOf">
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasTopic"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#next -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#next">
+        <rdfs:label xml:lang="en">next</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#previous -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#previous">
+        <rdfs:label xml:lang="en">previous</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#next"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#relatesToDocument -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#relatesToDocument">
+        <rdfs:label xml:lang="en">relates to document</rdfs:label>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRoleDuringEvent"/>
+        <owl:inverseOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#isDocumentRelatedTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#withOrganisation -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#withOrganisation">
+        <rdfs:label xml:lang="en">with organisation</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationDuringEvent"/>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Organisation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#withRole -->
+
+    <owl:ObjectProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#withRole">
+        <rdfs:label xml:lang="en">with role</rdfs:label>
+        <rdfs:range rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Role"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationDuringEvent"/>
+                    <rdf:Description rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broader -->
+
+    <owl:ObjectProperty rdf:about="&skos;broader"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrower -->
+
+    <owl:ObjectProperty rdf:about="&skos;narrower">
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#abstract -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#abstract">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#description">
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#doi -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#doi">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#duration -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#duration"/>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#endDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#endDate">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#familyName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#familyName">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#givenName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#givenName">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#keyword -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#keyword">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#name">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Agent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#startDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#startDate">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#title">
+        <rdfs:domain rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Abstract -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Abstract">
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent">
+        <rdfs:label xml:lang="en">Academic event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Address -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Address"/>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationDuringEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationDuringEvent">
+        <rdfs:label xml:lang="en">Affiliation during event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#TimeIndexedSituation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#withRole"/>
+                <owl:allValuesFrom rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationRole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationRole -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#AffiliationRole">
+        <rdfs:label xml:lang="en">Affiliation role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Agent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Agent">
+        <rdfs:label xml:lang="en">Agent</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#name"/>
+                <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Break -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Break">
+        <rdfs:label xml:lang="en">Break</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#NonAcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Conference -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Conference">
+        <rdfs:label xml:lang="en">Conference</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Document -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document">
+        <rdfs:label xml:lang="en">Document</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#title"/>
+                <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasAuthorList"/>
+                <owl:someValuesFrom rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#List"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#InProceedings -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#InProceedings">
+        <rdfs:label xml:lang="en">In proceedings</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#List -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#List">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLastItem"/>
+                <owl:onClass rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasFirstItem"/>
+                <owl:onClass rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#ListItem">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasContent"/>
+                <owl:someValuesFrom rdf:resource="&owl;Thing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Meal -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Meal">
+        <rdfs:label xml:lang="en">Meal</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#NonAcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#NonAcademicEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#NonAcademicEvent">
+        <rdfs:label xml:lang="en">Non academic event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Organisation -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Organisation">
+        <rdfs:label xml:lang="en">Organisation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisationalRoleDuringEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisationalRoleDuringEvent">
+        <rdfs:label xml:lang="en">Organisational role during event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#withRole"/>
+                <owl:allValuesFrom rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRoleDuringEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisedEvent">
+        <rdfs:label xml:lang="en">Organised event</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole">
+        <rdfs:label xml:lang="en">Organising role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Role"/>
+        <owl:disjointWith rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Panel -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Panel">
+        <rdfs:label xml:lang="en">Panel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Person -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Person">
+        <rdfs:label xml:lang="en">Person</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Proceedings -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Proceedings">
+        <rdfs:label xml:lang="en">Proceedings</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Document"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#hasPart"/>
+                <owl:someValuesFrom rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#InProceedings"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole">
+        <rdfs:label xml:lang="en">Publishing role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRoleDuringEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRoleDuringEvent">
+        <rdfs:label xml:lang="en">Publishing role during event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#withRole"/>
+                <owl:allValuesFrom rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Role -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Role">
+        <rdfs:label xml:lang="en">Role</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#RoleDuringEvent">
+        <rdfs:label xml:lang="en">Role during event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#TimeIndexedSituation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#withRole"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+                            <rdf:Description rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Session -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Session">
+        <rdfs:label xml:lang="en">Session</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Site -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Site">
+        <rdfs:label xml:lang="en">Site</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#SocialEvent -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#SocialEvent">
+        <rdfs:label xml:lang="en">Social event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#NonAcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Talk -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Talk">
+        <rdfs:label xml:lang="en">Talk</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#TimeIndexedSituation -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#TimeIndexedSituation"/>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Topic -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Topic"/>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Track -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Track">
+        <rdfs:label xml:lang="en">Track</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Tutorial -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Tutorial">
+        <rdfs:label xml:lang="en">Tutorial</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.scholarlydata.org/ontology/conference-ontology.owl#Workshop -->
+
+    <owl:Class rdf:about="http://www.scholarlydata.org/ontology/conference-ontology.owl#Workshop">
+        <rdfs:label xml:lang="en">Workshop</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#AcademicEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/author -->
+
+    <owl:NamedIndividual rdf:about="&schor;author">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole"/>
+        <rdfs:label xml:lang="en">Author</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Chair</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/challenge-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;challenge-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Challenge chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/demos-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;demos-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Demos chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/exhibition-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;exhibition-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Exhibition chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/fellowship-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;fellowship-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Fellowship chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/general-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;general-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">General chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/industry-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;industry-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Industry chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/local-organiser -->
+
+    <owl:NamedIndividual rdf:about="&schor;local-organiser">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Local organiser</rdfs:label>
+        <skos:broader rdf:resource="&schor;organising-committee-member"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/metadata-coordinator -->
+
+    <owl:NamedIndividual rdf:about="&schor;metadata-coordinator">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Metadata coordinator</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/organising-committee-member -->
+
+    <owl:NamedIndividual rdf:about="&schor;organising-committee-member">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Organising committee member</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/panel-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;panel-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Panel chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/participant -->
+
+    <owl:NamedIndividual rdf:about="&schor;participant">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#Role"/>
+        <rdfs:label xml:lang="en">Participant</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/phd-symposium-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;phd-symposium-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">PhD symposium chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/poster-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;poster-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Poster chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/posters-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;posters-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Posters chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/presenter -->
+
+    <owl:NamedIndividual rdf:about="&schor;presenter">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole"/>
+        <rdfs:label xml:lang="en">Presenter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/proceedings-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;proceedings-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Proceedings chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/programme-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;programme-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Programme chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/programme-committee-member -->
+
+    <owl:NamedIndividual rdf:about="&schor;programme-committee-member">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole"/>
+        <rdfs:label xml:lang="en">Programme committee member</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/publicity-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;publicity-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Publicity chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/reviewer -->
+
+    <owl:NamedIndividual rdf:about="&schor;reviewer">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#PublishingRole"/>
+        <rdfs:label xml:lang="en">Reviewer</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/session-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;session-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Session chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/sponsor -->
+
+    <owl:NamedIndividual rdf:about="&schor;sponsor">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Sponsor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/sponsorship-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;sponsorship-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Sponsorship chair</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/track-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;track-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Track chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/treasurer -->
+
+    <owl:NamedIndividual rdf:about="&schor;treasurer">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Treasurer</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/tutorials-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;tutorials-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Tutorials chair</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/volunteers-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;volunteers-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Volunteers chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/webmaster -->
+
+    <owl:NamedIndividual rdf:about="&schor;webmaster">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Webmaster</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/workshop-organiser -->
+
+    <owl:NamedIndividual rdf:about="&schor;workshop-organiser">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Workshop organiser</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.scholarlydata.org/resource/workshops-chair -->
+
+    <owl:NamedIndividual rdf:about="&schor;workshops-chair">
+        <rdf:type rdf:resource="http://www.scholarlydata.org/ontology/conference-ontology.owl#OrganisingRole"/>
+        <rdfs:label xml:lang="en">Workshops chair</rdfs:label>
+        <skos:broader rdf:resource="&schor;chair"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
