@@ -5,9 +5,13 @@ package org.w3id.scholarlydata.clodg;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -95,9 +99,7 @@ public class Clodg {
         }
         
         if(commandLine != null){
-        	
-        	CSVLoader csvLoader = new CSVLoader();
-        	
+        	CSVLoader csvLoader = null;
         	try{
 	            
         		String configuration = commandLine.getOptionValue(CONFIGURATION_FILE);
@@ -107,6 +109,22 @@ public class Clodg {
 	            
 	            if(configuration != null && inputCSVFolder != null){
 	            	
+	            	
+	            	Properties properties = new Properties();
+	        		
+	        		try {
+	        			InputStream confInputStream = new FileInputStream(configuration);
+	        			properties.load(confInputStream);
+	        			confInputStream.close();
+	        		} catch (FileNotFoundException e1) {
+	        			// TODO Auto-generated catch block
+	        			e1.printStackTrace();
+	        		} catch (IOException e) {
+	        			// TODO Auto-generated catch block
+	        			e.printStackTrace();
+	        		}
+	        		
+	            	csvLoader = new CSVLoader(properties.getProperty("dbAddress")+"/"+properties.getProperty("dbName"));
 	            	File csvFolder = new File(inputCSVFolder);
 	            	
 	            	//boolean debug = false;
@@ -119,6 +137,8 @@ public class Clodg {
 								return file.getName().endsWith("csv");
 							}
 						});
+	            		
+	            		InputCSVFiles inputCSVFiles = new InputCSVFiles(csvFiles);
 	            		
 	            		try {
 	            			//if(!debug)
@@ -133,7 +153,7 @@ public class Clodg {
 						}
 	            		
 		            	LDGenerator datasetLoader = LDGenerator.getInstance();
-		            	Model model = datasetLoader.generate(configuration);
+		            	Model model = datasetLoader.generate(properties, inputCSVFiles);
 		            	
 		            	if(inputModelPath != null && !inputModelPath.trim().isEmpty())
 		            		model.add(FileManager.get().loadModel(inputModelPath));
@@ -156,7 +176,7 @@ public class Clodg {
         	} catch(Exception e){
         		e.printStackTrace();
         	} finally {
-				try {
+        		try {
 					csvLoader.dropDatabase();
 					System.out.println("DB dropped.");
 				} catch (SQLException e) {

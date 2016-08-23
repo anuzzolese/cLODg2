@@ -1,9 +1,5 @@
 package org.w3id.scholarlydata.clodg;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -16,7 +12,6 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
@@ -35,34 +30,44 @@ public class LDGenerator {
 		return instance;
 	}
 
-	public Model generate(String configuration){
-		
+	public Model generate(Properties properties, InputCSVFiles inputCSVFiles){
 		
 		Model model = null;
 		
-		Properties properties = new Properties();
-		
-		try {
-			InputStream confInputStream = new FileInputStream(configuration);
-			properties.load(confInputStream);
-			confInputStream.close();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		if(!properties.isEmpty()){
 			
-			Model d2rqMapping = ModelFactory.createDefaultModel();
-			for(String template : FMTemplate.getTemplateNames()){
-				FMTemplate fmTemplate = new FMTemplate(template, properties);
-				Model tmpD2rqMapping = fmTemplate.generateMapping();
-				d2rqMapping.add(tmpD2rqMapping);
+			FMTemplate fmTemplate = new FMTemplate("main.ftl", properties);
+			Model d2rqMapping = fmTemplate.generateMapping();
+			
+			// add committee if the corresponding CSV is available
+			if(inputCSVFiles.hasCommittee()){
+				fmTemplate = new FMTemplate("committee.ftl", properties);
+				d2rqMapping.add(fmTemplate.generateMapping());
 			}
 			
+			// add keynotes if the corresponding CSV is available
+			if(inputCSVFiles.hasKeynote()){
+				fmTemplate = new FMTemplate("keynotes.ftl", properties);
+				d2rqMapping.add(fmTemplate.generateMapping());
+			}
+			
+			// add organising members and their associated roles if the corresponding CSV is available
+			if(inputCSVFiles.hasOrganising()){
+				fmTemplate = new FMTemplate("organising.ftl", properties);
+				d2rqMapping.add(fmTemplate.generateMapping());
+			}
+			
+			// add sessions if the corresponding CSV is available
+			if(inputCSVFiles.hasSession()){
+				fmTemplate = new FMTemplate("sessions.ftl", properties);
+				d2rqMapping.add(fmTemplate.generateMapping());
+			}
+			
+			// add talks if the corresponding CSV is available
+			if(inputCSVFiles.hasTalk()){
+				fmTemplate = new FMTemplate("talks.ftl", properties);
+				d2rqMapping.add(fmTemplate.generateMapping());
+			}
 			
 			model = new EasychairModel(d2rqMapping);
 			
@@ -202,7 +207,5 @@ public class LDGenerator {
 		return model;
 	}
 	
-	public static void main(String[] args) {
-		new LDGenerator().generate(null);
-	}
+	
 }

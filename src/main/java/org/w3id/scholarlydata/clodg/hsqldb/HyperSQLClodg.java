@@ -2,7 +2,6 @@ package org.w3id.scholarlydata.clodg.hsqldb;
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -14,32 +13,6 @@ public class HyperSQLClodg {
 	
 	public HyperSQLClodg(Connection conn) {
 		this.conn = conn;
-	}
-	
-	public HyperSQLClodg(String dbAddress) {
-		try {
-			Class.forName("org.hsqldb.jdbcDriver");
-			
-			this.conn = DriverManager.getConnection("jdbc:hsqldb:file:" + dbAddress, "SA", "");
-			
-			System.out.println("Database connected.");
-			
-			String expression = "CREATE FUNCTION SHA1(in VARCHAR(100000))"
-					+ "RETURNS VARCHAR(100000) "
-					+ "LANGUAGE JAVA DETERMINISTIC NO SQL "
-					+ "EXTERNAL NAME 'CLASSPATH:org.apache.commons.codec.digest.DigestUtils.shaHex'";
-			
-			Statement stmt = this.conn.createStatement();
-			stmt.execute(expression);
-			stmt.execute("SET DATABASE SQL SYNTAX MYS TRUE");
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public synchronized void update(String expression) throws SQLException {

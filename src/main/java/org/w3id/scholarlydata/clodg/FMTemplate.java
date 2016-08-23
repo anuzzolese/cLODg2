@@ -65,6 +65,8 @@ public class FMTemplate {
 			Template template = cfg.getTemplate(templateName);
 			
 			Writer writer = new StringWriter();
+			System.out.println("DB address: " + configuration.getProperty("dbAddress"));
+			System.out.println("DB name: " + configuration.getProperty("dbName"));
 			template.process(configuration, writer);
 			Reader reader = new StringReader(writer.toString());
 			

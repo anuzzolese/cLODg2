@@ -15,15 +15,6 @@
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
 @prefix icaltzd: <http://www.w3.org/2002/12/cal/icaltzd#> .
 
-map:database a d2rq:Database;
-	d2rq:jdbcDriver "org.hsqldb.jdbcDriver";
-	d2rq:jdbcDSN "jdbc:hsqldb:file:${dbAddress}/${dbName}";
-	d2rq:username "${dbUser}";
-	d2rq:password "${dbPass}" .
-	
-map:UriTranslator a d2rq:TranslationTable;
-	d2rq:javaClass "org.w3id.scholarlydata.clodg.Urifier" .
-
 # Keynotes 
 
 map:Keynote a d2rq:ClassMap;

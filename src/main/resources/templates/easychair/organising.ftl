@@ -15,15 +15,6 @@
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
 @prefix icaltzd: <http://www.w3.org/2002/12/cal/icaltzd#> .
 
-map:database a d2rq:Database;
-	d2rq:jdbcDriver "org.hsqldb.jdbcDriver";
-	d2rq:jdbcDSN "jdbc:hsqldb:file:${dbAddress}/${dbName}";
-	d2rq:username "${dbUser}";
-	d2rq:password "${dbPass}" .
-	
-map:UriTranslator a d2rq:TranslationTable;
-	d2rq:javaClass "org.w3id.scholarlydata.clodg.Urifier" . 
-
 # Organising
 map:OrganisingMember a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
@@ -76,3 +67,26 @@ map:om_role a d2rq:PropertyBridge;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@ORGANISING.role@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:property swc:holdsRole .
+	
+# Roles
+map:Role a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern '${baseURI}conference/${confAcronym?lower_case}/${year}/@@ORGANISING.role@@';
+	d2rq:join 'ORGANISING.role = SWC_ROLES.name';
+	d2rq:translateWith map:UriTranslator;
+	d2rq:class swc:Chair .
+	
+map:role_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Role;
+	d2rq:property rdf:type;
+	d2rq:uriColumn 'SWC_ROLES.uri' .
+	
+map:role_isRoleAt a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Role;
+	d2rq:property swc:isRoleAt;
+	d2rq:uriColumn 'SWC_ROLES.uri' .
+	
+map:role_label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Role;
+	d2rq:property rdfs:label;
+	d2rq:pattern "${baseURI}conference/${confAcronym?lower_case}/${year}" .

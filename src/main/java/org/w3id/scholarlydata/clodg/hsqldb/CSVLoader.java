@@ -19,8 +19,6 @@ public class CSVLoader {
 	private static final
 		String SQL_CREATE = "CREATE TABLE ${table} (${fields})";
 	
-	private static final String DB_NAME = "/Users/andrea/Documents/workspaceMars/clodg2/clodg";
-	
 	private static final String TABLE_REGEX = "\\$\\{table\\}";
 	private static final String KEYS_REGEX = "\\$\\{keys\\}";
 	private static final String VALUES_REGEX = "\\$\\{values\\}";
@@ -29,11 +27,11 @@ public class CSVLoader {
 	private char seprator;
 	
 	
-	public CSVLoader() {
+	public CSVLoader(String dbName) {
 		try {
 			Class.forName("org.hsqldb.jdbcDriver");
 			
-			this.connection = DriverManager.getConnection("jdbc:hsqldb:file:" + DB_NAME, "SA", "");
+			this.connection = DriverManager.getConnection("jdbc:hsqldb:file:" + dbName, "SA", "");
 			
 			Statement st = connection.createStatement();
 			st.execute("SET DATABASE SQL SYNTAX MYS TRUE");
