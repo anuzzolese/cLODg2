@@ -33,8 +33,6 @@ public class RoleMappings {
 				Resource dogFoodRole = ModelFactory.createDefaultModel().createResource(dogFoodRoleURI);
 				Resource confRole = ModelFactory.createDefaultModel().createResource(confRoleURI);
 				map.put(dogFoodRole, confRole);
-				
-				System.out.println(dogFoodRole + " to " + confRole);
 			}
 			
 			reader.close();

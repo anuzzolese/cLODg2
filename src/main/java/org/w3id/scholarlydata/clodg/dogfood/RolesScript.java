@@ -36,7 +36,6 @@ public class RolesScript {
 				String label = row[1];
 				String event = row[2];
 				
-				System.out.println(role);
 				if(!label.equalsIgnoreCase("chair")){
 					String sparql = 
 							"PREFIX rdfs: <" + RDFS.getURI() + "> "
@@ -48,8 +47,6 @@ public class RolesScript {
 							+ "FILTER(REGEX(\"" + label + "\", STR(?label), \"i\")) "
 							+ "FILTER(?role != swc:Chair)"
 							+ "}";
-					
-					System.out.println(sparql);
 					
 					try{
 						Query query = QueryFactory.create(sparql, Syntax.syntaxARQ);

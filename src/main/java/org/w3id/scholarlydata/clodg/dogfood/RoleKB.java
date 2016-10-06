@@ -41,17 +41,11 @@ public class RoleKB {
 						+ "WHERE{ "
 						+ "<" + roleInstance.getURI() + "> a ?role "
 						+ "}";
-		
-		System.out.println("Sparql " + sparql);
-		
 		ResultSet resultSet = executesQuery(sparql);
 		
 		while(resultSet.hasNext()){
 			QuerySolution querySolution = resultSet.next();
 			dogFoodRoles.add(querySolution.getResource("role"));
-			
-			
-			System.out.println("ROle " + querySolution.getResource("role"));
 		}
 		
 		return dogFoodRoles;

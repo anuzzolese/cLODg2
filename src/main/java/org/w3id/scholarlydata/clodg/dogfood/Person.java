@@ -79,18 +79,13 @@ public class Person {
 		conferenceAcronym = conferenceAcronym.toLowerCase().replace(" ", "");
 		String roleNS = ConferenceOntology.RESOURCE_NS + "role-during-event/" + conferenceAcronym;
 		for(Role role : roles){
-			System.out.println("Role " + role.getResource());
 			Resource swdfRole = role.getResource();
 			if(swdfRole != null){
 				Statement stmt = swdfRole.getProperty(SWC.isRoleAt);
-				System.out.println("     stmt : " + stmt);
 				if(stmt != null){
 					Resource swdfEvent = (Resource)stmt.getObject();
 					Event event = new Event(swdfEvent, conferenceAcronym);
 					
-					
-					
-					System.out.println("     roles types : " + role.getTypes());
 					for(Resource confRole : role.getTypes()){
 						
 						String roleId = confRole.getLocalName();
@@ -169,12 +164,8 @@ public class Person {
 		model.add(QueryExecutor.execConstruct(modelIn, sparql));
 		
 		
-		System.out.println("create roles");
 		Set<Resource> timeIndexedSituations = createRoles(model);
 		for(Resource roleDuringEvent : timeIndexedSituations){
-			System.out.println("     " + roleDuringEvent);
-			
-			
 			person.addProperty(ConferenceOntology.holdsRole, roleDuringEvent);
 			roleDuringEvent.addProperty(ConferenceOntology.isHeldBy, person);
 		}

@@ -71,7 +71,7 @@ public class Event {
 		try{
 			model.add(QueryExecutor.execConstruct(modelIn, sparql));
 		} catch (Exception e){
-			System.out.println("Stocazzo " + sparql);
+			e.printStackTrace();
 		}
 		
 		return confEvent;

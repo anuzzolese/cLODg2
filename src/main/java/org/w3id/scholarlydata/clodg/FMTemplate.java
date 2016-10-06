@@ -13,12 +13,10 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Properties;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -65,8 +63,6 @@ public class FMTemplate {
 			Template template = cfg.getTemplate(templateName);
 			
 			Writer writer = new StringWriter();
-			System.out.println("DB address: " + configuration.getProperty("dbAddress"));
-			System.out.println("DB name: " + configuration.getProperty("dbName"));
 			template.process(configuration, writer);
 			Reader reader = new StringReader(writer.toString());
 			
@@ -84,7 +80,7 @@ public class FMTemplate {
 	}
 	
 	public static Collection<String> getTemplateNames() {
-		Collection<String> templatesNames = new ArrayList<String>();
+		Collection<String> templatesNames = Collections.emptyList();
 		
 		
 		URL url = FMTemplate.class.getClassLoader().getResource(TEMPLATE_LOCATION);
@@ -100,13 +96,18 @@ public class FMTemplate {
 		    } else {
 		        myPath = Paths.get(uri);
 		    }
-		    Stream<Path> walk = Files.walk(myPath, 1);
-		    for (Iterator<Path> it = walk.iterator(); it.hasNext();){
-		    	Path path = it.next();
-		    	Path fileName = path.getFileName();
-		    	if(fileName.endsWith(".ftl"))
-		    		templatesNames.add(fileName.toString());
-		    }
+		    templatesNames = 
+		    		Files.walk(myPath, 1)
+				    	.filter(path -> {
+					    	Path fileName = path.getFileName();
+					    	if(fileName.endsWith(".ftl")) return true;
+					    	else return false;
+					    })
+				    	.map(path -> {
+				    		return path.toString();
+				    	})
+				    	.collect(Collectors.toList());
+		    
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -120,6 +121,7 @@ public class FMTemplate {
 	
 	public static void main(String[] args) {
 		Collection<String> templates = FMTemplate.getTemplateNames();
+		System.out.println(templates.size());
 		for(String template : templates)
 			System.out.println(template);
 	}

@@ -38,7 +38,6 @@ public class InputCSVFiles {
 			else if(fileName.equals(TRACK)) track = true;
 			
 		}
-		authors = committee = keynote = organising = session = submission = swcRoles = talk = track = false;
 	}
 	
 	public void setAuthors(boolean authors) {

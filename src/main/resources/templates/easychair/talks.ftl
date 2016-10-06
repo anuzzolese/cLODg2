@@ -21,13 +21,12 @@ map:PaperTalk a d2rq:ClassMap;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/paper/@@TRACK.name@@/@@SUBMISSION.#@@";
 	d2rq:join "SUBMISSION.# = TALK.paper id";
 	d2rq:join "TALK.session id = SESSION.id";
-	d2rq:join "SESSION.track = TRACK.name";
+	d2rq:join "SUBMISSION.track # = TRACK.#";
 	d2rq:class swrc:InProceedings .
 
 map:papertalk_relation a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:PaperTalk;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/session/@@SESSION.id@@/talk/@@TALK.paper id@@";
-	#d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/talk/@@TALK.paper id@@";
 	d2rq:property swc:relatedToEvent .
 	
 # Talks
