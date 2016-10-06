@@ -96,6 +96,7 @@ public class FMTemplate {
 		    } else {
 		        myPath = Paths.get(uri);
 		    }
+		    System.out.println(myPath);
 		    templatesNames = 
 		    		Files.walk(myPath, 1)
 				    	.filter(path -> {

@@ -52,19 +52,34 @@ public class ScholarlyData {
 		System.out.println("    The dataset contains " + inProcs.size() + " in proceedings.");
 		System.out.println("    The dataset contains " + evs.size() + " events.");
 		
+		System.out.println();
+		long start = System.currentTimeMillis();
 		for(Person person : persons){
 			person.asConfResource(modelOut);
 		}
+		long end = System.currentTimeMillis();
+		System.out.println("    People converted in " + (end-start) + " millis.");
+		
+		start = System.currentTimeMillis();
 		for(Organisation organisation : orgs){
 			organisation.asConfResource(modelOut);
 		}
+		end = System.currentTimeMillis();
+		System.out.println("    Organisations converted in " + (end-start) + " millis.");
+		
+		start = System.currentTimeMillis();
 		for(InProceedings inProceedings : inProcs){
 			inProceedings.asConfResource(modelOut);
 		}
+		end = System.currentTimeMillis();
+		System.out.println("    InProceedings converted in " + (end-start) + " millis.");
 		
+		start = System.currentTimeMillis();
 		for(Event event : evs){
 			event.asConfResource(modelOut);
 		}
+		end = System.currentTimeMillis();
+		System.out.println("    Events converted in " + (end-start) + " millis.");
 		
 		ConferenceEvent conferenceEvent = new ConferenceEvent(dogFood);
 		String acronym = conferenceEvent.getAcronym();

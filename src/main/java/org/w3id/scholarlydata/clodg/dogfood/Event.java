@@ -49,7 +49,7 @@ public class Event {
 		
 		
 		
-		String sparql = "PREFIX cofunc: <" + ConferenceOntology.NS + "> " 
+		String sparql = "PREFIX cofunc: <" + ConferenceOntology.NS + "> "
 				+ "CONSTRUCT {"
 				+ "<" + confEvent.getURI() + "> a ?confEventType . "
 				+ "<" + confEvent.getURI() + "> <" + RDFS.label + "> ?label . "
@@ -57,14 +57,18 @@ public class Event {
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.startDate + "> ?start . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.endDate + "> ?end . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.description + "> ?description . "
-				+ "<" + confEvent.getURI() + "> <" + OWL2.sameAs + "> <" + swdfEvent.getURI() + "> "
+				+ "<" + confEvent.getURI() + "> <" + OWL2.sameAs + "> <" + swdfEvent.getURI() + "> . "
+				+ "?paper <" + ConferenceOntology.relatesToEvent + "> <" + confEvent.getURI() + "> . "
+				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.isEventRelatedTo + "> ?paper . "
+				+ "<" + confEvent.getURI() + "> a ?talkType "
 				+ "}"
 				+ "WHERE{ "
 				+ "OPTIONAL{<" + swdfEvent.getURI() + "> <" + RDFS.label + "> ?label } "
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#dtstart> ?start} "
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#dtend> ?end} "
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#description> ?description}"
-				+ "OPTIONAL {<" + swdfEvent.getURI() + "> a ?eventType} "
+				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#description> ?description}"
+				+ "OPTIONAL {?paper <" + SWC.relatedToEvent + "> <" + swdfEvent.getURI() + "> . BIND(IRI('" + ConferenceOntology.NS + "Talk') AS ?talkType) } "
 				+ "BIND(cofunc:eventTypeBind(?eventType) AS ?confEventType) "
 				+ "}";
 		

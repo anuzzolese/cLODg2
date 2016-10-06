@@ -61,6 +61,10 @@ public class ConferenceOntology {
     
     public static final Property hasLocation = m_model.createProperty( "http://www.scholarlydata.org/ontology/conference-ontology.owl#hasLocation" );
     
+    public static final Property relatesToEvent = m_model.createProperty( "http://www.scholarlydata.org/ontology/conference-ontology.owl#relatesToEvent" );
+    
+    public static final Property isEventRelatedTo = m_model.createProperty( "http://www.scholarlydata.org/ontology/conference-ontology.owl#isEventRelatedTo" );
+    
     public static final Property hasPart = m_model.createProperty( "http://www.scholarlydata.org/ontology/conference-ontology.owl#hasPart" );
     
     public static final Property hasSite = m_model.createProperty( "http://www.scholarlydata.org/ontology/conference-ontology.owl#hasSite" );
