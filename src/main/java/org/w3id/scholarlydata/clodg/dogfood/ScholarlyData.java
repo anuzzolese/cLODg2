@@ -55,30 +55,30 @@ public class ScholarlyData {
 		
 		
 		long start = System.currentTimeMillis();
-		for(Person person : persons){
+		persons.forEach(person -> {
 			person.asConfResource(modelOut);
-		}
+		});
 		long end = System.currentTimeMillis();
 		System.out.println("    People converted in " + (end-start) + " millis.");
 		
 		start = System.currentTimeMillis();
-		for(Organisation organisation : orgs){
+		orgs.forEach(organisation -> {
 			organisation.asConfResource(modelOut);
-		}
+		});
 		end = System.currentTimeMillis();
 		System.out.println("    Organisations converted in " + (end-start) + " millis.");
 		
 		start = System.currentTimeMillis();
-		for(InProceedings inProceedings : inProcs){
+		inProcs.forEach(inProceedings -> {
 			inProceedings.asConfResource(modelOut);
-		}
+		});
 		end = System.currentTimeMillis();
 		System.out.println("    InProceedings converted in " + (end-start) + " millis.");
 		
 		start = System.currentTimeMillis();
-		for(Event event : evs){
+		evs.forEach(event -> {
 			event.asConfResource(modelOut);
-		}
+		});
 		end = System.currentTimeMillis();
 		System.out.println("    Events converted in " + (end-start) + " millis.");
 		
