@@ -35,7 +35,6 @@ public class ScholarlyData {
         File folderForAlignmentGraphs = new File(scholarly, "alignments");
         if(!folderForAlignmentGraphs.exists()) folderForAlignmentGraphs.mkdirs();
         
-        RoleMappings roleMappings = RoleMappings.getInstance();
         Model modelOut = ModelFactory.createDefaultModel();
 	    People people = new People(dogFood);
 	    Organisations organisations = new Organisations(dogFood);
@@ -53,6 +52,8 @@ public class ScholarlyData {
 		System.out.println("    The dataset contains " + evs.size() + " events.");
 		
 		System.out.println();
+		
+		
 		long start = System.currentTimeMillis();
 		for(Person person : persons){
 			person.asConfResource(modelOut);

@@ -1,12 +1,12 @@
 package org.w3id.scholarlydata.clodg.dogfood;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.vocabulary.RDF;
 
@@ -18,15 +18,16 @@ public class Organisations {
 	}
 	
 	public Collection<Organisation> list(){
-		Collection<Organisation> organisationList = new ArrayList<Organisation>();
-	
-		StmtIterator stmtIterator = model.listStatements(null, RDF.type, FOAF.Organization);
-		while(stmtIterator.hasNext()){
-			Statement stmt = stmtIterator.next();
-			Resource organisationResource = stmt.getSubject();
-			Organisation organisation = new Organisation(organisationResource);
-			organisationList.add(organisation);
-		}
-		return organisationList;
+		Stream<Statement> stmtStream = model.listStatements(null, RDF.type, FOAF.Organization)
+				.toList()
+				.stream();
+		
+		Stream<Resource> resourceStream = stmtStream.map(stmt -> {
+			return stmt.getSubject();
+		}).distinct();
+		
+		return resourceStream.map(resource -> {
+			return new Organisation(resource);
+		}).collect(Collectors.toList());
 	}
 }

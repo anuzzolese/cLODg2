@@ -8,6 +8,7 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -27,6 +28,9 @@ import org.w3id.scholarlydata.clodg.dogfood.ScholarlyData;
 import org.w3id.scholarlydata.clodg.hsqldb.CSVLoader;
 
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
 
 public class Clodg {
@@ -167,8 +171,14 @@ public class Clodg {
 		            		*/
 		            		File outFolder = new File(outputFile);
 		            		if(!outFolder.exists()) outFolder.mkdirs();
-		            		model.write(new FileOutputStream(new File(outputFile, "dogfood.ttl")), "TURTLE");
+		            		model.write(new FileOutputStream(new File(outFolder, "dogfood.ttl")), "TURTLE");
 		            		
+		            		/*
+		            		 * Strange behaviour: probably a bug of this specific version of Jena.
+		            		 * In fact, if the model is not realoded from file system the list of authors
+		            		 * are not managed properly.
+		            		 */
+		            		model = FileManager.get().loadModel(new File(outFolder, "dogfood.ttl").getAbsolutePath());
 		            		ScholarlyData.convert(model, new File(outputFile));
 		            		
 		    			} catch (FileNotFoundException e) {

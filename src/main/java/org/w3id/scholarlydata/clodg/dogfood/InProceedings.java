@@ -2,11 +2,13 @@ package org.w3id.scholarlydata.clodg.dogfood;
 
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.DC_11;
 import com.hp.hpl.jena.vocabulary.OWL2;
@@ -48,10 +50,11 @@ public class InProceedings {
 		
 		
 		Model modelIn = resource.getModel();
+		
+		
 		ResultSet resultSet = QueryExecutor.execSelect(modelIn, sparql);
 		
 		//ResultSetFormatter.out(System.out, resultSet);
-		
 		
 		int itemCounter = 0;
 		Resource previousAuthorListItem = null;
@@ -142,6 +145,28 @@ public class InProceedings {
 		
 		return inProceedings;
 		
+	}
+	
+	
+	public static void main(String[] args) {
+		Model model = FileManager.get().loadModel("eswc2016_clodg/dogfood.ttl");
+		
+		String sparql = 
+				"SELECT ?member ?pos "
+				+ "WHERE { "
+				+ "{<http://data.semanticweb.org/conference/eswc/2016/paper/applications/application-10> <http://www.cs.vu.nl/~mcaklein/onto/swrc_ext/2005/05#authorList> ?authorList} "
+				+ "UNION "
+				+ "{<http://data.semanticweb.org/conference/eswc/2016/paper/applications/application-10> <http://purl.org/ontology/bibo/authorList> ?authorList} "
+				+ "?authorList ?p ?member . FILTER(REGEX(STR(?p), \"http://www.w3.org/1999/02/22-rdf-syntax-ns#_\")) . "
+				+ "BIND(REPLACE(STR(?p), \"http://www.w3.org/1999/02/22-rdf-syntax-ns#_\", \"\") AS ?pos)" 
+				+ "} "
+				+ "ORDER BY ?pos";
+		
+		
+		ResultSet resultSet = QueryExecutor.execSelect(model, sparql);
+		
+
+		ResultSetFormatter.out(System.out, resultSet);
 	}
 	
 	

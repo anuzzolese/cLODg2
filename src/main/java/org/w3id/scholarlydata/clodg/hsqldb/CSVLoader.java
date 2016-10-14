@@ -3,12 +3,14 @@ package org.w3id.scholarlydata.clodg.hsqldb;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 
 import au.com.bytecode.opencsv.CSVReader;
@@ -26,8 +28,20 @@ public class CSVLoader {
 	private Connection connection;
 	private char seprator;
 	
+	private String dbName;
 	
 	public CSVLoader(String dbName) {
+		
+		
+		this.dbName = dbName;
+		File dbFolder = new File(dbName).getParentFile();
+		if(dbFolder.exists())
+			try {
+				FileUtils.forceDelete(dbFolder);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		
 		try {
 			Class.forName("org.hsqldb.jdbcDriver");
 			
@@ -218,6 +232,13 @@ public class CSVLoader {
         st.close();
         
         connection.close();
+        
+        try {
+			FileUtils.forceDelete(new File(dbName).getParentFile());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

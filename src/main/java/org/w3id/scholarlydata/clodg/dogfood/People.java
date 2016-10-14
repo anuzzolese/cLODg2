@@ -2,6 +2,8 @@ package org.w3id.scholarlydata.clodg.dogfood;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -19,9 +21,19 @@ public class People {
 	}
 	
 	public Collection<Person> list(){
-		Collection<Person> personList = new ArrayList<Person>();
+		//Collection<Person> personList = new ArrayList<Person>();
 	
-		StmtIterator stmtIterator = model.listStatements(null, RDF.type, FOAF.Person);
+		Stream<Statement> stmtStream = model.listStatements(null, RDF.type, FOAF.Person).toList().stream();
+		Stream<Resource> stmtResource = stmtStream.map(stmt -> {
+			Resource personResource = stmt.getSubject();
+			return personResource;
+		}).distinct();
+		
+		return stmtResource.map(resource -> {
+			return new Person(resource);
+		}).collect(Collectors.toList());
+		
+		/*
 		while(stmtIterator.hasNext()){
 			Statement stmt = stmtIterator.next();
 			Resource personResource = stmt.getSubject();
@@ -29,6 +41,7 @@ public class People {
 			personList.add(person);
 		}
 		return personList;
+		*/
 	}
 	
 }
