@@ -89,7 +89,6 @@ public class LDGenerator {
 			
 			model = model.add(add);
 			
-			//model.write(System.out, "N-TRIPLES");
 			Resource talkEvent = model.createResource("http://data.semanticweb.org/ns/swc/ontology#TalkEvent");
 			Resource demoEvent = model.createResource("http://data.semanticweb.org/ns/swc/ontology#DemoEvent");
 			Resource posterEvent = model.createResource("http://data.semanticweb.org/ns/swc/ontology#PosterEvent");

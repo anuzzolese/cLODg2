@@ -45,7 +45,6 @@ public class FMTemplate {
 	public FMTemplate(String templateName, Properties configuration) {
 		this.templateName = templateName;
 		this.configuration = configuration;
-		System.out.println(configuration.get("baseURI"));
 	}
 	
 	public Model generateMapping(){
