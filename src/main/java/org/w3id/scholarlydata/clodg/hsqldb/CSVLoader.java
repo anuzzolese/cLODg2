@@ -1,9 +1,12 @@
 package org.w3id.scholarlydata.clodg.hsqldb;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,6 +32,9 @@ public class CSVLoader {
 	private char seprator;
 	
 	private String dbName;
+	
+	private static final String SWC_ROLES_TABLE_NAME = "swc_roles";
+	private static final String SWC_ROLES = "ontologies/swc_roles.csv";
 	
 	public CSVLoader(String dbName) {
 		
@@ -57,10 +63,17 @@ public class CSVLoader {
 			st.execute(expression);
 			
 			this.seprator = ',';
+			
+			loadCSV(SWC_ROLES_TABLE_NAME, getClass().getClassLoader().getResourceAsStream(SWC_ROLES));
+			
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -77,22 +90,15 @@ public class CSVLoader {
 		//Set default separator
 		this.seprator = ',';
 	}
-	/**
-	 * Parse CSV file using OpenCSV library and load in
-	 * given database table.
-	 * @param csvFile Input CSV file
-	 * @param tableName Database table name to import data
-	 * @param truncateBeforeLoad Truncate the table before inserting
-	 * 			new records.
-	 * @throws Exception
-	 */
-	public void loadCSV(File csvFile) throws Exception {
+	
+	public void loadCSV(String tableName, InputStream inputStream) throws Exception {
 		CSVReader csvReader = null;
 		if(null == this.connection) {
 			throw new Exception("Not a valid connection.");
 		}
 		try {
-			csvReader = new CSVReader(new FileReader(csvFile), this.seprator);
+			Reader reader = new InputStreamReader(inputStream, "UTF-8");
+			csvReader = new CSVReader(reader, this.seprator);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,7 +117,6 @@ public class CSVLoader {
 			//headerRow[i] = headerRow[i].replaceAll(" ", "_");
 		}
 		
-		String tableName = csvFile.getName().replace(".csv", "");
 		createSchema(tableName, headerRow);
 		
 		String questionmarks = StringUtils.repeat("?,", headerRow.length);
@@ -168,6 +173,21 @@ public class CSVLoader {
 				ps.close();
 			csvReader.close();
 		}
+	}
+	
+	/**
+	 * Parse CSV file using OpenCSV library and load in
+	 * given database table.
+	 * @param csvFile Input CSV file
+	 * @param tableName Database table name to import data
+	 * @param truncateBeforeLoad Truncate the table before inserting
+	 * 			new records.
+	 * @throws Exception
+	 */
+	public void loadCSV(File csvFile) throws Exception {
+		InputStream inputStream = new FileInputStream(csvFile);
+		String tableName = csvFile.getName().replace(".csv", "");
+		loadCSV(tableName, inputStream);
 	}
 	
 	public void loadCSV(File...csvFiles) throws Exception {

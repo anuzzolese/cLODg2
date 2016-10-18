@@ -20,11 +20,14 @@ public class Events {
 	private ConferenceEvent conferenceEvent;
 	private Map<Resource, Resource> swdf2confMapping;
 	
-	public static int anonEventCounter; 
+	public static int anonEventCounter;
+	
+	private static final String SWC_ONTOLOGY = "/ontologies/swc_2009-05-09.rdf";
 	
 	public Events(Model model) {
 		this.model = model;
-		this.swdfOnt = FileManager.get().loadModel("ontologies/swc_2009-05-09.rdf");
+		this.swdfOnt = ModelFactory.createDefaultModel().read(getClass().getClassLoader().getResourceAsStream(SWC_ONTOLOGY), null, "RDF/XML");
+		//this.swdfOnt = FileManager.get().loadModel("ontologies/swc_2009-05-09.rdf");
 		this.conferenceEvent = new ConferenceEvent(model);
 		this.swdf2confMapping = new HashMap<Resource, Resource>();
 		
