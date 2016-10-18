@@ -1,6 +1,7 @@
 package org.w3id.scholarlydata.clodg;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
@@ -12,9 +13,12 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
+import com.hp.hpl.jena.vocabulary.DC_11;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 public class LDGenerator {
@@ -188,6 +192,35 @@ public class LDGenerator {
 			add = queryExecution.execConstruct();
 			
 			model = model.add(add);
+			
+			/*
+			 * Add keywords
+			 * 
+			 */
+			sparql = 
+					"PREFIX swrc: <http://swrc.ontoware.org/ontology#> "
+					+ "PREFIX dc: <http://purl.org/dc/elements/1.1/> "
+					+ "SELECT ?paper ?keywords "
+					+ "WHERE{ "
+					+ "?paper a swrc:InProceedings . "
+					+ "?paper dc:subject ?keywords "		
+					+ "}";
+			query = QueryFactory.create(sparql, Syntax.syntaxARQ);
+			queryExecution = QueryExecutionFactory.create(query, ((EasychairModel)model).materialiseAll());
+			
+			List<Statement> stmts = new ArrayList<Statement>();
+			rs = queryExecution.execSelect();
+			rs.forEachRemaining(querySolution -> {
+				Resource paper = querySolution.getResource("paper");
+				String keywords = querySolution.getLiteral("keywords").getLexicalForm();
+				String[] keywordsArray = keywords.split("\n");
+				for(String keyword : keywordsArray){
+					stmts.add(new StatementImpl(paper, DC_11.subject, ModelFactory.createDefaultModel().createTypedLiteral(keyword)));
+				}
+			});
+			
+			model.removeAll(null, DC_11.subject, (RDFNode)null);
+			model.add(stmts);
 			
 			
 			/*

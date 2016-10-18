@@ -194,6 +194,11 @@ map:paper_is_part_of a d2rq:PropertyBridge;
 	d2rq:constantValue <${baseURI}conference/${confAcronym?lower_case}/${year}/proceedings>;
 	d2rq:property swrc:isPartOf .
 	
+map:paper_keywords a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Paper;
+	d2rq:pattern "@@SUBMISSION.keywords@@";
+	d2rq:property dc:subject .
+	
 # Proceedings
 map:Proceedings a d2rq:ClassMap;
 	d2rq:dataStorage map:database;

@@ -16,6 +16,7 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.vocabulary.RDF;
 
@@ -114,8 +115,32 @@ public class EasychairModel extends ModelD2RQ {
 	}
 	
 	@Override
+	public Model remove(Resource subject, Property predicate, RDFNode object) {
+		removes.add(new StatementImpl(subject, predicate, object));
+		return this;
+	}
+	
+	@Override
+	public Model removeAll(Resource subject, Property predicate, RDFNode object) {
+		this.listStatements(subject, predicate, object).forEachRemaining(stmt -> {
+			removes.add(stmt);	
+		});
+		
+		return this;
+	}
+	
+	@Override
 	public Model add(Resource subject, Property predicate, RDFNode object) {
 		adds.add(subject, predicate, object);
+		return this;
+	}
+	
+	@Override
+	public Model add(List<Statement> stmts) {
+		stmts.forEach(stmt -> {
+			adds.add(stmt);
+		});
+		
 		return this;
 	}
 	
