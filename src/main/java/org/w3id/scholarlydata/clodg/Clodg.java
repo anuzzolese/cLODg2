@@ -116,6 +116,7 @@ public class Clodg {
 	        		try {
 	        			InputStream confInputStream = new FileInputStream(configuration);
 	        			properties.load(confInputStream);
+	        			
 	        			confInputStream.close();
 	        		} catch (FileNotFoundException e1) {
 	        			// TODO Auto-generated catch block
