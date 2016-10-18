@@ -14,9 +14,11 @@ public class ConferenceOntology {
     private static Model m_model = ModelFactory.createDefaultModel();
     
     /** <p>The namespace of the vocabulary as a string</p> */
-    public static final String NS = "http://www.scholarlydata.org/ontology/conference-ontology.owl#";
+    //public static final String NS = "http://www.scholarlydata.org/ontology/conference-ontology.owl#";
+    public static final String NS = "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#";
     
-    public static final String RESOURCE_NS = "http://www.scholarlydata.org/";
+    //public static final String RESOURCE_NS = "http://www.scholarlydata.org/";
+    public static final String RESOURCE_NS = "https://w3id.org/scholarlydata/";
     
     /** <p>The namespace of the vocabulary as a string</p>
      *  @see #NS */
