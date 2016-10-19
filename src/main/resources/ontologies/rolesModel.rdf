@@ -14,7 +14,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PublicityChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/publicity-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/publicity-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2013/pc-member-at-iswc2013-research-track">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -44,7 +44,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Presenter">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/presenter"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/content-analysis-track-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TrackChair"/>
@@ -75,7 +75,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PosterChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/posters-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/posters-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2005/pc-member-at-iswc2005-research-track">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -145,7 +145,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#ProgrammeChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/programme-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/programme-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/workshop/wic/2012/programme-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -166,7 +166,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#TutorialsChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/tutorials-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/tutorials-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2003/program-chairs">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeChair"/>
@@ -184,7 +184,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProceedingsChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#EUProjectNetworkingChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/eu-project-networking-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/eu-project-networking-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2010/in-use-1-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
@@ -229,7 +229,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TutorialsChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Chair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/demo/8/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -557,7 +557,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#DemoandPostersChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/posters-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/posters-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2005/event-07/workshop-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
@@ -602,7 +602,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#DoctoralConsortiumChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/phd-symposium-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/phd-symposium-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/workshop/swws_hpcsw/2012/chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
@@ -645,7 +645,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Role">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/generic-role"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/generic-role"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/workshop-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -676,7 +676,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SemanticWebTechnologiesCo-ordinator">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/metadata-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/metadata-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2002/tutorial-3/tutorial-organizer">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -706,13 +706,13 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SponsorshipChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/sponsorship-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/sponsorship-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/paper/43/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#WebmasterandConferenceAdministrator">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/webmaster"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/webmaster"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/rr/2011/chair/administration">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Administrator"/>
@@ -739,7 +739,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#WorkshopsChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/workshops-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/workshops-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/paper/944/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -754,7 +754,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#ConferencePCO">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/organiser"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/organiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2005/event-14/organizer">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#OrganisingCommitteeMember"/>
@@ -817,7 +817,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SemanticWebTechnologiesCoordinator">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/metadata-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/metadata-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2003/session-3b/session-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
@@ -883,7 +883,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#RefereedPaperTrackChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/track-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/track-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/ekaw/2012/programme-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -934,7 +934,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#PhDSymposiumChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#TutorialChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/tutorials-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/tutorials-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2005/research-track-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TrackChair"/>
@@ -955,7 +955,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#OrganisingCommitteeMember">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/organising-committee-member"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/organising-committee-member"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/poster/268/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -994,7 +994,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SemanticWebinUseChairs">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/track-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/track-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2013/local-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#LocalOrganiser"/>
@@ -1063,7 +1063,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#ProceedingsChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/proceedings-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/proceedings-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2010/chair/local">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#LocalOrganiser"/>
@@ -1093,7 +1093,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Role"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SemanticWebChallengeChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/challenge-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/challenge-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/workshop/webquality/2012/programme-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -1144,7 +1144,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SWChallengeChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#LocalChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/local-organiser"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/local-organiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/eswc/2014/tutorials-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TutorialsChair"/>
@@ -1264,7 +1264,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PrintedProceedingsChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/proceedings-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/proceedings-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/behaviour-track-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -1330,7 +1330,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#MetadataChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/metadata-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/metadata-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2003/session-1a/session-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
@@ -1351,7 +1351,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#FellowshipChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/fellowship-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/fellowship-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/poster/190/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -1378,7 +1378,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Role"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SessionChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/session-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/session-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/poster/201/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -1409,13 +1409,13 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#ExhibitionChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/exhibition-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/exhibition-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/eswc/2014/web-presence">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Webmaster"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PhDSymposiumChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/phd-symposium-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/phd-symposium-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2005/session-5b/chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
@@ -1490,7 +1490,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#DemoChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/demos-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/demos-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/fis/2010/chair/conference">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ConferenceChair"/>
@@ -1737,10 +1737,10 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#DevelopersTrackChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/track-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/track-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#IW3C2Liaison">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/iw3c2-liaison"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/iw3c2-liaison"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/workshop/evodyn/2011/chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
@@ -1800,7 +1800,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Delegate">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/participant"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/participant"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/fis/2010/chair/panel">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#PanelsChair"/>
@@ -1855,7 +1855,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#DemosChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/demos-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/demos-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/eswc/2013/keynote/1/keynote-presenter">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -1915,7 +1915,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#WorkshopChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/workshops-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/workshops-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/paper/286/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -2023,7 +2023,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/programme-committee-member"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/programme-committee-member"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/eswc/2012/in-use-industrial-track-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -2113,7 +2113,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Role"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#IndustryChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/industry-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/industry-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/workshop/cqa/2012/programme-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeChair"/>
@@ -2203,10 +2203,10 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SubmissionsChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/submissions-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/submissions-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PanelChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/panel-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/panel-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/eswc/2011/programme-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeChair"/>
@@ -2267,13 +2267,13 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PhDSymposium">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/phd-symposium-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/phd-symposium-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/xmllondon/2013/chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#GeneralChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#TutorialPresenter">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/presenter"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2001/session-4a/session-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
@@ -2291,7 +2291,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Reviewer">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/reviewer"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/reviewer"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2001/participant">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Delegate"/>
@@ -2306,7 +2306,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#GeneralChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PosterandDemoChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/posters-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/posters-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/workshop/email/2012/programme-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -2360,7 +2360,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Host">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/host"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/host"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/event/31/panelist">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -2426,7 +2426,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SponsorChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/sponsorship-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/sponsorship-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/poster/13/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -2435,7 +2435,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Webmaster">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/webmaster"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/webmaster"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2009/chair/session_chair_lightning">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
@@ -2463,7 +2463,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TrackChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Treasurer">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/treasurer"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/treasurer"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2010/chair/publicity">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#PublicityChair"/>
@@ -2695,7 +2695,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#VolunteersChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/volunteers-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/volunteers-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/smart-devices-track-committee-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -2737,7 +2737,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PostersChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/posters-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/posters-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/poster/156/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -2779,7 +2779,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Treasurer"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#LocalOrganiser">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/local-organiser"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/local-organiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/paper/562/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -2791,7 +2791,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PanelsChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/panels-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/panels-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/eswc-2016-web-presence">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Webmaster"/>
@@ -2836,7 +2836,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SWChallengeChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/challenge-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/challenge-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/paper/272/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -2845,7 +2845,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TutorialOrganiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SponsorshipManagers">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/sponsorship-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/sponsorship-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2002/finances-and-web-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Webmaster"/>
@@ -2864,7 +2864,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TrackChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#DogfoodTsar">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/metadata-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/metadata-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2005/sponsorship-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SponsorshipChair"/>
@@ -2972,7 +2972,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Sponsor"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#GeneralChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/general-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/general-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2009/chair/workshop">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsChair"/>
@@ -2981,7 +2981,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#LocalOrganisingCommittee">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/local-organiser"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/local-organiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/ruleml-eu/2011/chair/doctoral-consortium">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#PhDSymposiumChair"/>
@@ -3170,7 +3170,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Sponsor">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/sponsor"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/sponsor"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/demo/63/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -3222,7 +3222,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#GeneralViceChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/general-vice-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/general-vice-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/event/23/organization-co-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Role"/>
@@ -3333,7 +3333,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/eswc/ontology.owl#Author">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/author"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/author"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2009/chair/session_chair7">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
@@ -3348,7 +3348,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#ConferenceChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/general-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/general-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/eswc/2011/panel-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#PanelsChair"/>
@@ -3453,7 +3453,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#TutorialsOrganiser">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/tutorials-organiser"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/tutorials-organiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/workshop/admire/2012/programme-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeChair"/>
@@ -3490,7 +3490,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#SessionChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#Administrator">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/administrator"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/administrator"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2004/pc-member">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
@@ -3607,7 +3607,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#WorkshopsOrganiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#PCMember">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/programme-committee-member"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/programme-committee-member"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/www/2012/poster/46/talk/speaker">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -3692,7 +3692,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TrackChair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#SemanticWebIn-UseChair">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/track-chair"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/track-chair"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2013/tutorial-9/tutorial-organizer">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#Presenter"/>
@@ -3704,7 +3704,7 @@
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#ProgrammeCommitteeMember"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/ns/swc/ontology#WorkshopOrganiser">
-    <j.2:closeMatch rdf:resource="http://www.scholarlydata.org/resource/workshops-organiser"/>
+    <j.2:closeMatch rdf:resource="https://w3id.org/scholarlydata/resource/workshops-organiser"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.semanticweb.org/conference/iswc/2012/workshops-and-tutorials-chair">
     <rdf:type rdf:resource="http://data.semanticweb.org/ns/swc/ontology#TutorialsChair"/>
