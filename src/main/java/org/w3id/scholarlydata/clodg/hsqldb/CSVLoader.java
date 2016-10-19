@@ -141,17 +141,9 @@ public class CSVLoader {
 			int rowCount = 0;
 			while ((nextLine = csvReader.readNext()) != null) {
 				rowCount++;
-				
 				if (null != nextLine) {
 					int index = 1;
 					for (String string : nextLine) {
-						/*date = DateUti.convertToDate(string);
-						if (null != date) {
-							ps.setDate(index++, new java.sql.Date(date
-									.getTime()));
-						} else {
-						}
-						*/
 						ps.setString(index++, string);
 					}
 					ps.addBatch();

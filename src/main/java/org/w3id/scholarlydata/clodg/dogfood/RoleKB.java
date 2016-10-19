@@ -50,9 +50,17 @@ public class RoleKB {
 	public Set<Resource> getConfRoleFromDFInstance(Resource roleInstance){
 		Set<Resource> confRoles = new HashSet<Resource>();
 		
+		/*
+		 * FIXME
+		 * 
+		 * This is only a patch to allow cLODg solving roles.
+		 */
+		String uri = roleInstance.getURI().replace("iswc-", "eswc-");
+		
+		
 		String sparql =   "SELECT DISTINCT ?confRole "
 						+ "WHERE{ "
-						+ "<" + roleInstance.getURI() + "> a ?role . "
+						+ "<" + uri + "> a ?role . "
 						+ "?role <http://www.w3.org/2004/02/skos/core#closeMatch> ?confRole "
 						+ "}";
 		
