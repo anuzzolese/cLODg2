@@ -15,7 +15,7 @@ import com.hp.hpl.jena.vocabulary.OWL2;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class InProceedings {
-
+	
 	private Resource resource;
 	private ConferenceEvent conferenceEvent;
 	
@@ -67,7 +67,7 @@ public class InProceedings {
 			Resource person = querySolution.getResource("member");
 			Literal pos = querySolution.getLiteral("pos");
 			authorListItem = model.createResource(confInProceedings.getURI() + "/authorList/item-" + pos.getLexicalForm(), ConferenceOntology.ListItem);
-			authorListItem.addProperty(ConferenceOntology.hasContent, ModelFactory.createDefaultModel().createResource(person.getURI().replace("http://data.semanticweb.org/", "http://www.scholarlydata.org/")));	
+			authorListItem.addProperty(ConferenceOntology.hasContent, ModelFactory.createDefaultModel().createResource(person.getURI().replace("http://data.semanticweb.org/", ConferenceOntology.RESOURCE_NS)));	
 			
 			authorList.addProperty(ConferenceOntology.hasItem, authorListItem);
 			
@@ -130,9 +130,9 @@ public class InProceedings {
 				+ "<" + resource.getURI() + "> <" + RDFS.label + "> ?label . "
 				+ "OPTIONAL{"
 				+ "{<" + resource.getURI() + "> <" + DC_11.creator + "> ?creator} UNION {<" + resource.getURI() + "> <" + DCTerms.creator + "> ?creator} . "
-				+ "BIND(IRI(REPLACE(STR(?creator), \"http://data.semanticweb.org/\", \"http://www.scholarlydata.org/\")) AS ?author)"
+				+ "BIND(IRI(REPLACE(STR(?creator), \"http://data.semanticweb.org/\", \"" + ConferenceOntology.RESOURCE_NS + "\")) AS ?author)"
 				+ "}"
-				+ "OPTIONAL{{<" + resource.getURI() + "> <" + SWC.isPartOf + "> ?proc} UNION {<" + resource.getURI() + "> <" + SWC.NS + "partOf" + "> ?proc} BIND(IRI(REPLACE(STR(?proc), \"http://data.semanticweb.org/\", \"http://www.scholarlydata.org/\")) AS ?proceedings)} "
+				+ "OPTIONAL{{<" + resource.getURI() + "> <" + SWC.isPartOf + "> ?proc} UNION {<" + resource.getURI() + "> <" + SWC.NS + "partOf" + "> ?proc} BIND(IRI(REPLACE(STR(?proc), \"http://data.semanticweb.org/\", \"" + ConferenceOntology.RESOURCE_NS + "\")) AS ?proceedings)} "
 				+ "{<" + resource.getURI() + "> <" + DC_11.title + "> ?title} UNION {<" + resource.getURI() + "> <" + DCTerms.title + "> ?title} . "
 				+ "OPTIONAL {<" + resource.getURI() + "> <http://swrc.ontoware.org/ontology#abstract> ?abstract } "
 				+ "OPTIONAL {{<" + resource.getURI() + "> <" + FOAF.topic + "> ?topic} UNION {<" + resource.getURI() + "> <" + SWC.hasTopic + "> ?topic}}"

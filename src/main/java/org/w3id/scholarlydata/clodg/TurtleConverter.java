@@ -1,13 +1,9 @@
 package org.w3id.scholarlydata.clodg;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -19,8 +15,8 @@ public class TurtleConverter {
 
 public static void main(String[] args) {
 		
-		File folder = new File("/Library/WebServer/Documents/scholarlydata.org/website/dumps/ontology");
-		File outFolder = new File("ttl");
+		File folder = new File("/Library/WebServer/Documents/scholarlydata.org/website/dumps/conferences/temp");
+		File outFolder = new File("/Library/WebServer/Documents/scholarlydata.org/website/dumps/conferences/temp/ttl");
 		if(!outFolder.exists()) outFolder.mkdirs();
 		for (File file : folder.listFiles(new FileFilter() {
 			
