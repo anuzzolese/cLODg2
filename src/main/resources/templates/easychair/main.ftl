@@ -147,6 +147,7 @@ map:Paper a d2rq:ClassMap;
 	d2rq:condition "SUBMISSION.decision = 'accept'";	
 	d2rq:join "SUBMISSION.# = AUTHOR.submission #";
 	d2rq:join "SUBMISSION.track # = TRACK.#";
+	d2rq:translateWith map:UriTranslator;
 	d2rq:class swrc:InProceedings .
 	
 map:paper_title a d2rq:PropertyBridge;
