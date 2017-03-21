@@ -46,7 +46,7 @@ map:organization_comm_member a d2rq:PropertyBridge;
 map:organization_comm_based_near  a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:CommitteeOrganization;
 	d2rq:property foaf:based_near;
-	d2rq:column "COMMITTEE.country"
+	d2rq:column "COMMITTEE.country" .
 	
 # Committee
 
