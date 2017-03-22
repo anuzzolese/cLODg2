@@ -69,7 +69,7 @@ public class ConferenceEvent {
 					+ "	<" + confUri + "> icaltzd:dtend ?dtend . "
 					+ "	<" + confUri + "> icaltzd:location ?location . "
 					+ "	<" + confUri + "> conf:hasSeries  <" + confSeriesUri + "> . "
-					+ "	<" + confSeriesUri + "> conf:isSeriesOf  <" + confUri + "> "
+					+ "	<" + confSeriesUri + "> conf:isSeriesOf  <" + confUri + "> . "
 					+ "	<" + confSeriesUri + "> rdfs:label  \"" + Config.CONF_ACRONYM + "\" "
 					+ "} "
 					+ "WHERE { "
