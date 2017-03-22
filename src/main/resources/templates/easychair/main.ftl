@@ -144,7 +144,7 @@ map:author_email_sha1 a d2rq:PropertyBridge;
 map:Paper a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/paper/@@TRACK.name@@/@@SUBMISSION.#@@";
-	d2rq:condition "SUBMISSION.decision LIKE 'Accept %'";	
+	d2rq:condition "SUBMISSION.decision = 'accept'";	
 	d2rq:join "SUBMISSION.# = AUTHOR.submission #";
 	d2rq:join "SUBMISSION.track # = TRACK.#";
 	d2rq:translateWith map:UriTranslator;
