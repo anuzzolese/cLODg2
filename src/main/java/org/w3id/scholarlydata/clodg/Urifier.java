@@ -30,8 +30,8 @@ public class Urifier implements Translator {
 		label = label.replaceAll("[\\(\\)]", "");
 
 		label = label.replaceAll("\\-$", "");
-		
-		label = label.replaceAll("(\\-)+", "-");
+        
+        label = label.replaceAll("(\\-)+", "-");
 
 		try {
 			
