@@ -63,10 +63,10 @@ public class Events {
 			QuerySolution querySolution = resultSet.next();
 			Resource eventRes = querySolution.getResource("event");
 			
-			Event event = new Event(eventRes, confAcronym);
+			Event event = new Event(eventRes, "conference");
 			swdf2confMapping.put(eventRes, event.asConfResource());
 			
-			events.add(new Event(eventRes, confAcronym));
+			events.add(new Event(eventRes, "conference"));
 				
 		}
 		

@@ -10,6 +10,7 @@ import java.util.List;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
@@ -42,7 +43,20 @@ public class ScholarlyData {
 	    Proceedings proceedings = new Proceedings(dogFood);
 	    Events events = new Events(dogFood);
 	                		
+	    ConferenceEvent conferenceEvent = new ConferenceEvent(dogFood);
+	    
 	    List<Resource> proceedingsVolumes = proceedings.asConfResource(modelOut);
+	    
+	    Resource conference = conferenceEvent.asConfResource(modelOut);
+	    
+	    Property hasProceedings = modelOut.createProperty(ConferenceOntology.NS + "hasProceedings");
+	    Property isProceedingsOf = modelOut.createProperty(ConferenceOntology.NS + "isProceedingsOf");
+	    proceedingsVolumes.forEach(proceedingsVolume -> {
+	    	modelOut.add(proceedingsVolume, isProceedingsOf, conference);
+	    	modelOut.add(conference, hasProceedings, proceedingsVolume);
+	    });
+	    
+	    
 	    
 		Collection<Person> persons = people.list();
 		Collection<Organisation> orgs = organisations.list();
@@ -86,7 +100,7 @@ public class ScholarlyData {
 		end = System.currentTimeMillis();
 		System.out.println("    Events converted in " + (end-start) + " millis.");
 		
-		ConferenceEvent conferenceEvent = new ConferenceEvent(dogFood);
+		
 		String acronym = conferenceEvent.getAcronym();
 		acronym = acronym.toLowerCase().replaceAll(" ", "");
 		

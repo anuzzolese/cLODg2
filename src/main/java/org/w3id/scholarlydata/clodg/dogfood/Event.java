@@ -1,5 +1,7 @@
 package org.w3id.scholarlydata.clodg.dogfood;
 
+import org.w3id.scholarlydata.clodg.Config;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -11,10 +13,10 @@ public class Event {
 	private Resource swdfEvent;
 	private Resource confEvent;
 	
-	public Event(Resource swdfEvent, String confAcronym) {
+	public Event(Resource swdfEvent, String type) {
 		this.swdfEvent = swdfEvent;
 		
-		String eventURI = ConferenceOntology.RESOURCE_NS + "event/" + confAcronym + "/";
+		String eventURI = ConferenceOntology.RESOURCE_NS + "/" + type + "/" + Config.CONF_ACRONYM.toLowerCase() + Config.YEAR + "/";
 		
 		if(swdfEvent.isURIResource()){
 			String eventResURI = swdfEvent.getURI();

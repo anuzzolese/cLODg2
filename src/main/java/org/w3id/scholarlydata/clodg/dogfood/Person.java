@@ -83,7 +83,7 @@ public class Person {
 				Statement stmt = swdfRole.getProperty(SWC.isRoleAt);
 				if(stmt != null){
 					Resource swdfEvent = (Resource)stmt.getObject();
-					Event event = new Event(swdfEvent, conferenceAcronym);
+					Event event = new Event(swdfEvent, "conference");
 					
 					for(Resource confRole : role.getTypes()){
 						
@@ -121,7 +121,7 @@ public class Person {
 			String orgId = organisation.getLocalName();
 			String organisationURI = organisationNS + "-" + orgId + "-" + resource.getLocalName();
 			
-			Event event = new Event(conferenceEvent.getResource(), conferenceEvent.getAcronym());
+			Event event = new Event(conferenceEvent.getResource(), "conference");
 			
 			Resource confOrganisation = organisation.asConfResource();
 			Resource affiliationDuringEvent = model.createResource(organisationURI, ConferenceOntology.AffiliationDuringEvent);
