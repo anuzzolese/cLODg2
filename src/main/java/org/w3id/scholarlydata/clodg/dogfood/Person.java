@@ -70,9 +70,11 @@ public class Person {
 		return orgs;
 	}
 	
-	public Set<Resource> createRoles(Model model){
+	private Set<Resource> createRoles(Resource confPerson, Model model){
 		Set<Resource> confRoles = new HashSet<Resource>();
 		Set<Role> roles = holdsRole();
+		
+		Literal personName = confPerson.getProperty(FOAF.name).getObject().asLiteral();
 		
 		String conferenceAcronym = conferenceEvent.getAcronym();
 		conferenceAcronym = conferenceAcronym.toLowerCase().replace(" ", "");
@@ -95,6 +97,7 @@ public class Person {
 						
 						roleDuringEvent.addProperty(ConferenceOntology.withRole, confRole);
 						roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
+						roleDuringEvent.addLiteral(RDFS.label, "Role of " + personName.getLexicalForm() + " during " + conferenceAcronym);
 						
 						confRoles.add(roleDuringEvent);
 						
@@ -110,9 +113,11 @@ public class Person {
 	}
 	
 	
-	public Set<Resource> createAffiliations(Model model){
+	private Set<Resource> createAffiliations(Resource confPerson, Model model){
 		
 		Set<Resource> confAffiliations = new HashSet<Resource>(); 
+		
+		Literal personName = confPerson.getProperty(FOAF.name).getObject().asLiteral();
 		
 		Set<Organisation> orgs = swdfAffiliations();
 		String conferenceAcronym = conferenceEvent.getAcronym();
@@ -128,6 +133,7 @@ public class Person {
 			Resource affiliationDuringEvent = model.createResource(organisationURI, ConferenceOntology.AffiliationDuringEvent);
 			affiliationDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
 			affiliationDuringEvent.addProperty(ConferenceOntology.withOrganisation, confOrganisation);
+			affiliationDuringEvent.addLiteral(RDFS.label, "Affiliation of " + personName.getLexicalForm() + " during " + conferenceAcronym);
 			confOrganisation.addProperty(ConferenceOntology.inAffiliationDuringEvent, affiliationDuringEvent);
 			
 			confAffiliations.add(affiliationDuringEvent);
@@ -164,13 +170,13 @@ public class Person {
 		model.add(QueryExecutor.execConstruct(modelIn, sparql));
 		
 		
-		Set<Resource> timeIndexedSituations = createRoles(model);
+		Set<Resource> timeIndexedSituations = createRoles(person, model);
 		for(Resource roleDuringEvent : timeIndexedSituations){
 			person.addProperty(ConferenceOntology.holdsRole, roleDuringEvent);
 			roleDuringEvent.addProperty(ConferenceOntology.isHeldBy, person);
 		}
 		
-		timeIndexedSituations = createAffiliations(model);
+		timeIndexedSituations = createAffiliations(person, model);
 		for(Resource affiliationDuringEvent : timeIndexedSituations){
 			person.addProperty(ConferenceOntology.hasAffiliation, affiliationDuringEvent);
 			affiliationDuringEvent.addProperty(ConferenceOntology.isAffiliationOf, person);
