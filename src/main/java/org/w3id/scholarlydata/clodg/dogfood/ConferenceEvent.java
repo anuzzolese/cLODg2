@@ -18,6 +18,9 @@ public class ConferenceEvent {
 	
 	private Resource resource;
 	private Literal acronym;
+	
+	private static Resource conference;
+	
 	public ConferenceEvent(Model model) {
 		
 		
@@ -49,38 +52,42 @@ public class ConferenceEvent {
 	}
 	
 	public Resource asConfResource(Model model){
-		String confLocalName = Config.CONF_ACRONYM.toLowerCase() + Config.YEAR;
-		String confUri = ConferenceOntology.RESOURCE_NS + "/conference/" + confLocalName;
-		String confSeriesUri = ConferenceOntology.RESOURCE_NS + "/conferenceseries/" + Config.CONF_ACRONYM.toLowerCase();
-		String sparql = 
-				"PREFIX rdfs: <" + RDFS.getURI() + "> "
-				+ "PREFIX conf: <" + ConferenceOntology.NS + "> "
-				+ "PREFIX swc: <http://data.semanticweb.org/ns/swc/ontology#> "
-				+ "PREFIX icaltzd: <http://www.w3.org/2002/12/cal/icaltzd#> "
-				+ "CONSTRUCT {"
-				+ "	<" + confUri + "> a <" + ConferenceOntology.Conference.getURI() + "> . "
-				+ "	<" + confUri + "> rdfs:label ?label . "
-				+ "	<" + confUri + "> conf:acronym ?acronym . "
-				+ "	<" + confUri + "> icaltzd:dtstart ?dtstart . "
-				+ "	<" + confUri + "> icaltzd:dtend ?dtend . "
-				+ "	<" + confUri + "> icaltzd:location ?location . "
-				+ "	<" + confUri + "> conf:hasSeries  <" + confSeriesUri + "> . "
-				+ "	<" + confSeriesUri + "> conf:isSeriesOf  <" + confUri + "> "
-				+ "} "
-				+ "WHERE { "
-				+ "	<" + resource.getURI() + "> rdfs:label ?label . "
-				+ "	<" + resource.getURI() + "> swc:hasAcronym ?acronym . "
-				+ "	<" + resource.getURI() + "> icaltzd:dtstart ?dtstart . "
-				+ "	<" + resource.getURI() + "> icaltzd:dtend ?dtend . "
-				+ "	<" + resource.getURI() + "> icaltzd:location ?location "
-				+ "}";
-		
-		Query query = QueryFactory.create(sparql, Syntax.syntaxARQ);
-		QueryExecution queryExecution = QueryExecutionFactory.create(query, resource.getModel());
-		Model tmp = queryExecution.execConstruct();
-		model.add(tmp);
-		
-		return model.createResource(confUri);
+		if(conference == null){
+			String confLocalName = Config.CONF_ACRONYM.toLowerCase() + Config.YEAR;
+			String confUri = ConferenceOntology.RESOURCE_NS + "/conference/" + confLocalName;
+			String confSeriesUri = ConferenceOntology.RESOURCE_NS + "/conferenceseries/" + Config.CONF_ACRONYM.toLowerCase();
+			String sparql = 
+					"PREFIX rdfs: <" + RDFS.getURI() + "> "
+					+ "PREFIX conf: <" + ConferenceOntology.NS + "> "
+					+ "PREFIX swc: <http://data.semanticweb.org/ns/swc/ontology#> "
+					+ "PREFIX icaltzd: <http://www.w3.org/2002/12/cal/icaltzd#> "
+					+ "CONSTRUCT {"
+					+ "	<" + confUri + "> a <" + ConferenceOntology.Conference.getURI() + "> . "
+					+ "	<" + confUri + "> rdfs:label ?label . "
+					+ "	<" + confUri + "> conf:acronym ?acronym . "
+					+ "	<" + confUri + "> icaltzd:dtstart ?dtstart . "
+					+ "	<" + confUri + "> icaltzd:dtend ?dtend . "
+					+ "	<" + confUri + "> icaltzd:location ?location . "
+					+ "	<" + confUri + "> conf:hasSeries  <" + confSeriesUri + "> . "
+					+ "	<" + confSeriesUri + "> conf:isSeriesOf  <" + confUri + "> "
+					+ "	<" + confSeriesUri + "> rdfs:label  \"" + Config.CONF_ACRONYM + "\" "
+					+ "} "
+					+ "WHERE { "
+					+ "	<" + resource.getURI() + "> rdfs:label ?label . "
+					+ "	<" + resource.getURI() + "> swc:hasAcronym ?acronym . "
+					+ "	<" + resource.getURI() + "> icaltzd:dtstart ?dtstart . "
+					+ "	<" + resource.getURI() + "> icaltzd:dtend ?dtend . "
+					+ "	<" + resource.getURI() + "> icaltzd:location ?location "
+					+ "}";
+			
+			Query query = QueryFactory.create(sparql, Syntax.syntaxARQ);
+			QueryExecution queryExecution = QueryExecutionFactory.create(query, resource.getModel());
+			Model tmp = queryExecution.execConstruct();
+			model.add(tmp);
+			
+			this.conference = model.createResource(confUri);
+		}
+		return conference;
 	}
 
 }

@@ -83,7 +83,8 @@ public class Person {
 				Statement stmt = swdfRole.getProperty(SWC.isRoleAt);
 				if(stmt != null){
 					Resource swdfEvent = (Resource)stmt.getObject();
-					Event event = new Event(swdfEvent, "conference");
+					//Event event = new Event(swdfEvent, "conference");
+					//ConferenceEvent conferenceEvent = new ConferenceEvent(model); 
 					
 					for(Resource confRole : role.getTypes()){
 						
@@ -93,7 +94,7 @@ public class Person {
 						Resource roleDuringEvent = model.createResource(roleURI, ConferenceOntology.RoleDuringEvent);
 						
 						roleDuringEvent.addProperty(ConferenceOntology.withRole, confRole);
-						roleDuringEvent.addProperty(ConferenceOntology.during, event.asConfResource());
+						roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
 						
 						confRoles.add(roleDuringEvent);
 						
