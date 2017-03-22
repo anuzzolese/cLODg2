@@ -32,7 +32,7 @@ public class Proceedings {
 		this.model = model;
 		this.proceedingsVolumes = new ArrayList<Proc>();
 		String sparql = "PREFIX rdfs: <" + RDFS.getURI() + "> "
-				+ "SELECT ?proceedings ?label "
+				+ "SELECT DISTINCT ?proceedings ?label "
 				+ "WHERE {"
 				+ "	{?inproceedings <" + SWC.isPartOf + "> ?proceedings} "
 				+ "	UNION "
