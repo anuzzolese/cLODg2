@@ -64,7 +64,7 @@ public class ConferenceEvent {
 				+ "	<" + confUri + "> icaltzd:dtstart ?dtstart . "
 				+ "	<" + confUri + "> icaltzd:dtend ?dtend . "
 				+ "	<" + confUri + "> icaltzd:location ?location . "
-				+ "	<" + confUri + "> conf:hasSeries  <" + confSeriesUri + "> "
+				+ "	<" + confUri + "> conf:hasSeries  <" + confSeriesUri + "> . "
 				+ "	<" + confSeriesUri + "> conf:isSeriesOf  <" + confUri + "> "
 				+ "} "
 				+ "WHERE { "
