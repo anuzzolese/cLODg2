@@ -104,6 +104,7 @@ map:committee_email_sha1 a d2rq:PropertyBridge;
 map:committee_role a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Committee;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@/program-committee-member";
+	d2rq:translateWith map:UriTranslator ;
 	d2rq:property swc:holdsRole .
 	
 # PSM Roles
