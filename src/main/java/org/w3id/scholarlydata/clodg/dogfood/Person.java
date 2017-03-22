@@ -74,7 +74,7 @@ public class Person {
 		Set<Resource> confRoles = new HashSet<Resource>();
 		Set<Role> roles = holdsRole();
 		
-		Literal personName = confPerson.getProperty(FOAF.name).getObject().asLiteral();
+		Literal personName = confPerson.getProperty(ConferenceOntology.name).getObject().asLiteral();
 		
 		String conferenceAcronym = conferenceEvent.getAcronym();
 		conferenceAcronym = conferenceAcronym.toLowerCase().replace(" ", "");
@@ -117,7 +117,7 @@ public class Person {
 		
 		Set<Resource> confAffiliations = new HashSet<Resource>(); 
 		
-		Literal personName = confPerson.getProperty(FOAF.name).getObject().asLiteral();
+		Literal personName = confPerson.getProperty(ConferenceOntology.name).getObject().asLiteral();
 		
 		Set<Organisation> orgs = swdfAffiliations();
 		String conferenceAcronym = conferenceEvent.getAcronym();
