@@ -1,5 +1,7 @@
 package org.w3id.scholarlydata.clodg.dogfood;
 
+import org.w3id.scholarlydata.clodg.Config;
+
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
@@ -104,6 +106,12 @@ public class InProceedings {
 			index = inProcURI.indexOf("/", index+1);
 			inProcURI = inProcURI.substring(index+1);
 		}
+		
+		inProcURI = inProcURI.replaceAll(Config.CONF_ACRONYM.toLowerCase(), "");
+		inProcURI = inProcURI.replaceAll(Config.YEAR.toLowerCase(), "");
+		inProcURI = inProcURI.replaceAll("(\\--)+", "");
+		inProcURI = inProcURI.replaceAll("^\\-", "");
+		inProcURI = inProcURI.replaceAll("\\-$", "");
 		
 		String confAcronym = conferenceEvent.getAcronym();
 		confAcronym = confAcronym.toLowerCase().replace(" ", "");

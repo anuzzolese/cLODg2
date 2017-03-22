@@ -100,7 +100,7 @@ public class ScholarlyData {
 	                		
 		try {
 			modelOut.add(voidDescriptor);
-			modelOut.write(new FileOutputStream(new File(folderForSimpleGraphs, "conference.rdf")));
+			modelOut.write(new FileOutputStream(new File(folderForSimpleGraphs, "conference.ttl")), "TURTLE");
 			modelOut.remove(voidDescriptor);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -142,7 +142,8 @@ public class ScholarlyData {
 			 * Add the owl:sameAs axioms towards the SWDF 
 			 */
 			inf.add(sameAsModel);
-			inf.write(new FileOutputStream(new File(folderForAlignmentGraphs.getAbsolutePath(), "conference-alignments.rdf")));
+			inf.write(new FileOutputStream(new File(folderForAlignmentGraphs.getAbsolutePath(), "conference-alignments.ttl")), "TURTLE");
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

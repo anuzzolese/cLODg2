@@ -74,7 +74,6 @@ public class Person {
 		Set<Resource> confRoles = new HashSet<Resource>();
 		Set<Role> roles = holdsRole();
 		
-		
 		String conferenceAcronym = conferenceEvent.getAcronym();
 		conferenceAcronym = conferenceAcronym.toLowerCase().replace(" ", "");
 		String roleNS = ConferenceOntology.RESOURCE_NS + "role-during-event/" + conferenceAcronym;

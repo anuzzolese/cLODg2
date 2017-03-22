@@ -154,6 +154,15 @@ public class Clodg {
 							e1.printStackTrace();
 						}
 	            		
+	            		Config.CONF_ACRONYM = properties.getProperty("confAcronym");
+	            		Config.YEAR = properties.getProperty("year");
+	            		
+	            		if(Config.CONF_ACRONYM == null) Config.CONF_ACRONYM = "";
+	            		else Config.CONF_ACRONYM.trim();
+	            		
+	            		if(Config.YEAR == null) Config.YEAR = "";
+	            		else Config.YEAR.trim();
+	            		
 		            	LDGenerator datasetLoader = LDGenerator.getInstance();
 		            	Model model = datasetLoader.generate(properties, inputCSVFiles);
 		            	

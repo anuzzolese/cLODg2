@@ -30,9 +30,18 @@ public class Urifier implements Translator {
 		label = label.replaceAll("[\\(\\)]", "");
 
 		label = label.replaceAll("\\-$", "");
+		
+		label = label.replaceAll("(\\-)+", "-");
 
 		try {
-			return URLEncoder.encode(label, "UTF-8");
+			
+			String[] labelParts = label.split("\\/");
+			StringBuilder sb = new StringBuilder();
+			for(String labelPart : labelParts){
+				if(sb.length() > 0) sb.append("/");
+				sb.append(URLEncoder.encode(labelPart, "UTF-8"));
+			}
+			return sb.toString();
 		} catch (UnsupportedEncodingException e) {
 			return label;
 		}
