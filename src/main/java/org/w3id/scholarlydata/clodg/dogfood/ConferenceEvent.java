@@ -54,7 +54,7 @@ public class ConferenceEvent {
 	public Resource asConfResource(Model model){
 		if(conference == null){
 			String confLocalName = Config.CONF_ACRONYM.toLowerCase() + Config.YEAR;
-			String confUri = ConferenceOntology.RESOURCE_NS + "/conference/" + confLocalName;
+			String confUri = ConferenceOntology.RESOURCE_NS + "conference/" + confLocalName;
 			String confSeriesUri = ConferenceOntology.RESOURCE_NS + "/conferenceseries/" + Config.CONF_ACRONYM.toLowerCase();
 			String sparql = 
 					"PREFIX rdfs: <" + RDFS.getURI() + "> "
@@ -85,7 +85,7 @@ public class ConferenceEvent {
 			Model tmp = queryExecution.execConstruct();
 			model.add(tmp);
 			
-			this.conference = model.createResource(confUri);
+			conference = model.createResource(confUri);
 		}
 		return conference;
 	}
