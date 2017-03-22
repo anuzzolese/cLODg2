@@ -107,6 +107,7 @@ public class InProceedings {
 			inProcURI = inProcURI.substring(index+1);
 		}
 		
+		inProcURI = inProcURI.replaceAll("paper", "");
 		inProcURI = inProcURI.replaceAll(Config.CONF_ACRONYM.toLowerCase(), "");
 		inProcURI = inProcURI.replaceAll(Config.YEAR.toLowerCase(), "");
 		inProcURI = inProcURI.replaceAll("(\\--)+", "");

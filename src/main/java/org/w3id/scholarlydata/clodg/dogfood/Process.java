@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -132,16 +133,19 @@ public class Process {
 	                		//RoleKB.getInstance().addRolesFromModel(model);
 	                		People people = new People(model);
 	                		Organisations organisations = new Organisations(model);
-	                		InProceedingsSet inProceedingsSet = new InProceedingsSet(model);
+	                		Proceedings proceedings = new Proceedings(model);
 	                		Events events = new Events(model);
+	                		
+	                		List<Resource> proceedingsVolumes = proceedings.asConfResource(modelOut);
 	                		
 	                		Collection<Person> persons = people.list();
 	                		Collection<Organisation> orgs = organisations.list();
-	                		Collection<InProceedings> inProcs = inProceedingsSet.list();
+	                		Collection<InProceedings> inProcs = proceedings.list();
 	                		Collection<Event> evs = events.list();
 	                		System.out.println("Processing dataset " + dump.getName());
 	                		System.out.println("    The dataset contains " + persons.size() + " people.");
 	                		System.out.println("    The dataset contains " + orgs.size() + " organisations.");
+	                		System.out.println("    The dataset contains " + proceedingsVolumes.size() + " proceedings volumes.");
 	                		System.out.println("    The dataset contains " + inProcs.size() + " in proceedings.");
 	                		System.out.println("    The dataset contains " + evs.size() + " events.");
 	                		for(Person person : persons){

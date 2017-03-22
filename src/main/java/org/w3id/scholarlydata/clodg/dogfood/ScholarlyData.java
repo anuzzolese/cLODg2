@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -38,16 +39,19 @@ public class ScholarlyData {
         Model modelOut = ModelFactory.createDefaultModel();
 	    People people = new People(dogFood);
 	    Organisations organisations = new Organisations(dogFood);
-	    InProceedingsSet inProceedingsSet = new InProceedingsSet(dogFood);
+	    Proceedings proceedings = new Proceedings(dogFood);
 	    Events events = new Events(dogFood);
 	                		
+	    List<Resource> proceedingsVolumes = proceedings.asConfResource(modelOut);
+	    
 		Collection<Person> persons = people.list();
 		Collection<Organisation> orgs = organisations.list();
-		Collection<InProceedings> inProcs = inProceedingsSet.list();
+		Collection<InProceedings> inProcs = proceedings.list();
 		Collection<Event> evs = events.list();
 		System.out.println("Processing dataset ");
 		System.out.println("    The dataset contains " + persons.size() + " people.");
 		System.out.println("    The dataset contains " + orgs.size() + " organisations.");
+		System.out.println("    The dataset contains " + proceedingsVolumes.size() + " proceedings volumes.");
 		System.out.println("    The dataset contains " + inProcs.size() + " in proceedings.");
 		System.out.println("    The dataset contains " + evs.size() + " events.");
 		
