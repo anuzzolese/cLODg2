@@ -122,11 +122,11 @@ public class Person {
 			String orgId = organisation.getLocalName();
 			String organisationURI = organisationNS + "-" + orgId + "-" + resource.getLocalName();
 			
-			Event event = new Event(conferenceEvent.getResource(), "conference");
+			//Event event = new Event(conferenceEvent.getResource(), "conference");
 			
 			Resource confOrganisation = organisation.asConfResource();
 			Resource affiliationDuringEvent = model.createResource(organisationURI, ConferenceOntology.AffiliationDuringEvent);
-			affiliationDuringEvent.addProperty(ConferenceOntology.during, event.asConfResource());
+			affiliationDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
 			affiliationDuringEvent.addProperty(ConferenceOntology.withOrganisation, confOrganisation);
 			confOrganisation.addProperty(ConferenceOntology.inAffiliationDuringEvent, affiliationDuringEvent);
 			
