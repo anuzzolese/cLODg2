@@ -185,6 +185,7 @@ public class Clodg {
 		            		 * are not managed properly.
 		            		 */
 		            		model = FileManager.get().loadModel(new File(outFolder, "dogfood.ttl").getAbsolutePath());
+		            		
 		            		ScholarlyData.convert(model, new File(outputFile));
 		            		
 		    			} catch (FileNotFoundException e) {

@@ -115,6 +115,7 @@ map:PCM a d2rq:ClassMap;
 	d2rq:alias "COMMITTEE as PCM";
 	d2rq:join "COMMITTEE.track # = TRACK.#";
 	d2rq:condition "COMMITTEE.`#` <> ''";
+	d2rq:translateWith map:UriTranslator ;
 	d2rq:class swc:ProgrammeCommitteeMember .
 
 map:pcm_label a d2rq:PropertyBridge;

@@ -35,6 +35,7 @@ public class Urifier implements Translator {
 
 		try {
 			
+			/*
 			String[] labelParts = label.split("\\/");
 			StringBuilder sb = new StringBuilder();
 			for(String labelPart : labelParts){
@@ -42,6 +43,8 @@ public class Urifier implements Translator {
 				sb.append(URLEncoder.encode(labelPart, "UTF-8"));
 			}
 			return sb.toString();
+			*/
+			return URLEncoder.encode(label, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			return label;
 		}

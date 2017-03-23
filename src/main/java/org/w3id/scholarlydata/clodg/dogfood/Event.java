@@ -13,10 +13,13 @@ public class Event {
 	private Resource swdfEvent;
 	private Resource confEvent;
 	
+	private Event subEvent, superEvent;
+	
 	public Event(Resource swdfEvent, String type) {
 		this.swdfEvent = swdfEvent;
 		
-		String eventURI = ConferenceOntology.RESOURCE_NS + "/" + type + "/" + Config.CONF_ACRONYM.toLowerCase() + Config.YEAR + "/";
+		//String eventURI = ConferenceOntology.RESOURCE_NS + "/event/" + Config.CONF_ACRONYM.toLowerCase() + Config.YEAR + "/";
+		String eventURI = ConferenceOntology.RESOURCE_NS + "event/";
 		
 		if(swdfEvent.isURIResource()){
 			String eventResURI = swdfEvent.getURI();
@@ -36,6 +39,14 @@ public class Event {
 		}
 		
 		this.confEvent = ModelFactory.createDefaultModel().createResource(eventURI);
+	}
+	
+	public Event(Resource swdfEvent, String type, Event subEvent, Event superEvent) {
+		this(swdfEvent, type);
+		
+		this.subEvent = subEvent;
+		this.superEvent = superEvent;
+		
 	}
 	
 	public Resource getSwdfEvent() {
@@ -60,8 +71,8 @@ public class Event {
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.endDate + "> ?end . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.description + "> ?description . "
 				+ "<" + confEvent.getURI() + "> <" + OWL2.sameAs + "> <" + swdfEvent.getURI() + "> . "
-				+ "?paper <" + ConferenceOntology.relatesToEvent + "> <" + confEvent.getURI() + "> . "
-				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.isEventRelatedTo + "> ?paper . "
+				+ "?paperIRI <" + ConferenceOntology.relatesToEvent + "> <" + confEvent.getURI() + "> . "
+				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.isEventRelatedTo + "> ?paperIRI . "
 				+ "<" + confEvent.getURI() + "> a ?talkType "
 				+ "}"
 				+ "WHERE{ "
@@ -70,12 +81,24 @@ public class Event {
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#dtend> ?end} "
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#description> ?description}"
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#description> ?description}"
-				+ "OPTIONAL {?paper <" + SWC.relatedToEvent + "> <" + swdfEvent.getURI() + "> . BIND(IRI('" + ConferenceOntology.NS + "Talk') AS ?talkType) } "
+				+ "OPTIONAL {?paper <" + SWC.relatedToEvent + "> <" + swdfEvent.getURI() + "> . "
+				+ "BIND(IRI(REPLACE(STR(?paper), 'http://data.semanticweb.org/conference/', 'https://w3id.org/scholarlydata/inproceedings/')) AS ?paperIRI) "
+				+ "BIND(IRI('" + ConferenceOntology.NS + "Talk') AS ?talkType) } "
 				+ "BIND(cofunc:eventTypeBind(?eventType) AS ?confEventType) "
 				+ "}";
 		
 		try{
 			model.add(QueryExecutor.execConstruct(modelIn, sparql));
+			
+			if(subEvent != null) {
+				model.add(confEvent, ConferenceOntology.hasSubEvent, subEvent.confEvent);
+				model.add(subEvent.confEvent, ConferenceOntology.isSubEventOf, confEvent);
+			}
+			
+			if(superEvent != null) {
+				model.add(confEvent, ConferenceOntology.isSubEventOf, superEvent.confEvent);
+				model.add(superEvent.confEvent, ConferenceOntology.hasSubEvent, confEvent);
+			}
 		} catch (Exception e){
 			e.printStackTrace();
 		}

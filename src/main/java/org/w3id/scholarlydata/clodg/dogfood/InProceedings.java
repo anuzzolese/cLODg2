@@ -1,7 +1,5 @@
 package org.w3id.scholarlydata.clodg.dogfood;
 
-import org.w3id.scholarlydata.clodg.Config;
-
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
@@ -36,7 +34,7 @@ public class InProceedings {
 	
 	private void addAuthorList(Resource confInProceedings, Model model){
 		
-		Resource authorList = model.createResource(confInProceedings.getURI() + "/authorList", ConferenceOntology.List);
+		Resource authorList = model.createResource(confInProceedings.getURI().replace("/inproceedings/", "/authorlist/"), ConferenceOntology.List);
 		confInProceedings.addProperty(ConferenceOntology.hasAuthorList, authorList);
 		
 		String sparql = 
@@ -61,9 +59,12 @@ public class InProceedings {
 		int itemCounter = 0;
 		Resource previousAuthorListItem = null;
 		Resource authorListItem = null;
+		
 		while(resultSet.hasNext()){
 			if(authorListItem != null)
 				previousAuthorListItem = authorListItem;
+			
+			
 			
 			QuerySolution querySolution = resultSet.next();
 			Resource person = querySolution.getResource("member");
@@ -107,18 +108,20 @@ public class InProceedings {
 			inProcURI = inProcURI.substring(index+1);
 		}
 		
+		/*
 		inProcURI = inProcURI.replaceAll("paper", "");
 		inProcURI = inProcURI.replaceAll(Config.CONF_ACRONYM.toLowerCase(), "");
 		inProcURI = inProcURI.replaceAll(Config.YEAR.toLowerCase(), "");
 		inProcURI = inProcURI.replaceAll("(\\--)+", "");
 		inProcURI = inProcURI.replaceAll("^\\-", "");
 		inProcURI = inProcURI.replaceAll("\\-$", "");
+		*/
 		
 		String confAcronym = conferenceEvent.getAcronym();
 		confAcronym = confAcronym.toLowerCase().replace(" ", "");
 		String localName = confAcronym + "/" + inProcURI;
 		
-		Resource inProceedings = model.createResource(ConferenceOntology.RESOURCE_NS + "inproceedings/" + localName);
+		Resource inProceedings = model.createResource(ConferenceOntology.RESOURCE_NS + "inproceedings/" + inProcURI);
 		
 		Model modelIn = resource.getModel();
 		

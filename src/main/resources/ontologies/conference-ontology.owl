@@ -8,7 +8,7 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY schor "http://www.scholarlydata.org/resource/" >
+    <!ENTITY schor "https://w3id.org/scholarlydata/role/" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
 
@@ -17,7 +17,7 @@
      xml:base="https://w3id.org/scholarlydata/ontology/conference-ontology.owl"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:schor="http://www.scholarlydata.org/resource/"
+     xmlns:schor="https://w3id.org/scholarlydata/role/"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
@@ -246,6 +246,23 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
+    <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasProceedings -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasProceedings">
+        <rdfs:range rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Proceedings"/>
+        <owl:inverseOf rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isProceedingsOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Conference"/>
+                    <rdf:Description rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Workshop"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasSite -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasSite">
@@ -333,14 +350,6 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isEventRelatedTo -->
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isEventRelatedTo">
-        <rdfs:domain rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isFirstItemOf -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isFirstItemOf">
@@ -402,6 +411,12 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         <rdfs:comment xml:lang="en">is part of</rdfs:comment>
         <owl:inverseOf rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasPart"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isProceedingsOf -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isProceedingsOf"/>
     
 
 
@@ -467,15 +482,6 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         <rdfs:range rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Document"/>
         <rdfs:domain rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#PublishingRoleDuringEvent"/>
         <owl:inverseOf rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isDocumentRelatedTo"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#relatesToEvent -->
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#relatesToEvent">
-        <rdfs:range rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
-        <owl:inverseOf rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isEventRelatedTo"/>
     </owl:ObjectProperty>
     
 
@@ -690,14 +696,14 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         <rdfs:subClassOf rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#TimeIndexedSituation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#atTime"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#withRole"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#AffiliationRole"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#withRole"/>
-                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#AffiliationRole"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#atTime"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -717,14 +723,14 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         <rdfs:subClassOf rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#TimeIndexedSituation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isAffiliationOf"/>
-                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Person"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#during"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#during"/>
-                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isAffiliationOf"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Person"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -796,14 +802,8 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#keyword"/>
-                <owl:allValuesFrom rdf:resource="&rdfs;Literal"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasAuthorList"/>
-                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#List"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isPartOf"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Document"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -814,13 +814,19 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasPart"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Document"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasAuthorList"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#List"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isPartOf"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#keyword"/>
+                <owl:allValuesFrom rdf:resource="&rdfs;Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasPart"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Document"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -940,6 +946,18 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         <rdfs:label xml:lang="en">Organised event</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasSite"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Site"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#description"/>
+                <owl:allValuesFrom rdf:resource="&rdfs;Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#endDate"/>
                 <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
@@ -952,20 +970,8 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasSite"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Site"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasSubEvent"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#description"/>
-                <owl:allValuesFrom rdf:resource="&rdfs;Literal"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Any kind of organised event having a start and an end date.</rdfs:comment>
@@ -1001,14 +1007,14 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         <rdfs:subClassOf rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Agent"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasAffiliation"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#AffiliationDuringEvent"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#holdsRole"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#RoleDuringEvent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#holdsRole"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#RoleDuringEvent"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasAffiliation"/>
+                <owl:allValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#AffiliationDuringEvent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Persons in commonsense intuition.</rdfs:comment>
@@ -1087,14 +1093,14 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isHeldBy"/>
-                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Agent"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#during"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#during"/>
-                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
+                <owl:onProperty rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isHeldBy"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Agent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A time indexed situation that expresses a role held by an agent at conference.</rdfs:comment>
@@ -1212,7 +1218,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/author -->
+    <!-- https://w3id.org/scholarlydata/role/author -->
 
     <owl:NamedIndividual rdf:about="&schor;author">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#PublishingRole"/>
@@ -1221,7 +1227,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/chair -->
+    <!-- https://w3id.org/scholarlydata/role/chair -->
 
     <owl:NamedIndividual rdf:about="&schor;chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1230,7 +1236,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/challenge-chair -->
+    <!-- https://w3id.org/scholarlydata/role/challenge-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;challenge-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1240,7 +1246,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/demos-chair -->
+    <!-- https://w3id.org/scholarlydata/role/demos-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;demos-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1250,7 +1256,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/exhibition-chair -->
+    <!-- https://w3id.org/scholarlydata/role/exhibition-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;exhibition-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1260,7 +1266,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/fellowship-chair -->
+    <!-- https://w3id.org/scholarlydata/role/fellowship-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;fellowship-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1270,7 +1276,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/general-chair -->
+    <!-- https://w3id.org/scholarlydata/role/general-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;general-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1280,7 +1286,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/industry-chair -->
+    <!-- https://w3id.org/scholarlydata/role/industry-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;industry-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1290,7 +1296,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/local-organiser -->
+    <!-- https://w3id.org/scholarlydata/role/local-organiser -->
 
     <owl:NamedIndividual rdf:about="&schor;local-organiser">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1300,7 +1306,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/metadata-coordinator -->
+    <!-- https://w3id.org/scholarlydata/role/metadata-coordinator -->
 
     <owl:NamedIndividual rdf:about="&schor;metadata-coordinator">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1309,7 +1315,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/organising-committee-member -->
+    <!-- https://w3id.org/scholarlydata/role/organising-committee-member -->
 
     <owl:NamedIndividual rdf:about="&schor;organising-committee-member">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1318,7 +1324,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/panel-chair -->
+    <!-- https://w3id.org/scholarlydata/role/panel-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;panel-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1328,7 +1334,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/participant -->
+    <!-- https://w3id.org/scholarlydata/role/participant -->
 
     <owl:NamedIndividual rdf:about="&schor;participant">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#Role"/>
@@ -1337,7 +1343,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/phd-symposium-chair -->
+    <!-- https://w3id.org/scholarlydata/role/phd-symposium-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;phd-symposium-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1347,7 +1353,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/poster-chair -->
+    <!-- https://w3id.org/scholarlydata/role/poster-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;poster-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1357,7 +1363,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/posters-chair -->
+    <!-- https://w3id.org/scholarlydata/role/posters-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;posters-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1367,7 +1373,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/presenter -->
+    <!-- https://w3id.org/scholarlydata/role/presenter -->
 
     <owl:NamedIndividual rdf:about="&schor;presenter">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#PublishingRole"/>
@@ -1376,7 +1382,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/proceedings-chair -->
+    <!-- https://w3id.org/scholarlydata/role/proceedings-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;proceedings-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1386,7 +1392,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/programme-chair -->
+    <!-- https://w3id.org/scholarlydata/role/programme-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;programme-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1396,7 +1402,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/programme-committee-member -->
+    <!-- https://w3id.org/scholarlydata/role/programme-committee-member -->
 
     <owl:NamedIndividual rdf:about="&schor;programme-committee-member">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#PublishingRole"/>
@@ -1405,7 +1411,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/publicity-chair -->
+    <!-- https://w3id.org/scholarlydata/role/publicity-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;publicity-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1415,7 +1421,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/reviewer -->
+    <!-- https://w3id.org/scholarlydata/role/reviewer -->
 
     <owl:NamedIndividual rdf:about="&schor;reviewer">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#PublishingRole"/>
@@ -1424,7 +1430,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/session-chair -->
+    <!-- https://w3id.org/scholarlydata/role/session-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;session-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1434,7 +1440,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/sponsor -->
+    <!-- https://w3id.org/scholarlydata/role/sponsor -->
 
     <owl:NamedIndividual rdf:about="&schor;sponsor">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1443,7 +1449,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/sponsorship-chair -->
+    <!-- https://w3id.org/scholarlydata/role/sponsorship-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;sponsorship-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1452,7 +1458,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/track-chair -->
+    <!-- https://w3id.org/scholarlydata/role/track-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;track-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1462,7 +1468,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/treasurer -->
+    <!-- https://w3id.org/scholarlydata/role/treasurer -->
 
     <owl:NamedIndividual rdf:about="&schor;treasurer">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1471,7 +1477,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/tutorials-chair -->
+    <!-- https://w3id.org/scholarlydata/role/tutorials-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;tutorials-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1480,7 +1486,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/volunteers-chair -->
+    <!-- https://w3id.org/scholarlydata/role/volunteers-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;volunteers-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1490,7 +1496,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/webmaster -->
+    <!-- https://w3id.org/scholarlydata/role/webmaster -->
 
     <owl:NamedIndividual rdf:about="&schor;webmaster">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1499,7 +1505,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/workshop-organiser -->
+    <!-- https://w3id.org/scholarlydata/role/workshop-organiser -->
 
     <owl:NamedIndividual rdf:about="&schor;workshop-organiser">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>
@@ -1508,7 +1514,7 @@ The conference-ontology adopts best ontology design practices (e.g., Ontology De
     
 
 
-    <!-- http://www.scholarlydata.org/resource/workshops-chair -->
+    <!-- https://w3id.org/scholarlydata/role/workshops-chair -->
 
     <owl:NamedIndividual rdf:about="&schor;workshops-chair">
         <rdf:type rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisingRole"/>

@@ -38,11 +38,11 @@ public class Events {
 		
 		Collection<Event> events = new ArrayList<Event>();
 		
-		String sparql = "SELECT DISTINCT ?event "
+		String sparql = "SELECT DISTINCT ?event ?super ?sub "
 				+ "WHERE { "
-				+ "{?event <" + SWC.isSuperEventOf + "> ?super} "
+				+ "{?event <" + SWC.isSuperEventOf + "> ?sub} "
 				+ "UNION "
-				+ "{?event <" + SWC.isSubEventOf + "> ?sub} "
+				+ "{?event <" + SWC.isSubEventOf + "> ?super} "
 				+ "UNION "
 				+ "{?event a ?type . ?type <" + RDFS.subClassOf + "> <" + SWC.OrganisedEvent + ">} "
 				//+ "?s <" + SWC.isSuperEventOf + "> ?super . "
@@ -62,15 +62,26 @@ public class Events {
 		while(resultSet.hasNext()){
 			QuerySolution querySolution = resultSet.next();
 			Resource eventRes = querySolution.getResource("event");
+			Resource sub = querySolution.getResource("sub");
+			Resource superE = querySolution.getResource("super");
 			
-			Event event = new Event(eventRes, "conference");
+			Event subEvent = null;
+			Event superEvent = null;
+			if(sub != null) subEvent = new Event(sub, "event");
+			if(superE != null) superEvent = new Event(superE, "event");
+			
+			Event event = new Event(eventRes, "event", subEvent, superEvent);
 			swdf2confMapping.put(eventRes, event.asConfResource());
 			
-			events.add(new Event(eventRes, "conference"));
+			events.add(event);
 				
 		}
 		
 		return events;
+	}
+	
+	public Map<Resource, Resource> getSwdf2confMapping() {
+		return swdf2confMapping;
 	}
 	
 }

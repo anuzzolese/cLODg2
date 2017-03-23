@@ -233,6 +233,9 @@ public class LDGenerator {
 			
 			model.close();
 			*/
+			
+			((EasychairModel)model).addAuthorLists(model);
+			
 		}
 		
 		return model;

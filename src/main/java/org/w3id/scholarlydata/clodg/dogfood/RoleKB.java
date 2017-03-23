@@ -47,7 +47,7 @@ public class RoleKB {
 		return dogFoodRoles;
 	}
 	
-	public Set<Resource> getConfRoleFromDFInstance(Resource roleInstance){
+	public Set<Resource> getConfRoleFromSWDFRole(Resource swdfRoleClass){
 		Set<Resource> confRoles = new HashSet<Resource>();
 		
 		/*
@@ -55,13 +55,12 @@ public class RoleKB {
 		 * 
 		 * This is only a patch to allow cLODg solving roles.
 		 */
-		String uri = roleInstance.getURI().replace("iswc-", "eswc-");
+		//String uri = swdfRoleClass.getURI().replace("iswc-", "eswc-");
 		
 		
 		String sparql =   "SELECT DISTINCT ?confRole "
 						+ "WHERE{ "
-						+ "<" + uri + "> a ?role . "
-						+ "?role <http://www.w3.org/2004/02/skos/core#closeMatch> ?confRole "
+						+ "<" + swdfRoleClass.getURI() + "> <http://www.w3.org/2004/02/skos/core#closeMatch> ?confRole "
 						+ "}";
 		
 		ResultSet resultSet = executesQuery(sparql);

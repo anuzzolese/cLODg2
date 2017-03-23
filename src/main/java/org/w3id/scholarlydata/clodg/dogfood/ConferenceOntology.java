@@ -11,7 +11,12 @@ import com.hp.hpl.jena.rdf.model.Resource;
  */
 public class ConferenceOntology {
     /** <p>The RDF model that holds the vocabulary terms</p> */
-    private static Model m_model = ModelFactory.createDefaultModel();
+    private static Model m_model;
+    
+    static {
+    	m_model = ModelFactory.createDefaultModel();
+    	m_model.read(ConferenceOntology.class.getClassLoader().getResourceAsStream("ontologies/conference-ontology.owl"), null, "RDF/XML");
+    }
     
     /** <p>The namespace of the vocabulary as a string</p> */
     //public static final String NS = "http://www.scholarlydata.org/ontology/conference-ontology.owl#";
@@ -25,6 +30,7 @@ public class ConferenceOntology {
     public static String getURI() {return NS;}
     
     public static Model getModel(){
+    
     	return m_model;
     }
     

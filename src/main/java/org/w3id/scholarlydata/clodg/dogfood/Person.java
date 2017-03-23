@@ -95,9 +95,21 @@ public class Person {
 						
 						Resource roleDuringEvent = model.createResource(roleURI, ConferenceOntology.RoleDuringEvent);
 						
+						Statement roleStmt = ConferenceOntology.getModel().getResource(confRole.getURI()).getProperty(RDFS.label);
+						
+						String roleLabel = "";
+						if(roleStmt != null){
+							Literal label = (Literal)roleStmt.getObject();
+							model.add(confRole, RDFS.label, label);
+							
+							roleLabel = label.getLexicalForm();
+						}
+						
 						roleDuringEvent.addProperty(ConferenceOntology.withRole, confRole);
 						roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
-						roleDuringEvent.addLiteral(RDFS.label, "Role of " + personName.getLexicalForm() + " during " + conferenceAcronym);
+						
+						if(!roleLabel.isEmpty()) roleLabel = "of " + roleLabel;
+						roleDuringEvent.addLiteral(RDFS.label, "Role " + roleLabel + " held by " + personName.getLexicalForm() + " during " + conferenceAcronym);
 						
 						confRoles.add(roleDuringEvent);
 						

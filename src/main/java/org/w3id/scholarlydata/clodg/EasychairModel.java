@@ -33,7 +33,7 @@ public class EasychairModel extends ModelD2RQ {
 		super(mapURL);
 		adds = ModelFactory.createDefaultModel();
 		removes = ModelFactory.createDefaultModel();
-		addAuthorLists();
+		//addAuthorLists();
 		
 	}
 	
@@ -41,17 +41,17 @@ public class EasychairModel extends ModelD2RQ {
 		super(mapping, BASE_DATA_URI);
 		adds = ModelFactory.createDefaultModel();
 		removes = ModelFactory.createDefaultModel();
-		addAuthorLists();
+		//addAuthorLists();
 	}
 	
-	private void addAuthorLists(){
+	public void addAuthorLists(Model model){
 		String sparql = "SELECT ?author ?paper "
 						+ "WHERE{"
 						+ "?author <" + FOAF.made + "> ?paper"
 						+ "}";
 		
 		Query query = QueryFactory.create(sparql, Syntax.syntaxARQ);
-		QueryExecution queryExecution = QueryExecutionFactory.create(query, this);
+		QueryExecution queryExecution = QueryExecutionFactory.create(query, model);
 		ResultSet resultSet = queryExecution.execSelect();
 		
 		Model authorListModel = ModelFactory.createDefaultModel();

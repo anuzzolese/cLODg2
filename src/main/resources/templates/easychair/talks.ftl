@@ -18,10 +18,11 @@
 # Paper related to talks
 map:PaperTalk a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/paper/@@TRACK.name@@/@@SUBMISSION.#@@";
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@/@@SUBMISSION.#@@";
 	d2rq:join "SUBMISSION.# = TALK.paper id";
 	d2rq:join "TALK.session id = SESSION.id";
 	d2rq:join "SUBMISSION.track # = TRACK.#";
+	d2rq:translateWith map:UriTranslator;
 	d2rq:class swrc:InProceedings .
 
 map:papertalk_relation a d2rq:PropertyBridge;
