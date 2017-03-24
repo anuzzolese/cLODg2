@@ -72,6 +72,7 @@ map:Track_sessions a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@";
 	d2rq:join "TRACK.name = SESSION.track";
+	d2rq:translateWith map:UriTranslator;
 	d2rq:class swc:TrackEvent .	
 	
 map:track_super_event_of a d2rq:PropertyBridge;

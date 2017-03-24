@@ -157,6 +157,23 @@ public class Clodg {
 	            		Config.CONF_ACRONYM = properties.getProperty("confAcronym");
 	            		Config.YEAR = properties.getProperty("year");
 	            		Config.CREATOR = properties.getProperty("creator");
+	            		Config.ACCEPT_WORDINGS = properties.getProperty("acceptWordings");
+	            		if(Config.ACCEPT_WORDINGS == null || Config.ACCEPT_WORDINGS.isEmpty()) Config.ACCEPT_WORDINGS = "accept";
+	            		
+	            		/*
+	            		 * Set the proper value to acceptWordings in the properties file in order to be processed by 
+	            		 * the template loader. 
+	            		 */
+	            		String[] acceptWordings = Config.ACCEPT_WORDINGS.split(";");
+	            		StringBuilder sb = new StringBuilder();
+	            		for(String acceptWording : acceptWordings){
+	            			if(sb.length() > 0) sb.append(" OR ");
+	            			sb.append("SUBMISSION.decision = '");
+	            			sb.append(acceptWording.trim());
+	            			sb.append("'");
+	            		}
+	            		
+	            		properties.put("acceptWordings", sb.toString());
 	            		
 	            		if(Config.CONF_ACRONYM == null) Config.CONF_ACRONYM = "";
 	            		else Config.CONF_ACRONYM.trim();

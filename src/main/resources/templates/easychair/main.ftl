@@ -62,7 +62,7 @@ map:AuthorOrganization a d2rq:ClassMap;
 	d2rq:uriPattern "${baseURI}organization/@@AUTHOR.organization@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:join "AUTHOR.submission # = SUBMISSION.#";
-	d2rq:condition "SUBMISSION.decision = 'accept'";
+	d2rq:condition "${acceptWordings}";
 	d2rq:class foaf:Organization .
 	
 map:organization_foaf_name a d2rq:PropertyBridge;
@@ -91,7 +91,7 @@ map:Author a d2rq:ClassMap;
 	d2rq:translateWith map:UriTranslator;
 	d2rq:join "AUTHOR.submission # = SUBMISSION.#";
 	d2rq:join "SUBMISSION.track # = TRACK.#";
-	d2rq:condition "SUBMISSION.decision = 'accept'";
+	d2rq:condition "${acceptWordings}";
 	d2rq:class foaf:Person .
 	
 map:author_given_name a d2rq:PropertyBridge;
@@ -145,7 +145,7 @@ map:author_email_sha1 a d2rq:PropertyBridge;
 map:Paper a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@/@@SUBMISSION.#@@";
-	d2rq:condition "SUBMISSION.decision = 'accept'";	
+	d2rq:condition "${acceptWordings}";	
 	d2rq:join "SUBMISSION.# = AUTHOR.submission #";
 	d2rq:join "SUBMISSION.track # = TRACK.#";
 	d2rq:translateWith map:UriTranslator;
@@ -211,7 +211,7 @@ map:Proceedings a d2rq:ClassMap;
 map:proceedings_has_part a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Proceedings;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@/@@SUBMISSION.#@@";
-	d2rq:condition "SUBMISSION.decision = 'accept'";
+	d2rq:condition "${acceptWordings}";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:property swrc:hasPart .
 	
@@ -225,6 +225,7 @@ map:proceedings_label a d2rq:PropertyBridge;
 map:Track a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@";
+	d2rq:translateWith map:UriTranslator;
 	d2rq:class swc:TrackEvent .
 	
 map:track_label a d2rq:PropertyBridge;
