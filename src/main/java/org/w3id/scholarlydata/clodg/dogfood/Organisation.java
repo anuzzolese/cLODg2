@@ -26,7 +26,9 @@ public class Organisation {
 	
 	public String getName(){
 		Statement stmt = resource.getProperty(FOAF.name);
-		return ((Literal)stmt.getObject()).getLexicalForm();
+		if(stmt != null)
+			return ((Literal)stmt.getObject()).getLexicalForm();
+		else return null;
 	}
 	
 	public Resource asConfResource(){

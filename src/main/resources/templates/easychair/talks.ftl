@@ -27,7 +27,7 @@ map:PaperTalk a d2rq:ClassMap;
 
 map:papertalk_relation a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:PaperTalk;
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/session/@@SESSION.id@@/talk/@@TALK.paper id@@";
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/talk/@@TALK.paper id@@";
 	d2rq:property swc:relatedToEvent .
 	
 # Talks
@@ -36,7 +36,7 @@ map:Talk a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:join "TALK.paper id = SUBMISSION.#";
 	d2rq:join "TALK.session id = SESSION.id";
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/session/@@SESSION.id@@/talk/@@TALK.paper id@@";
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/talk/@@TALK.paper id@@";
 	d2rq:class icaltzd:Vevent .
 	
 map:talk_vevent a d2rq:PropertyBridge;
@@ -58,7 +58,7 @@ map:talk_title a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Talk;
 	d2rq:property icaltzd:description;
 	d2rq:property rdfs:label;
-	d2rq:pattern "@@SUBMISSION.title@@" .
+	d2rq:pattern "Talk: @@SUBMISSION.title@@" .
 	
 map:talk_summary a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Talk;

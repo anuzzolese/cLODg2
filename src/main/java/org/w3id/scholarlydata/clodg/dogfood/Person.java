@@ -3,6 +3,8 @@ package org.w3id.scholarlydata.clodg.dogfood;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.w3id.scholarlydata.clodg.Config;
+
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -109,7 +111,7 @@ public class Person {
 						roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
 						
 						if(!roleLabel.isEmpty()) roleLabel = "of " + roleLabel;
-						roleDuringEvent.addLiteral(RDFS.label, "Role " + roleLabel + " held by " + personName.getLexicalForm() + " during " + conferenceAcronym);
+						roleDuringEvent.addLiteral(RDFS.label, "Role " + roleLabel + " held by " + personName.getLexicalForm() + " during " + Config.CONF_ACRONYM + Config.YEAR);
 						
 						confRoles.add(roleDuringEvent);
 						
@@ -130,7 +132,6 @@ public class Person {
 		Set<Resource> confAffiliations = new HashSet<Resource>(); 
 		
 		Literal personName = confPerson.getProperty(ConferenceOntology.name).getObject().asLiteral();
-		
 		Set<Organisation> orgs = swdfAffiliations();
 		String conferenceAcronym = conferenceEvent.getAcronym();
 		conferenceAcronym = conferenceAcronym.toLowerCase().replace(" ", "");
@@ -139,13 +140,17 @@ public class Person {
 			String orgId = organisation.getLocalName();
 			String organisationURI = organisationNS + "-" + orgId + "-" + resource.getLocalName();
 			
+			Literal organisationName = organisation.getResource().getProperty(FOAF.name).getObject().asLiteral();
+			
 			//Event event = new Event(conferenceEvent.getResource(), "conference");
 			
 			Resource confOrganisation = organisation.asConfResource();
 			Resource affiliationDuringEvent = model.createResource(organisationURI, ConferenceOntology.AffiliationDuringEvent);
 			affiliationDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
 			affiliationDuringEvent.addProperty(ConferenceOntology.withOrganisation, confOrganisation);
-			affiliationDuringEvent.addLiteral(RDFS.label, "Affiliation of " + personName.getLexicalForm() + " during " + conferenceAcronym);
+			
+			String label = "Affiliation held by " + personName.getLexicalForm() + " with " + organisationName.getLexicalForm() + " during " + Config.CONF_ACRONYM + Config.YEAR;
+			affiliationDuringEvent.addLiteral(RDFS.label, label);
 			confOrganisation.addProperty(ConferenceOntology.inAffiliationDuringEvent, affiliationDuringEvent);
 			
 			confAffiliations.add(affiliationDuringEvent);

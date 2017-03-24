@@ -119,7 +119,7 @@ map:author_affiliation a d2rq:PropertyBridge;
 
 map:author_made_paper a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Author;
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/paper/@@TRACK.name@@/@@AUTHOR.submission #@@";
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@/@@AUTHOR.submission #@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:property foaf:made .
 	
@@ -210,7 +210,7 @@ map:Proceedings a d2rq:ClassMap;
 	
 map:proceedings_has_part a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Proceedings;
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/paper/@@TRACK.name@@/@@SUBMISSION.#@@";
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@/@@SUBMISSION.#@@";
 	d2rq:condition "SUBMISSION.decision = 'accept'";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:property swrc:hasPart .
@@ -231,3 +231,13 @@ map:track_label a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Track;
 	d2rq:property rdfs:label;
 	d2rq:pattern "@@TRACK.long name@@" .
+	
+map:track_description a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Track;
+	d2rq:property icaltzd:description;
+	d2rq:pattern "@@TRACK.long name@@" .
+	
+map:track_sub_event_of a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Track;
+	d2rq:property swc:isSubEventOf;
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}" .

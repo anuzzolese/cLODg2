@@ -7,6 +7,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.w3id.scholarlydata.clodg.Config;
+import org.w3id.scholarlydata.clodg.Urifier;
+import org.w3id.scholarlydata.clodg.dogfood.arq.EventTypeBinder;
+
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -17,6 +21,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
+import com.hp.hpl.jena.sparql.function.FunctionRegistry;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.DCTerms;
@@ -31,6 +36,8 @@ public class ScholarlyData {
         }
         else if(!outF.isDirectory()) System.exit(-1);
         
+        FunctionRegistry.get().put(EventTypeBinder.IRI, EventTypeBinder.class);
+        
         File scholarly = new File(outF, "scholarlydata");
         File folderForSimpleGraphs = new File(scholarly, "simple");
         if(!folderForSimpleGraphs.exists()) folderForSimpleGraphs.mkdirs();
@@ -42,7 +49,7 @@ public class ScholarlyData {
 	    Organisations organisations = new Organisations(dogFood);
 	    Proceedings proceedings = new Proceedings(dogFood);
 	    Events events = new Events(dogFood);
-	                		
+	    
 	    ConferenceEvent conferenceEvent = new ConferenceEvent(dogFood);
 	    
 	    List<Resource> proceedingsVolumes = proceedings.asConfResource(modelOut);
@@ -114,7 +121,7 @@ public class ScholarlyData {
 			uri = uri.replace("http://data.semanticweb.org/conference/", ConferenceOntology.RESOURCE_NS + "conference/");
 			completeGraph = ModelFactory.createDefaultModel().createResource(uri + "/complete");
 		}
-		Model voidDescriptor = addVOID(completeGraph, acronym);
+		Model voidDescriptor = addVOID(completeGraph, acronym, Config.CREATOR);
 	                		
 		try {
 			modelOut.add(voidDescriptor);
@@ -149,7 +156,7 @@ public class ScholarlyData {
 		try {
 			inf.remove(infmodel.getDeductionsModel());
 			
-			voidDescriptor = addVOID(completeGraph, acronym + "-alignments");
+			voidDescriptor = addVOID(completeGraph, acronym + "-alignments", Config.CREATOR);
 			
 			inf.add(voidDescriptor);
 			/*
@@ -172,7 +179,7 @@ public class ScholarlyData {
         
     }
 	
-	private static Model addVOID(Resource completeGraph, String datasetName){
+	private static Model addVOID(Resource completeGraph, String datasetName, String creatorsString){
 		
 		Model model = ModelFactory.createDefaultModel(); 
 		
@@ -184,31 +191,22 @@ public class ScholarlyData {
 		dataset.addLiteral(DCTerms.title, "Dataset about " + datasetName + ".");
 		dataset.addLiteral(DCTerms.created, new Date(System.currentTimeMillis()).toString());
 		
-		Resource andrea = model.createResource(ConferenceOntology.RESOURCE_NS + "person/andrea-giovanni-nuzzolese", FOAF.Person);
-		andrea.addProperty(FOAF.name, "Andrea Giovanni Nuzzolese");
-		andrea.addProperty(FOAF.givenname, "Andrea Giovanni");
-		andrea.addProperty(ModelFactory.createDefaultModel().createProperty(FOAF.NS + "familyName"), "Nuzzolese");
-		
-		Resource annalisa = model.createResource(ConferenceOntology.RESOURCE_NS + "person/anna-lisa-gentile", FOAF.Person);
-		annalisa.addProperty(FOAF.name, "Anna Lisa Gentile");
-		annalisa.addProperty(FOAF.givenname, "Anna Lisa");
-		annalisa.addProperty(ModelFactory.createDefaultModel().createProperty(FOAF.NS + "familyName"), "Gentile");
-		
-		Resource valentina = model.createResource(ConferenceOntology.RESOURCE_NS + "person/valentina-presutti", FOAF.Person);
-		valentina.addProperty(FOAF.name, "Valentina Presutti");
-		valentina.addProperty(FOAF.givenname, "Valentina");
-		valentina.addProperty(ModelFactory.createDefaultModel().createProperty(FOAF.NS + "familyName"), "Presutti");
-		
-		Resource aldo = model.createResource(ConferenceOntology.RESOURCE_NS + "person/aldo-gangemi", FOAF.Person);
-		aldo.addProperty(FOAF.name, "Aldo Gangemi");
-		aldo.addProperty(FOAF.givenname, "Aldo");
-		aldo.addProperty(ModelFactory.createDefaultModel().createProperty(FOAF.NS + "familyName"), "Gangemi");
-		
-		dataset.addProperty(DCTerms.creator, andrea);
-		dataset.addProperty(DCTerms.creator, annalisa);
-		dataset.addProperty(DCTerms.creator, valentina);
-		dataset.addProperty(DCTerms.creator, aldo);
-		
+		String[] creatorsStringParts = creatorsString.split(";");
+		for(String creatorString : creatorsStringParts){
+			creatorString = creatorString.trim();
+			String[] creatorStringParts = creatorString.split(", ");
+			if(creatorStringParts.length == 2){
+				String givenName = creatorStringParts[1];
+				String familyName = creatorStringParts[0];
+				
+				String creatorName = givenName + " " + familyName;
+				Resource creator = model.createResource(ConferenceOntology.RESOURCE_NS + "person/" + Urifier.toURI(creatorName), FOAF.Person);
+				creator.addProperty(FOAF.name, creatorName);
+				creator.addProperty(FOAF.givenname, givenName);
+				creator.addProperty(ModelFactory.createDefaultModel().createProperty(FOAF.NS + "familyName"), familyName);
+				dataset.addProperty(DCTerms.creator, creator);
+			}
+		}
 		
 		dataset.addProperty(model.createProperty("http://www.w3.org/ns/prov#hadPrimarySource"), completeGraph);
 		

@@ -68,6 +68,30 @@ map:om_role a d2rq:PropertyBridge;
 	d2rq:translateWith map:UriTranslator;
 	d2rq:property swc:holdsRole .
 	
+# Organizations
+map:MemberOrganization a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "${baseURI}organization/@@ORGANISING.organization@@";
+	d2rq:translateWith map:UriTranslator;
+	d2rq:class foaf:Organization .
+	
+map:organising_organization_foaf_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:MemberOrganization;
+	d2rq:property foaf:name;
+	d2rq:property rdfs:label;
+    d2rq:column "ORGANISING.organization" .
+    
+map:organising_organization_member a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:MemberOrganization;
+	d2rq:property foaf:member;
+	d2rq:uriPattern "${baseURI}person/@@ORGANISING.first name@@-@@ORGANISING.last name@@";
+	d2rq:translateWith map:UriTranslator.
+	
+map:organising_organization_auth_based_near  a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:MemberOrganization;
+	d2rq:property foaf:based_near;
+	d2rq:column "ORGANISING.country" .
+	
 # Roles
 map:Role a d2rq:ClassMap;
 	d2rq:dataStorage map:database;

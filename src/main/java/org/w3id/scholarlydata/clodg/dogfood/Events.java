@@ -5,12 +5,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.w3id.scholarlydata.clodg.dogfood.arq.EventTypeBinder;
+
+import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class Events {
@@ -22,7 +25,7 @@ public class Events {
 	
 	public static int anonEventCounter;
 	
-	private static final String SWC_ONTOLOGY = "/ontologies/swc_2009-05-09.rdf";
+	private static final String SWC_ONTOLOGY = "ontologies/swc_2009-05-09.rdf";
 	
 	public Events(Model model) {
 		this.model = model;
@@ -38,15 +41,19 @@ public class Events {
 		
 		Collection<Event> events = new ArrayList<Event>();
 		
-		String sparql = "SELECT DISTINCT ?event ?super ?sub "
+		String sparql = "SELECT DISTINCT ?event ?type ?super ?supertype ?sub ?subtype "
 				+ "WHERE { "
-				+ "{?event <" + SWC.isSuperEventOf + "> ?sub} "
-				+ "UNION "
-				+ "{?event <" + SWC.isSubEventOf + "> ?super} "
-				+ "UNION "
-				+ "{?event a ?type . ?type <" + RDFS.subClassOf + "> <" + SWC.OrganisedEvent + ">} "
-				//+ "?s <" + SWC.isSuperEventOf + "> ?super . "
-				//+ "FILTER (!BOUND(?super)) "
+				+ "{"
+				+ "		?event <" + SWC.isSuperEventOf + "> ?sub "
+				+ "		OPTIONAL{?sub a ?subtype . FILTER(?subtype != <http://www.w3.org/2002/12/cal/icaltzd#Vevent>)}"
+				+ "} UNION "
+				+ "{"
+				+ "		?event <" + SWC.isSubEventOf + "> ?super "
+				+ "		OPTIONAL{?super a ?supertype . FILTER(?supertype != <http://www.w3.org/2002/12/cal/icaltzd#Vevent>)}"
+				+ "} "
+				+ "?event <" + RDF.type + "> ?type . "
+				+ "?type <" + RDFS.subClassOf + ">+ <" + SWC.OrganisedEvent + "> "
+				+ "FILTER(?type != <" + SWC.TalkEvent.getURI() + ">)"
 				+ "}";
 		
 		Model unionModel = ModelFactory.createDefaultModel();
@@ -62,18 +69,80 @@ public class Events {
 		while(resultSet.hasNext()){
 			QuerySolution querySolution = resultSet.next();
 			Resource eventRes = querySolution.getResource("event");
+			Resource eventTypeRes = querySolution.getResource("type");
+			Resource sub = querySolution.getResource("sub");
+			Resource subType = querySolution.getResource("subtype");
+			Resource superE = querySolution.getResource("super");
+			Resource superEType = querySolution.getResource("supertype");
+			
+			if(eventTypeRes == null) eventTypeRes = ConferenceOntology.OrganisedEvent;
+			
+			Event subEvent = null;
+			Event superEvent = null;
+			if(sub != null) {
+				
+				if(sub.getURI().equals(conferenceEvent.getResource().getURI()))	
+					subEvent = new Event(sub, "conference");
+				else if(subType != null && subType.equals(SWC.TalkEvent)) subEvent = new Talk(sub);
+				else {
+					Node nodeType = EventTypeBinder.getBinding(eventTypeRes.asNode());
+					subEvent = new Event(sub, nodeType.getLocalName().toLowerCase());
+				}
+			}
+			if(superE != null) {
+				if(superE.getURI().equals(conferenceEvent.getResource().getURI()))
+					superEvent = new Event(superE, "conference");
+				else if(superEType != null && superEType.equals(SWC.TalkEvent)) superEvent = new Talk(superE);
+				else {
+					Node nodeType = EventTypeBinder.getBinding(eventTypeRes.asNode());
+					subEvent = new Event(superE, nodeType.getLocalName().toLowerCase());
+				}
+			}
+			Node eventTypeNode = EventTypeBinder.getBinding(eventTypeRes.asNode());
+			
+			String eventTypeLabel;
+			if(eventTypeNode != null) eventTypeLabel = eventTypeNode.getLocalName().toLowerCase();
+			else eventTypeLabel = ConferenceOntology.OrganisedEvent.getLocalName().toLowerCase();
+			Event event = new Event(eventRes, eventTypeLabel, subEvent, superEvent);
+			swdf2confMapping.put(eventRes, event.asConfResource());
+			
+			events.add(event);
+				
+		}
+		
+		sparql = "SELECT DISTINCT ?talk ?super ?sub "
+				+ "WHERE { "
+				+ "{?talk <" + SWC.isSuperEventOf + "> ?sub} UNION "
+				+ "{?talk <" + SWC.isSubEventOf + "> ?super} "
+				+ "?talk <" + RDF.type + "> <" + SWC.TalkEvent.getURI() + ">"
+				+ "}";
+		
+		resultSet = QueryExecutor.execSelect(unionModel, sparql);
+		
+		
+		while(resultSet.hasNext()){
+			QuerySolution querySolution = resultSet.next();
+			Resource talkRes = querySolution.getResource("talk");
 			Resource sub = querySolution.getResource("sub");
 			Resource superE = querySolution.getResource("super");
 			
 			Event subEvent = null;
 			Event superEvent = null;
-			if(sub != null) subEvent = new Event(sub, "event");
-			if(superE != null) superEvent = new Event(superE, "event");
+			if(sub != null) {
+				if(sub.getURI().equals(conferenceEvent.getResource().getURI()))	
+					subEvent = new Event(sub, "conference");
+				else subEvent = new Event(sub, "event");
+			}
+			if(superE != null) {
+				if(superE.getURI().equals(conferenceEvent.getResource().getURI()))
+					superEvent = new Event(superE, "conference");
+				else superEvent = new Event(superE, "event");
+			}
 			
-			Event event = new Event(eventRes, "event", subEvent, superEvent);
-			swdf2confMapping.put(eventRes, event.asConfResource());
+			Talk talk = new Talk(talkRes, subEvent, superEvent);
+			swdf2confMapping.put(talkRes, talk.asConfResource());
 			
-			events.add(event);
+			events.add(talk);
 				
 		}
 		

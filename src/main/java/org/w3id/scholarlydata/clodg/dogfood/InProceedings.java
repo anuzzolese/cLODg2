@@ -38,19 +38,19 @@ public class InProceedings {
 		confInProceedings.addProperty(ConferenceOntology.hasAuthorList, authorList);
 		
 		String sparql = 
-				"SELECT ?member ?pos "
+				"SELECT ?member ?pos ?title "
 				+ "WHERE { "
 				+ "{<" + resource.getURI() + "> <http://www.cs.vu.nl/~mcaklein/onto/swrc_ext/2005/05#authorList> ?authorList} "
 				+ "UNION "
 				+ "{<" + resource.getURI() + "> <http://purl.org/ontology/bibo/authorList> ?authorList} "
 				+ "?authorList ?p ?member . FILTER(REGEX(STR(?p), \"http://www.w3.org/1999/02/22-rdf-syntax-ns#_\")) . "
-				+ "BIND(REPLACE(STR(?p), \"http://www.w3.org/1999/02/22-rdf-syntax-ns#_\", \"\") AS ?pos)" 
+				+ "BIND(REPLACE(STR(?p), \"http://www.w3.org/1999/02/22-rdf-syntax-ns#_\", \"\") AS ?pos)"
+				+ "OPTIONAL { <" + resource.getURI() + "> <" + DC_11.title + "> ?title } "
 				+ "} "
 				+ "ORDER BY ?pos";
 		
 		
 		Model modelIn = resource.getModel();
-		
 		
 		ResultSet resultSet = QueryExecutor.execSelect(modelIn, sparql);
 		
@@ -64,15 +64,17 @@ public class InProceedings {
 			if(authorListItem != null)
 				previousAuthorListItem = authorListItem;
 			
-			
-			
 			QuerySolution querySolution = resultSet.next();
 			Resource person = querySolution.getResource("member");
 			Literal pos = querySolution.getLiteral("pos");
-			authorListItem = model.createResource(confInProceedings.getURI() + "/authorList/item-" + pos.getLexicalForm(), ConferenceOntology.ListItem);
+			Literal titleLiteral = querySolution.getLiteral("title");
+			String title = titleLiteral != null ? " of the paper \"" + titleLiteral.getLexicalForm() + "\"": "";
+			
+			authorListItem = model.createResource(confInProceedings.getURI().replace("/inproceedings/", "/authorlistitem/") + "-item-" + pos.getLexicalForm(), ConferenceOntology.ListItem);
 			authorListItem.addProperty(ConferenceOntology.hasContent, ModelFactory.createDefaultModel().createResource(person.getURI().replace("http://data.semanticweb.org/", ConferenceOntology.RESOURCE_NS)));	
 			
 			authorList.addProperty(ConferenceOntology.hasItem, authorListItem);
+			authorList.addLiteral(RDFS.label, "Authors list" + title);
 			
 			if(itemCounter == 0){
 				authorList.addProperty(ConferenceOntology.hasFirstItem, authorListItem);

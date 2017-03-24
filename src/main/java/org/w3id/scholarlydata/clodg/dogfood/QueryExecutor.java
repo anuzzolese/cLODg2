@@ -10,7 +10,6 @@ import com.hp.hpl.jena.rdf.model.Model;
 
 public class QueryExecutor {
 
-	
 	private static QueryExecution createQueryExecution(Model model, String sparql){
 		Query query = QueryFactory.create(sparql, Syntax.syntaxARQ);
 		return QueryExecutionFactory.create(query, model);

@@ -156,6 +156,7 @@ public class Clodg {
 	            		
 	            		Config.CONF_ACRONYM = properties.getProperty("confAcronym");
 	            		Config.YEAR = properties.getProperty("year");
+	            		Config.CREATOR = properties.getProperty("creator");
 	            		
 	            		if(Config.CONF_ACRONYM == null) Config.CONF_ACRONYM = "";
 	            		else Config.CONF_ACRONYM.trim();
