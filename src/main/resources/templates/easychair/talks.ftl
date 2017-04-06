@@ -36,6 +36,7 @@ map:Talk a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:join "TALK.paper id = SUBMISSION.#";
 	d2rq:join "TALK.session id = SESSION.id";
+	d2rq:join "TRACK.# = SUBMISSION.track #";
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/talk/@@TALK.paper id@@";
 	d2rq:class icaltzd:Vevent .
 	
@@ -71,3 +72,10 @@ map:talk_session a d2rq:PropertyBridge;
 	d2rq:condition "SESSION.track <> ''";
 	d2rq:property swc:isSubEventOf;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/session/@@SESSION.id@@" .
+	
+map:talk_track a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Talk;
+	d2rq:condition "SESSION.track <> ''";
+	d2rq:property swc:isSubEventOf;
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@TRACK.name@@";
+	d2rq:translateWith map:UriTranslator .
