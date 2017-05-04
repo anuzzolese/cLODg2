@@ -8,8 +8,13 @@ import java.util.Map;
 import org.w3id.scholarlydata.clodg.dogfood.arq.EventTypeBinder;
 
 import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -18,7 +23,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class Events {
 
-	private Model model;
+	private Model modelIn;
 	private Model swdfOnt;
 	private ConferenceEvent conferenceEvent;
 	private Map<Resource, Resource> swdf2confMapping;
@@ -27,11 +32,20 @@ public class Events {
 	
 	private static final String SWC_ONTOLOGY = "ontologies/swc_2009-05-09.rdf";
 	
-	public Events(Model model) {
-		this.model = model;
+	private final String sparqlForEventTypes = 
+			"PREFIX rdfs: <" + RDFS.getURI() + "> "
+			+ "SELECT ?type1 "
+			+ "WHERE { "
+			+ "	%ent% a ?type1 . "
+			+ " ?type2 rdfs:subClassOf* ?type1 . "
+			+ "	FILTER(?type1 != <http://www.w3.org/2002/12/cal/icaltzd#Vevent>) "
+			+ "}";
+	
+	public Events(Model modelIn) {
+		
+		this.modelIn = modelIn;
 		this.swdfOnt = ModelFactory.createDefaultModel().read(getClass().getClassLoader().getResourceAsStream(SWC_ONTOLOGY), null, "RDF/XML");
-		//this.swdfOnt = FileManager.get().loadModel("ontologies/swc_2009-05-09.rdf");
-		this.conferenceEvent = new ConferenceEvent(model);
+		this.conferenceEvent = ConferenceEvent.getInstance(modelIn);
 		this.swdf2confMapping = new HashMap<Resource, Resource>();
 		
 		anonEventCounter = 0;
@@ -53,11 +67,12 @@ public class Events {
 				+ "} "
 				+ "?event <" + RDF.type + "> ?type . "
 				+ "?type <" + RDFS.subClassOf + ">+ <" + SWC.OrganisedEvent + "> "
-				+ "FILTER(?type != <" + SWC.TalkEvent.getURI() + ">)"
+				+ "FILTER(?type != <" + SWC.TalkEvent.getURI() + ">) "
+				+ "FILTER(?type != <" + SWC.ConferenceEvent.getURI() + ">) "
 				+ "}";
 		
 		Model unionModel = ModelFactory.createDefaultModel();
-		unionModel.add(model);
+		unionModel.add(modelIn);
 		unionModel.add(swdfOnt);
 		
 		
@@ -82,20 +97,20 @@ public class Events {
 			if(sub != null) {
 				
 				if(sub.getURI().equals(conferenceEvent.getResource().getURI()))	
-					subEvent = new Event(sub, "conference");
+					subEvent = conferenceEvent;
 				else if(subType != null && subType.equals(SWC.TalkEvent)) subEvent = new Talk(sub);
 				else {
-					Node nodeType = EventTypeBinder.getBinding(eventTypeRes.asNode());
+					Node nodeType = EventTypeBinder.getBinding(subType.asNode());
 					subEvent = new Event(sub, nodeType.getLocalName().toLowerCase());
 				}
 			}
 			if(superE != null) {
 				if(superE.getURI().equals(conferenceEvent.getResource().getURI()))
-					superEvent = new Event(superE, "conference");
+					superEvent = conferenceEvent;
 				else if(superEType != null && superEType.equals(SWC.TalkEvent)) superEvent = new Talk(superE);
 				else {
-					Node nodeType = EventTypeBinder.getBinding(eventTypeRes.asNode());
-					subEvent = new Event(superE, nodeType.getLocalName().toLowerCase());
+					Node nodeType = EventTypeBinder.getBinding(superEType.asNode());
+					superEvent = new Event(superE, nodeType.getLocalName().toLowerCase());
 				}
 			}
 			Node eventTypeNode = EventTypeBinder.getBinding(eventTypeRes.asNode());
@@ -130,13 +145,26 @@ public class Events {
 			Event superEvent = null;
 			if(sub != null) {
 				if(sub.getURI().equals(conferenceEvent.getResource().getURI()))	
-					subEvent = new Event(sub, "conference");
+					subEvent = conferenceEvent;
 				else subEvent = new Event(sub, "event");
 			}
 			if(superE != null) {
-				if(superE.getURI().equals(conferenceEvent.getResource().getURI()))
-					superEvent = new Event(superE, "conference");
-				else superEvent = new Event(superE, "event");
+				String sparqlFET = sparqlForEventTypes.replaceAll("\\%ent\\%", "<" + superE.getURI() + ">");
+				Query query = QueryFactory.create(sparqlFET, Syntax.syntaxARQ);
+				QueryExecution queryExecution = QueryExecutionFactory.create(query, ConferenceOntology.getModel().union(modelIn));
+				ResultSet rs = queryExecution.execSelect();
+				
+				while(rs.hasNext()){
+					QuerySolution qs = rs.next();
+					Resource type = qs.getResource("type1");
+					
+					String typeLabel = type.getURI().replace(SWC.NS, "").replaceAll("Event$", "").toLowerCase();
+					if(superE.getURI().equals(conferenceEvent.getResource().getURI()))
+						subEvent = conferenceEvent;
+					else superEvent = new Event(superE, typeLabel);
+				}
+				
+				
 			}
 			
 			Talk talk = new Talk(talkRes, subEvent, superEvent);

@@ -13,9 +13,9 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Option.Builder;
-import org.w3id.scholarlydata.clodg.dogfood.arq.EventTypeBinder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.w3id.scholarlydata.clodg.dogfood.arq.EventTypeBinder;
 
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -162,7 +162,7 @@ public class Process {
 	                			event.asConfResource(modelOut);
 	                		}
 	                		
-	                		ConferenceEvent conferenceEvent = new ConferenceEvent(model);
+	                		ConferenceEvent conferenceEvent = ConferenceEvent.getInstance(model);
 	                		String acronym = conferenceEvent.getAcronym();
 	                		acronym = acronym.toLowerCase().replaceAll(" ", "");
 	                		

@@ -37,6 +37,7 @@ map:Talk a d2rq:ClassMap;
 	d2rq:join "TALK.paper id = SUBMISSION.#";
 	d2rq:join "TALK.session id = SESSION.id";
 	d2rq:join "TRACK.# = SUBMISSION.track #";
+	d2rq:condition "${acceptWordings}";
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/talk/@@TALK.paper id@@";
 	d2rq:class icaltzd:Vevent .
 	

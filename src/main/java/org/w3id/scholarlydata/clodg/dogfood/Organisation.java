@@ -48,7 +48,7 @@ public class Organisation {
 				+ "<" + organisation.getURI() + "> a <" + ConferenceOntology.Organisation.getURI() + "> . "
 				+ "<" + organisation.getURI() + "> <" + RDFS.label + "> ?label . "
 				+ "<" + organisation.getURI() + "> <" + ConferenceOntology.name + "> ?name . "
-				+ "<" + organisation.getURI() + "> <" + OWL2.sameAs + "> <" + resource.getURI() + "> "
+				//+ "<" + organisation.getURI() + "> <" + OWL2.sameAs + "> <" + resource.getURI() + "> "
 				+ "}"
 				+ "WHERE{ "
 				+ "<" + resource.getURI() + "> <" + RDFS.label + "> ?label . "

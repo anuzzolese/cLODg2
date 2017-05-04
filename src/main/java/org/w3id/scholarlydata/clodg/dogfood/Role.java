@@ -31,7 +31,7 @@ public class Role {
 		while(!found && stmtIterator.hasNext()){
 			Statement stmt = stmtIterator.next();
 			Resource roleClassTmp = (Resource) stmt.getObject();
-			if(!roleClassTmp.getURI().equals(SWC.Chair)){
+			if(!roleClassTmp.equals(SWC.Chair)){
 				found = true;
 				roleClass = roleClassTmp;
 			}

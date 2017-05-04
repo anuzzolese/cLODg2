@@ -14,25 +14,29 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
-public class ConferenceEvent {
+public class ConferenceEvent extends Event {
 	
 	private Resource resource;
 	private Literal acronym;
 	
 	private static Resource conference;
 	
-	public ConferenceEvent(Model model) {
-		
+	private static ConferenceEvent instance;
+	
+	private ConferenceEvent(Model modelIn) {
 		
 		String sparql = "PREFIX swc: <" + SWC.NS + "> "
 				+ "select ?conference ?acronym where {?conference a <" + SWC.ConferenceEvent.getURI() + "> . ?conference swc:hasAcronym ?acronym }";
 		
-		ResultSet rs = QueryExecutor.execSelect(model, sparql);
+		ResultSet rs = QueryExecutor.execSelect(modelIn, sparql);
 		if(rs.hasNext()){
 			QuerySolution querySolution = rs.next();
 			resource = querySolution.getResource("conference");
 			acronym = querySolution.getLiteral("acronym");
+			
+			super.swdfEvent = resource;
 		}
+		//asConfResource(modelOut);
 		/*
 		ResIterator resIt = model.listResourcesWithProperty(RDF.type, SWC.ConferenceEvent);
 		//ResIterator resIt = model.listResourcesWithProperty(RDF.type, SWC.WorkshopEvent);
@@ -40,6 +44,12 @@ public class ConferenceEvent {
 			resource = resIt.next();
 		}
 		*/
+	}
+	
+	public static ConferenceEvent getInstance(Model modelIn){
+		if(instance == null)
+			instance = new ConferenceEvent(modelIn);
+		return instance;
 	}
 	
 	public String getAcronym(){
@@ -65,9 +75,9 @@ public class ConferenceEvent {
 					+ "	<" + confUri + "> a <" + ConferenceOntology.Conference.getURI() + "> . "
 					+ "	<" + confUri + "> rdfs:label ?label . "
 					+ "	<" + confUri + "> conf:acronym ?acronym . "
-					+ "	<" + confUri + "> icaltzd:dtstart ?dtstart . "
-					+ "	<" + confUri + "> icaltzd:dtend ?dtend . "
-					+ "	<" + confUri + "> icaltzd:location ?location . "
+					+ "	<" + confUri + "> <" + ConferenceOntology.startDate + ">  ?dtstart . "
+					+ "	<" + confUri + "> <" + ConferenceOntology.endDate + "> ?dtend . "
+					+ "	<" + confUri + "> <" + ConferenceOntology.NS + "location> ?location . "
 					+ "	<" + confUri + "> conf:hasSeries  <" + confSeriesUri + "> . "
 					+ "	<" + confSeriesUri + "> conf:isSeriesOf  <" + confUri + "> . "
 					+ "	<" + confSeriesUri + "> rdfs:label  \"" + Config.CONF_ACRONYM + "\" "
@@ -86,6 +96,8 @@ public class ConferenceEvent {
 			model.add(tmp);
 			
 			conference = model.createResource(confUri);
+			
+			super.confEvent = conference;
 		}
 		return conference;
 	}

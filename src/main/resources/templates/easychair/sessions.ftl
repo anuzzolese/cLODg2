@@ -19,9 +19,9 @@
 
 map:Session a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@SESSION.id@@";
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/session/@@SESSION.id@@";
 	d2rq:class icaltzd:Vevent .
-	
+		
 map:session_vevent a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Session;
 	d2rq:property rdf:type;
@@ -52,19 +52,21 @@ map:session_location a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Session;
 	d2rq:condition "SESSION.location <> ''";
 	d2rq:property icaltzd:location;
-	d2rq:pattern "@@SESSION.location@@" .
+	d2rq:column "SESSION.location" .
 	
 map:session_track a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Session;
 	d2rq:condition "SESSION.track <> ''";
 	d2rq:property swc:isSubEventOf;
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@SESSION.track@@" .
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@SESSION.track@@";
+	d2rq:translateWith map:UriTranslator.
 
 map:session_no_track a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Session;
 	d2rq:condition "SESSION.track = ''";
 	d2rq:property swc:isSubEventOf;
 	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}${year}" .
+	
 	
 # Tracks and Sessions 
 	
@@ -78,4 +80,4 @@ map:Track_sessions a d2rq:ClassMap;
 map:track_super_event_of a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Track_sessions;
 	d2rq:property swc:isSuperEventOf;
-	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/@@SESSION.id@@" .
+	d2rq:uriPattern "${baseURI}conference/${confAcronym?lower_case}/${year}/session/@@SESSION.id@@" .

@@ -8,6 +8,7 @@ import org.w3id.scholarlydata.clodg.Config;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -22,7 +23,7 @@ public class Person {
 	
 	public Person(Resource resource) {
 		this.resource = resource;
-		conferenceEvent = new ConferenceEvent(resource.getModel());
+		conferenceEvent = ConferenceEvent.getInstance(resource.getModel());
 	}
 	
 	public Resource getResource() {
@@ -79,6 +80,7 @@ public class Person {
 		Literal personName = confPerson.getProperty(ConferenceOntology.name).getObject().asLiteral();
 		
 		String conferenceAcronym = conferenceEvent.getAcronym();
+		
 		conferenceAcronym = conferenceAcronym.toLowerCase().replace(" ", "");
 		String roleNS = ConferenceOntology.RESOURCE_NS + "role-during-event/" + conferenceAcronym;
 		for(Role role : roles){
@@ -120,7 +122,32 @@ public class Person {
 			}
 			
 			
-			
+			/*
+			 * Author role
+			 */
+			StmtIterator madesIt = resource.listProperties(FOAF.made);
+			while(madesIt.hasNext()){
+				Statement madeStmt = madesIt.next();
+				RDFNode object = madeStmt.getObject();
+				if(object.isResource()){
+					Resource paper = object.asResource();
+					
+					InProceedings inProceedings = new InProceedings(paper);
+					Resource inProceedingsResource = inProceedings.asConfResource(model);
+					String inProceedingsLocalName = inProceedingsResource.getLocalName();
+					String paperTitle = inProceedingsResource.getProperty(ConferenceOntology.title).getObject().asLiteral().getLexicalForm();
+					
+					String roleURI = roleNS + "-author-" + resource.getLocalName() + "-" + inProceedingsLocalName;
+					Resource roleDuringEvent = model.createResource(roleURI, ConferenceOntology.RoleDuringEvent);
+					roleDuringEvent.addProperty(ConferenceOntology.withRole, ConferenceOntology.author);
+					roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
+					roleDuringEvent.addProperty(ConferenceOntology.withDocument, new InProceedings(paper).asConfResource(model));
+					
+					roleDuringEvent.addLiteral(RDFS.label, "Role of Author of held by " + personName.getLexicalForm() + " during " + Config.CONF_ACRONYM + Config.YEAR + " for paper titled: \"" + paperTitle + "\".");
+					
+					confRoles.add(roleDuringEvent);
+				}
+			}
 			
 		}
 		return confRoles;
@@ -174,7 +201,7 @@ public class Person {
 				+ "<" + person.getURI() + "> <" + ConferenceOntology.givenName + "> ?firstName . "
 				+ "<" + person.getURI() + "> <" + ConferenceOntology.familyName + "> ?lastName . "
 				+ "<" + person.getURI() + "> <" + FOAF.mbox_sha1sum + "> ?mbox_sha1sum . "
-				+ "<" + person.getURI() + "> <" + OWL2.sameAs + "> <" + resource.getURI() + "> "
+				//+ "<" + person.getURI() + "> <" + OWL2.sameAs + "> <" + resource.getURI() + "> "
 				+ "}"
 				+ "WHERE{ "
 				+ "<" + resource.getURI() + "> <" + RDFS.label + "> ?label . "

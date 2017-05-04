@@ -2,7 +2,6 @@ package org.w3id.scholarlydata.clodg.dogfood;
 
 import org.w3id.scholarlydata.clodg.Config;
 import org.w3id.scholarlydata.clodg.Urifier;
-import org.w3id.scholarlydata.clodg.dogfood.arq.EventTypeBinder;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -46,6 +45,9 @@ public class Event {
 			eventURI += "event/event" + Events.anonEventCounter;
 		}
 		
+		if(eventURI.equals("https://w3id.org/scholarlydata/track/ekaw-2016-session-23-nov-5")){
+			System.out.println("the type is " + type);
+		}
 		this.confEvent = ModelFactory.createDefaultModel().createResource(eventURI);
 	}
 	
@@ -68,23 +70,23 @@ public class Event {
 	public Resource asConfResource(Model model){
 		Model modelIn = swdfEvent.getModel();
 		
-		
-		
 		String sparql = "PREFIX cofunc: <" + ConferenceOntology.NS + "> "
 				+ "CONSTRUCT {"
 				+ "<" + confEvent.getURI() + "> a ?confEventType . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.name + "> ?name . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.startDate + "> ?start . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.endDate + "> ?end . "
+				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.NS + "location> ?location . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.description + "> ?description . "
 				+ "<" + confEvent.getURI() + "> <" + RDFS.label + "> ?description . "
-				+ "<" + confEvent.getURI() + "> <" + OWL2.sameAs + "> <" + swdfEvent.getURI() + "> "
+				//+ "<" + confEvent.getURI() + "> <" + OWL2.sameAs + "> <" + swdfEvent.getURI() + "> "
 				+ "}"
 				+ "WHERE{ "
 				+ "<" + swdfEvent.getURI() + "> a ?eventType . "
 				+ "OPTIONAL{<" + swdfEvent.getURI() + "> <" + RDFS.label + "> ?label } "
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#dtstart> ?start} "
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#dtend> ?end} "
+				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#location> ?location} "
 				+ "OPTIONAL {<" + swdfEvent.getURI() + "> <http://www.w3.org/2002/12/cal/icaltzd#description> ?description} "
 				+ "BIND(cofunc:eventTypeBind(?eventType) AS ?confEventType) "
 				+ "}";
@@ -92,6 +94,7 @@ public class Event {
 		try{
 			
 			model.add(QueryExecutor.execConstruct(modelIn, sparql));
+			
 			
 			if(subEvent != null) {
 				
@@ -111,7 +114,7 @@ public class Event {
 			if(superEvent != null) {
 				Resource superEventResource = superEvent.confEvent;
 				if(superEventResource.getURI().equals(ConferenceOntology.RESOURCE_NS + "event/" + Config.CONF_ACRONYM.toLowerCase() + "/" + Config.YEAR))
-					superEventResource = ResourceFactory.createResource(ConferenceOntology.RESOURCE_NS + "conference/" + Config.CONF_ACRONYM.toLowerCase() + Config.YEAR);
+						superEventResource = ResourceFactory.createResource(ConferenceOntology.RESOURCE_NS + "conference/" + Config.CONF_ACRONYM.toLowerCase() + Config.YEAR);
 				
 				Resource eventResource = confEvent;
 				if(eventResource.getURI().equals(ConferenceOntology.RESOURCE_NS + "event/" + Config.CONF_ACRONYM.toLowerCase() + "/" + Config.YEAR))

@@ -46,8 +46,8 @@ map:om_affiliation a d2rq:PropertyBridge;
 
 map:om_homepage a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:OrganisingMember;
-	d2rq:uriColumn "ORGANISING.Web site";
-	d2rq:condition "ORGANISING.`Web site` <> ''";
+	d2rq:uriColumn "ORGANISING.Web page";
+	d2rq:condition "ORGANISING.`Web page` <> ''";
 	d2rq:property foaf:homepage .
 	
 map:om_email a d2rq:PropertyBridge;

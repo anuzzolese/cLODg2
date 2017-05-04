@@ -50,7 +50,8 @@ public class ScholarlyData {
 	    Proceedings proceedings = new Proceedings(dogFood);
 	    Events events = new Events(dogFood);
 	    
-	    ConferenceEvent conferenceEvent = new ConferenceEvent(dogFood);
+	    ConferenceEvent conferenceEvent = ConferenceEvent.getInstance(dogFood);
+	    conferenceEvent.asConfResource(modelOut);
 	    
 	    List<Resource> proceedingsVolumes = proceedings.asConfResource(modelOut);
 	    

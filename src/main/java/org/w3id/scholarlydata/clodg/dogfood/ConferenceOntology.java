@@ -125,6 +125,8 @@ public class ConferenceOntology {
     
     public static final Property withOrganisation = m_model.createProperty( NS + "withOrganisation" );
     
+    public static final Property withDocument = m_model.createProperty( NS + "withDocument" );
+    
     public static final Property withRole = m_model.createProperty( NS + "withRole" );
     
     public static final Resource Abstract = m_model.createResource( NS + "Abstract" );
@@ -195,7 +197,7 @@ public class ConferenceOntology {
     
     public static final Resource Workshop = m_model.createResource( NS + "Workshop" );
     
-    public static final Resource author = m_model.createResource( "http://www.scholarlydata.org/resource/author" );
+    public static final Resource author = m_model.createResource( "http://www.scholarlydata.org/role/author" );
     
     public static final Resource chair = m_model.createResource( "http://www.scholarlydata.org/resource/chair" );
     

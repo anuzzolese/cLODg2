@@ -125,8 +125,8 @@ map:author_made_paper a d2rq:PropertyBridge;
 	
 map:author_homepage a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Author;
-	d2rq:uriColumn "AUTHOR.Web site";
-	d2rq:condition "AUTHOR.`Web site` <> ''";
+	d2rq:uriColumn "AUTHOR.Web page";
+	d2rq:condition "AUTHOR.`Web page` <> ''";
 	d2rq:property foaf:homepage .
 	
 map:author_email a d2rq:PropertyBridge;

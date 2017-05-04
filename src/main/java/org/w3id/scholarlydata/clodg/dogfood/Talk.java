@@ -60,7 +60,7 @@ public class Talk extends Event {
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.endDate + "> ?end . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.description + "> ?description . "
 				+ "<" + confEvent.getURI() + "> <" + RDFS.label + "> ?description . "
-				+ "<" + confEvent.getURI() + "> <" + OWL2.sameAs + "> <" + swdfEvent.getURI() + "> . "
+				//+ "<" + confEvent.getURI() + "> <" + OWL2.sameAs + "> <" + swdfEvent.getURI() + "> . "
 				+ "?paperIRI <" + ConferenceOntology.relatesToEvent + "> <" + confEvent.getURI() + "> . "
 				+ "<" + confEvent.getURI() + "> <" + ConferenceOntology.isEventRelatedTo + "> ?paperIRI . "
 				+ "<" + confEvent.getURI() + "> a ?talkType "

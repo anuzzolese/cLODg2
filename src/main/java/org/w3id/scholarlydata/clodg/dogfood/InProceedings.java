@@ -21,7 +21,7 @@ public class InProceedings {
 	
 	public InProceedings(Resource resource) {
 		this.resource = resource;
-		conferenceEvent = new ConferenceEvent(resource.getModel());
+		conferenceEvent = ConferenceEvent.getInstance(resource.getModel());
 	}
 	
 	public Resource getResource() {
@@ -132,12 +132,13 @@ public class InProceedings {
 				+ "<" + inProceedings.getURI() + "> a <" + ConferenceOntology.InProceedings.getURI() + "> . "
 				+ "<" + inProceedings.getURI() + "> <" + RDFS.label + "> ?label . "
 				+ "<" + inProceedings.getURI() + "> <" + DC_11.creator + "> ?author . "
+				+ "?author <http://xmlns.com/foaf/0.1/made> <" + inProceedings.getURI() + "> . " 
 				+ "<" + inProceedings.getURI() + "> <" + ConferenceOntology.title + "> ?title . "
 				+ "<" + inProceedings.getURI() + "> <" + ConferenceOntology.abstract_ + "> ?abstract . "
 				+ "<" + inProceedings.getURI() + "> <" + ConferenceOntology.keyword + "> ?subject . "
 				+ "<" + inProceedings.getURI() + "> <" + ConferenceOntology.hasTopic + "> ?topic . "
 				+ "<" + inProceedings.getURI() + "> <" + ConferenceOntology.isPartOf + "> ?proceedings . "
-				+ "<" + inProceedings.getURI() + "> <" + OWL2.sameAs + "> <" + resource.getURI() + "> . "
+				//+ "<" + inProceedings.getURI() + "> <" + OWL2.sameAs + "> <" + resource.getURI() + "> . "
 				+ "?proceedings <" + ConferenceOntology.hasPart + "> <" + inProceedings.getURI() + "> "
 				+ "}"
 				+ "WHERE{ "

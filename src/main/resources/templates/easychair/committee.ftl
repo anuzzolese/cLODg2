@@ -85,8 +85,8 @@ map:committee_affiliation a d2rq:PropertyBridge;
 
 map:committee_homepage a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Committee;
-	d2rq:uriColumn "COMMITTEE.Web site";
-	d2rq:condition "COMMITTEE.`Web site` <> ''";
+	d2rq:uriColumn "COMMITTEE.Web page";
+	d2rq:condition "COMMITTEE.`Web page` <> ''";
 	d2rq:property foaf:homepage .
 	
 map:committee_email a d2rq:PropertyBridge;
