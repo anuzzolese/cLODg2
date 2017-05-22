@@ -108,6 +108,20 @@ public class Person {
 							
 							roleLabel = label.getLexicalForm();
 						}
+						else{
+							roleLabel = "";
+							String localRoleLabel = "";
+							String[] roleLabelParts = confRole.getLocalName().split("\\-");
+							for(String roleLabelPart : roleLabelParts){
+								if(!roleLabel.isEmpty()) {
+									roleLabel += " ";
+									localRoleLabel += " ";
+								}
+								roleLabel += roleLabelPart;
+								localRoleLabel += roleLabelPart.substring(0,1).toUpperCase() + roleLabelPart.substring(1);
+							}
+							model.add(confRole, RDFS.label, localRoleLabel);
+						}
 						
 						roleDuringEvent.addProperty(ConferenceOntology.withRole, confRole);
 						roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));

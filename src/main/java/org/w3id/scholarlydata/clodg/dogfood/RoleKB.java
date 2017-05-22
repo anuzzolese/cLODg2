@@ -7,11 +7,13 @@ import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 public class RoleKB {
@@ -65,9 +67,26 @@ public class RoleKB {
 		
 		ResultSet resultSet = executesQuery(sparql);
 		
-		resultSet.forEachRemaining(querySolution -> {
+		
+		int rowNumber = 0;
+		while(resultSet.hasNext()){
+			QuerySolution querySolution = resultSet.next();
 			confRoles.add(querySolution.getResource("confRole"));
-		});
+			rowNumber++;
+		}
+		
+		if(rowNumber == 0){
+			String localName = swdfRoleClass.getLocalName();
+			char[] chars = localName.toCharArray();
+			localName = "";
+			for(char c : chars){
+				if(Character.isUpperCase(c) && !localName.isEmpty()) localName += "-";
+				localName += Character.toLowerCase(c);
+			}
+			confRoles.add(ResourceFactory.createResource("https://w3id.org/scholarlydata/role/" + localName));
+		}
+			
+		
 		
 		return confRoles;
 	}

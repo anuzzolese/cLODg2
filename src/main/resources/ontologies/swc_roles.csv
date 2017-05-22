@@ -24,3 +24,6 @@
 "23","Local Chair","http://data.semanticweb.org/ns/swc/ontology#LocalOrganiser"
 "24","Local Organiser","http://data.semanticweb.org/ns/swc/ontology#LocalOrganiser"
 "25","Local Organizer","http://data.semanticweb.org/ns/swc/ontology#LocalOrganiser"
+"26","Metadata Chair","http://data.semanticweb.org/ns/swc/ontology#MetadataChair"
+"27","Semantic Technology Coordinator","http://data.semanticweb.org/ns/swc/ontology#MetadataChair"
+"28","Process Improvement Chair","http://data.semanticweb.org/ns/swc/ontology#ProcessImprovementChair"
