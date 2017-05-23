@@ -12,8 +12,10 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.vocabulary.OWL2;
+import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class Person {
@@ -163,8 +165,10 @@ public class Person {
 				
 				confRoles.add(roleDuringEvent);
 				
-				if(!model.contains(ConferenceOntology.authorLabelStmt))
+				if(!model.contains(ConferenceOntology.authorLabelStmt)){
 					model.add(ConferenceOntology.authorLabelStmt);
+					model.add(new StatementImpl(ConferenceOntology.author, RDF.type, ConferenceOntology.PublishingRole));
+				}
 			}
 		}
 		return confRoles;
