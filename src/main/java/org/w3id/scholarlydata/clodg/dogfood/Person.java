@@ -135,39 +135,37 @@ public class Person {
 				}
 			}
 			
-			
-			/*
-			 * Author role
-			 */
-			
-			
-			StmtIterator madesIt = resource.listProperties(FOAF.made);
-			while(madesIt.hasNext()){
-				Statement madeStmt = madesIt.next();
-				RDFNode object = madeStmt.getObject();
-				if(object.isResource()){
-					Resource paper = object.asResource();
-					
-					InProceedings inProceedings = new InProceedings(paper);
-					Resource inProceedingsResource = inProceedings.asConfResource(model);
-					String inProceedingsLocalName = inProceedingsResource.getLocalName();
-					String paperTitle = inProceedingsResource.getProperty(ConferenceOntology.title).getObject().asLiteral().getLexicalForm();
-					
-					String roleURI = roleNS + "-author-" + resource.getLocalName() + "-" + inProceedingsLocalName;
-					Resource roleDuringEvent = model.createResource(roleURI, ConferenceOntology.RoleDuringEvent);
-					roleDuringEvent.addProperty(ConferenceOntology.withRole, ConferenceOntology.author);
-					roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
-					roleDuringEvent.addProperty(ConferenceOntology.withDocument, new InProceedings(paper).asConfResource(model));
-					
-					roleDuringEvent.addLiteral(RDFS.label, "Role of Author of held by " + personName.getLexicalForm() + " during " + Config.CONF_ACRONYM + Config.YEAR + " for paper titled: \"" + paperTitle + "\".");
-					
-					confRoles.add(roleDuringEvent);
-					
-					if(!model.contains(ConferenceOntology.authorLabelStmt))
-						model.add(ConferenceOntology.authorLabelStmt);
-				}
+		}
+		
+		/*
+		 * Author role
+		 */
+		
+		StmtIterator madesIt = resource.listProperties(FOAF.made);
+		while(madesIt.hasNext()){
+			Statement madeStmt = madesIt.next();
+			RDFNode object = madeStmt.getObject();
+			if(object.isResource()){
+				Resource paper = object.asResource();
+				
+				InProceedings inProceedings = new InProceedings(paper);
+				Resource inProceedingsResource = inProceedings.asConfResource(model);
+				String inProceedingsLocalName = inProceedingsResource.getLocalName();
+				String paperTitle = inProceedingsResource.getProperty(ConferenceOntology.title).getObject().asLiteral().getLexicalForm();
+				
+				String roleURI = roleNS + "-author-" + resource.getLocalName() + "-" + inProceedingsLocalName;
+				Resource roleDuringEvent = model.createResource(roleURI, ConferenceOntology.RoleDuringEvent);
+				roleDuringEvent.addProperty(ConferenceOntology.withRole, ConferenceOntology.author);
+				roleDuringEvent.addProperty(ConferenceOntology.during, conferenceEvent.asConfResource(model));
+				roleDuringEvent.addProperty(ConferenceOntology.withDocument, new InProceedings(paper).asConfResource(model));
+				
+				roleDuringEvent.addLiteral(RDFS.label, "Role of Author of held by " + personName.getLexicalForm() + " during " + Config.CONF_ACRONYM + Config.YEAR + " for paper titled: \"" + paperTitle + "\".");
+				
+				confRoles.add(roleDuringEvent);
+				
+				if(!model.contains(ConferenceOntology.authorLabelStmt))
+					model.add(ConferenceOntology.authorLabelStmt);
 			}
-			
 		}
 		return confRoles;
 	}
