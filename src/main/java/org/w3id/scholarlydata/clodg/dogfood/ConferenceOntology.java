@@ -21,10 +21,10 @@ public class ConferenceOntology {
     }
     
     /** <p>The namespace of the vocabulary as a string</p> */
-    //public static final String NS = "http://www.scholarlydata.org/ontology/conference-ontology.owl#";
+    //public static final String NS = RESOURCE_NS + "ontology/conference-ontology.owl#";
     public static final String NS = "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#";
     
-    //public static final String RESOURCE_NS = "http://www.scholarlydata.org/";
+    //public static final String RESOURCE_NS = RESOURCE_NS + "";
     public static final String RESOURCE_NS = "https://w3id.org/scholarlydata/";
     
     /** <p>The namespace of the vocabulary as a string</p>
@@ -199,69 +199,69 @@ public class ConferenceOntology {
     
     public static final Resource Workshop = m_model.createResource( NS + "Workshop" );
     
-    public static final Resource author = m_model.createResource( "http://www.scholarlydata.org/role/author" );
+    public static final Resource author = m_model.createResource( RESOURCE_NS + "role/author" );
     
-    public static final Resource chair = m_model.createResource( "http://www.scholarlydata.org/resource/chair" );
+    public static final Resource chair = m_model.createResource( RESOURCE_NS + "role/chair" );
     
-    public static final Resource challenge_chair = m_model.createResource( "http://www.scholarlydata.org/resource/challenge-chair" );
+    public static final Resource challenge_chair = m_model.createResource( RESOURCE_NS + "role/challenge-chair" );
     
-    public static final Resource demos_chair = m_model.createResource( "http://www.scholarlydata.org/resource/demos-chair" );
+    public static final Resource demos_chair = m_model.createResource( RESOURCE_NS + "role/demos-chair" );
     
-    public static final Resource exhibition_chair = m_model.createResource( "http://www.scholarlydata.org/resource/exhibition-chair" );
+    public static final Resource exhibition_chair = m_model.createResource( RESOURCE_NS + "role/exhibition-chair" );
     
-    public static final Resource fellowship_chair = m_model.createResource( "http://www.scholarlydata.org/resource/fellowship-chair" );
+    public static final Resource fellowship_chair = m_model.createResource( RESOURCE_NS + "role/fellowship-chair" );
     
-    public static final Resource general_chair = m_model.createResource( "http://www.scholarlydata.org/resource/general-chair" );
+    public static final Resource general_chair = m_model.createResource( RESOURCE_NS + "role/general-chair" );
     
-    public static final Resource industry_chair = m_model.createResource( "http://www.scholarlydata.org/resource/industry-chair" );
+    public static final Resource industry_chair = m_model.createResource( RESOURCE_NS + "role/industry-chair" );
     
-    public static final Resource local_organiser = m_model.createResource( "http://www.scholarlydata.org/resource/local-organiser" );
+    public static final Resource local_organiser = m_model.createResource( RESOURCE_NS + "role/local-organiser" );
     
-    public static final Resource metadata_coordinator = m_model.createResource( "http://www.scholarlydata.org/resource/metadata-coordinator" );
+    public static final Resource metadata_coordinator = m_model.createResource( RESOURCE_NS + "role/metadata-coordinator" );
     
-    public static final Resource organising_committee_member = m_model.createResource( "http://www.scholarlydata.org/resource/organising-committee-member" );
+    public static final Resource organising_committee_member = m_model.createResource( RESOURCE_NS + "role/organising-committee-member" );
     
-    public static final Resource panel_chair = m_model.createResource( "http://www.scholarlydata.org/resource/panel-chair" );
+    public static final Resource panel_chair = m_model.createResource( RESOURCE_NS + "role/panel-chair" );
     
-    public static final Resource participant = m_model.createResource( "http://www.scholarlydata.org/resource/participant" );
+    public static final Resource participant = m_model.createResource( RESOURCE_NS + "role/participant" );
     
-    public static final Resource phd_symposium_chair = m_model.createResource( "http://www.scholarlydata.org/resource/phd-symposium-chair" );
+    public static final Resource phd_symposium_chair = m_model.createResource( RESOURCE_NS + "role/phd-symposium-chair" );
     
-    public static final Resource poster_chair = m_model.createResource( "http://www.scholarlydata.org/resource/poster-chair" );
+    public static final Resource poster_chair = m_model.createResource( RESOURCE_NS + "role/poster-chair" );
     
-    public static final Resource posters_chair = m_model.createResource( "http://www.scholarlydata.org/resource/posters-chair" );
+    public static final Resource posters_chair = m_model.createResource( RESOURCE_NS + "role/posters-chair" );
     
-    public static final Resource presenter = m_model.createResource( "http://www.scholarlydata.org/resource/presenter" );
+    public static final Resource presenter = m_model.createResource( RESOURCE_NS + "role/presenter" );
     
-    public static final Resource proceedings_chair = m_model.createResource( "http://www.scholarlydata.org/resource/proceedings-chair" );
+    public static final Resource proceedings_chair = m_model.createResource( RESOURCE_NS + "role/proceedings-chair" );
     
-    public static final Resource programme_chair = m_model.createResource( "http://www.scholarlydata.org/resource/programme-chair" );
+    public static final Resource programme_chair = m_model.createResource( RESOURCE_NS + "role/programme-chair" );
     
-    public static final Resource programme_committee_member = m_model.createResource( "http://www.scholarlydata.org/resource/programme-committee-member" );
+    public static final Resource programme_committee_member = m_model.createResource( RESOURCE_NS + "role/programme-committee-member" );
     
-    public static final Resource publicity_chair = m_model.createResource( "http://www.scholarlydata.org/resource/publicity-chair" );
+    public static final Resource publicity_chair = m_model.createResource( RESOURCE_NS + "role/publicity-chair" );
     
-    public static final Resource reviewer = m_model.createResource( "http://www.scholarlydata.org/resource/reviewer" );
+    public static final Resource reviewer = m_model.createResource( RESOURCE_NS + "role/reviewer" );
     
-    public static final Resource session_chair = m_model.createResource( "http://www.scholarlydata.org/resource/session-chair" );
+    public static final Resource session_chair = m_model.createResource( RESOURCE_NS + "role/session-chair" );
     
-    public static final Resource sponsor = m_model.createResource( "http://www.scholarlydata.org/resource/sponsor" );
+    public static final Resource sponsor = m_model.createResource( RESOURCE_NS + "role/sponsor" );
     
-    public static final Resource sponsorship_chair = m_model.createResource( "http://www.scholarlydata.org/resource/sponsorship-chair" );
+    public static final Resource sponsorship_chair = m_model.createResource( RESOURCE_NS + "role/sponsorship-chair" );
     
-    public static final Resource track_chair = m_model.createResource( "http://www.scholarlydata.org/resource/track-chair" );
+    public static final Resource track_chair = m_model.createResource( RESOURCE_NS + "role/track-chair" );
     
-    public static final Resource treasurer = m_model.createResource( "http://www.scholarlydata.org/resource/treasurer" );
+    public static final Resource treasurer = m_model.createResource( RESOURCE_NS + "role/treasurer" );
     
-    public static final Resource tutorials_chair = m_model.createResource( "http://www.scholarlydata.org/resource/tutorials-chair" );
+    public static final Resource tutorials_chair = m_model.createResource( RESOURCE_NS + "role/tutorials-chair" );
     
-    public static final Resource volunteers_chair = m_model.createResource( "http://www.scholarlydata.org/resource/volunteers-chair" );
+    public static final Resource volunteers_chair = m_model.createResource( RESOURCE_NS + "role/volunteers-chair" );
     
-    public static final Resource webmaster = m_model.createResource( "http://www.scholarlydata.org/resource/webmaster" );
+    public static final Resource webmaster = m_model.createResource( RESOURCE_NS + "role/webmaster" );
     
-    public static final Resource workshop_organiser = m_model.createResource( "http://www.scholarlydata.org/resource/workshop-organiser" );
+    public static final Resource workshop_organiser = m_model.createResource( RESOURCE_NS + "role/workshop-organiser" );
     
-    public static final Resource workshops_chair = m_model.createResource( "http://www.scholarlydata.org/resource/workshops-chair" );
+    public static final Resource workshops_chair = m_model.createResource( RESOURCE_NS + "role/workshops-chair" );
     
     public static final Statement authorLabelStmt = m_model.createStatement(author, RDFS.label, "Author");
     
