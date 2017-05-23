@@ -4,6 +4,8 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.vocabulary.RDFS;
  
 /**
  * Vocabulary definitions from ontologies/conference-ontology.owl 
@@ -260,5 +262,7 @@ public class ConferenceOntology {
     public static final Resource workshop_organiser = m_model.createResource( "http://www.scholarlydata.org/resource/workshop-organiser" );
     
     public static final Resource workshops_chair = m_model.createResource( "http://www.scholarlydata.org/resource/workshops-chair" );
+    
+    public static final Statement authorLabelStmt = m_model.createStatement(author, RDFS.label, "Author");
     
 }

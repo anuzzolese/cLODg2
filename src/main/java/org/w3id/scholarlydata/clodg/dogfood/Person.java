@@ -139,6 +139,8 @@ public class Person {
 			/*
 			 * Author role
 			 */
+			
+			
 			StmtIterator madesIt = resource.listProperties(FOAF.made);
 			while(madesIt.hasNext()){
 				Statement madeStmt = madesIt.next();
@@ -160,6 +162,9 @@ public class Person {
 					roleDuringEvent.addLiteral(RDFS.label, "Role of Author of held by " + personName.getLexicalForm() + " during " + Config.CONF_ACRONYM + Config.YEAR + " for paper titled: \"" + paperTitle + "\".");
 					
 					confRoles.add(roleDuringEvent);
+					
+					if(!model.contains(ConferenceOntology.authorLabelStmt))
+						model.add(ConferenceOntology.authorLabelStmt);
 				}
 			}
 			
