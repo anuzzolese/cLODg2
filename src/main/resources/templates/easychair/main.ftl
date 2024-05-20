@@ -59,7 +59,7 @@ map:conferences_Location a d2rq:PropertyBridge;
 map:AuthorOrganization a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	#d2rq:uriSqlExpression "CONCAT('${baseURI}organization/', LOWER(REPLACE(SUBMISSION.organization, ' ', '-')))";
-	d2rq:uriPattern "${baseURI}organization/@@AUTHOR.organization@@";
+	d2rq:uriPattern "${baseURI}organization/@@AUTHOR.affiliation@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:join "AUTHOR.submission # = SUBMISSION.#";
 	d2rq:condition "${acceptWordings}";
@@ -69,7 +69,7 @@ map:organization_foaf_name a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:AuthorOrganization;
 	d2rq:property foaf:name;
 	d2rq:property rdfs:label;
-    d2rq:column "AUTHOR.organization" .
+    d2rq:column "AUTHOR.affiliation" .
     
 map:organization_member a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:AuthorOrganization;
@@ -113,8 +113,8 @@ map:author_name a d2rq:PropertyBridge;
 map:author_affiliation a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Author;
 	d2rq:property swrc:affiliation;
-	#d2rq:uriSqlExpression "CONCAT('${baseURI}organization/', LOWER(REPLACE(AUTHOR.organization, ' ', '-')))" .
-	d2rq:uriPattern "${baseURI}organization/@@AUTHOR.organization@@";
+	#d2rq:uriSqlExpression "CONCAT('${baseURI}organization/', LOWER(REPLACE(AUTHOR.affiliation, ' ', '-')))" .
+	d2rq:uriPattern "${baseURI}organization/@@AUTHOR.affiliation@@";
 	d2rq:translateWith map:UriTranslator .
 
 map:author_made_paper a d2rq:PropertyBridge;

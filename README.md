@@ -15,4 +15,29 @@ to this step. In fact, cLODg2 relies on the D2R framework to perform the convers
 
 Similarly, the Linked Data enrichment activity is composed of the following actions:
 * __Reasoning-based alignment__. Input of this action are the RDF triples produced by the Linked Data generation activity. The output is the materialisation of a set of RDF tiples that enable the alignemnt to other ontologies and vocabularies, i.e., the SWDF ontology, [SPAR ontologies](http://www.sparontologies.net/), [Dolce D0](http://www.ontologydesignpatterns.org/ont/dul/d0.owl), the [Organization Ontology](https://www.w3.org/TR/vocab-org/), [FOAF](http://xmlns.com/foaf/spec/), [SKOS](https://www.w3.org/TR/2005/WD-swbp-skos-core-spec-20051102/), [icatzd](http://www.w3.org/2002/12/cal/icaltzd), and the Collections Ontology. The alignment triples are materialised by means of OWL-DL reasoning, which is enabled by the [Apache Jena](https://jena.apache.org/) inference layer;
-* __Linking to other Linked Datasets__. This action is aimed at producing in- stance level alignments, expressed via owl:sameAs axioms. The target linked datasets are [ORCID](http://orcid.org/) and [DOI](https://www.doi.org/). ORCID (Open Researcher and Contributor ID) provides persistent digital identifiers for scientific researchers and academic authors. A digital object identifier (DOI) is a serial code used to uniquely identify digital objects, particularly used for electronic documents. The alignments to ORCID are produced by relying on the public API provided by [ORCID](http://members.orcid.org/api/introduction-orcid-public-api). The references to DOI are produced by relying on the API provided by [Crossref](http://www.crossref.org/guestquery/), performing a search on each article title.
+* __Linking to other Linked Datasets__. This action is aimed at producing instance level alignments, expressed via owl:sameAs axioms. The target linked datasets are [ORCID](http://orcid.org/) and [DOI](https://www.doi.org/). ORCID (Open Researcher and Contributor ID) provides persistent digital identifiers for scientific researchers and academic authors. A digital object identifier (DOI) is a serial code used to uniquely identify digital objects, particularly used for electronic documents. The alignments to ORCID are produced by relying on the public API provided by [ORCID](http://members.orcid.org/api/introduction-orcid-public-api). The references to DOI are produced by relying on the API provided by [Crossref](http://www.crossref.org/guestquery/), performing a search on each article title.
+
+### How to run
+
+Compile the maven package with
+
+        mvn compile
+        mvn package
+
+Run the application with 
+
+        java -jar target/clodg2-1.0.0-SNAPSHOT.jar --config <config file> --input <input_folder> --output <output_folder>
+
+The arguments are the following:
+
+| argument             | mandatory? | description                                                       |
+|----------------------|------------|-------------------------------------------------------------------|
+| -c,--config <file>   | MANDATORY  | Input file containing the app configuration.                      |
+| -i,--input <folder>  | MANDATORY  | Folder containing the CSV with input data.                        |
+| -m,--model <file>    | OPTIONAL   | The path to an input RDF model to merge with the output of cLODg. |
+| -o,--output <folder> | MANDATORY  | Output directory used to store the final RDF models.              | 
+
+
+### How to prepare the input data
+
+Most of the input csv file (to include in a single folder, such as in `csv_samples`) can be downloaded from [easychair](https://easychair.org), under `Administration` \ `Workshop data download`.

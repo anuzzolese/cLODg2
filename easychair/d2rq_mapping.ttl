@@ -1,7 +1,7 @@
 @prefix : <http://data.semanticweb.org/> .
 @prefix swc: <http://data.semanticweb.org/ns/swc/ontology#> . 
 @prefix swrc: <http://swrc.ontoware.org/ontology#> . 
-@prefix map: <file:/Users/andrea/Desktop/ESWC2016data/D2RQ/mapping-eswc.ttl#> .
+@prefix map: <file:/Users/andrea/Desktop/ESWC2024data/D2RQ/mapping-eswc.ttl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -17,7 +17,7 @@
 
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
-	d2rq:jdbcDSN "jdbc:mysql://127.0.0.1:8889/eswc2016?autoReconnect=true";
+	d2rq:jdbcDSN "jdbc:mysql://127.0.0.1:8889/eswc2024?autoReconnect=true";
 	d2rq:username "root";
 	d2rq:password "root";
 	jdbc:keepAlive "3600" .
@@ -28,35 +28,35 @@ map:UriTranslator a d2rq:TranslationTable;
 # Conference
 map:Conference a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024>;
 	d2rq:class swc:ConferenceEvent .
 	
 map:conferences_Name a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Conference;
 	d2rq:property rdfs:label;
-	d2rq:constantValue "ESWC 2016" .
+	d2rq:constantValue "ESWC 2024" .
 	
 map:conferences_StartDate a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Conference;
 	d2rq:property icaltzd:dtstart;
-	d2rq:constantValue "2016-05-29T09:00:00" .
+	d2rq:constantValue "2024-05-29T09:00:00" .
 	
 map:conferences_EndDate a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Conference;
 	d2rq:property icaltzd:dtend;
-	d2rq:constantValue "2016-06-02T18:00:00" .
+	d2rq:constantValue "2024-06-02T18:00:00" .
 	
 map:conferences_Location a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Conference;
 	d2rq:property icaltzd:location;
-	d2rq:constantValue "Heraklion, Crete, Greece" .
+	d2rq:constantValue "Hersonissos, Crete, Greece" .
 	
 
 # Organizations
 map:AuthorOrganization a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(author.organization, ' ', '-')))";
-	d2rq:uriPattern "http://data.semanticweb.org/organization/@@author.organization@@";
+	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(author.affiliation, ' ', '-')))";
+	d2rq:uriPattern "http://data.semanticweb.org/organization/@@author.affiliation@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:join "author.submission # = submission.#";
 	d2rq:condition "submission.decision = 'Paper is accepted'";
@@ -66,7 +66,7 @@ map:organization_foaf_name a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:AuthorOrganization;
 	d2rq:property foaf:name;
 	d2rq:property rdfs:label;
-    d2rq:column "author.organization" .
+    d2rq:column "author.affiliation" .
     
 map:organization_member a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:AuthorOrganization;
@@ -82,8 +82,8 @@ map:organization_auth_based_near  a d2rq:PropertyBridge;
 	
 map:CommitteeOrganization a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(committee.organization, ' ', '-')))";
-	d2rq:uriPattern "http://data.semanticweb.org/organization/@@committee.organization@@";
+	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(committee.affiliation, ' ', '-')))";
+	d2rq:uriPattern "http://data.semanticweb.org/organization/@@committee.affiliation@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:join "committee.# = pcm.#";
 	d2rq:alias "committee as pcm";
@@ -92,12 +92,12 @@ map:CommitteeOrganization a d2rq:ClassMap;
 map:organization_comm_name a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:CommitteeOrganization;
 	d2rq:property rdfs:label;
-    d2rq:column "committee.organization" .
+    d2rq:column "committee.affiliation" .
     
 map:organization_comm_foaf_name a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:CommitteeOrganization;
 	d2rq:property foaf:name;
-    d2rq:column "committee.organization" .
+    d2rq:column "committee.affiliation" .
     
 map:organization_comm_member a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:CommitteeOrganization;
@@ -142,19 +142,19 @@ map:author_name a d2rq:PropertyBridge;
 map:author_affiliation a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Author;
 	d2rq:property swrc:affiliation;
-	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(author.organization, ' ', '-')))" .
-	d2rq:uriPattern "http://data.semanticweb.org/organization/@@author.organization@@";
+	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(author.affiliation, ' ', '-')))" .
+	d2rq:uriPattern "http://data.semanticweb.org/organization/@@author.affiliation@@";
 	d2rq:translateWith map:UriTranslator .
 
 map:author_made_research_paper a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Author;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/paper/research/@@author.submission #@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/paper/research/@@author.submission #@@";
 	d2rq:condition "submission.`track #` = '2'";		
 	d2rq:property foaf:made .
 	
 map:author_made_inuse_paper a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Author;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/paper/inuse/@@author.submission #@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/paper/inuse/@@author.submission #@@";
 	d2rq:condition "submission.`track #` = '1'";		
 	d2rq:property foaf:made .
 	
@@ -207,8 +207,8 @@ map:committee_name a d2rq:PropertyBridge;
 map:committee_affiliation a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Committee;
 	d2rq:property swrc:affiliation;
-	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(committee.organization, ' ', '-')))" .
-	d2rq:uriPattern "http://data.semanticweb.org/organization/@@committee.organization@@";
+	#d2rq:uriSqlExpression "CONCAT('http://data.semanticweb.org/organization/', LOWER(REPLACE(committee.affiliation, ' ', '-')))" .
+	d2rq:uriPattern "http://data.semanticweb.org/organization/@@committee.affiliation@@";
 	d2rq:translateWith map:UriTranslator .
 
 map:committee_homepage a d2rq:PropertyBridge;
@@ -231,13 +231,13 @@ map:committee_email_sha1 a d2rq:PropertyBridge;
 	
 map:committee_role a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Committee;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/program-committee-member>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/program-committee-member>;
 	d2rq:property swc:holdsRole .
 	
 # Roles
 map:PCM a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/program-committee-member";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/program-committee-member";
 	d2rq:join "committee.# = pcm.#";
 	d2rq:alias "committee as pcm";
 	d2rq:condition "committee.`#` <> ''";
@@ -250,7 +250,7 @@ map:pcm_label a d2rq:PropertyBridge;
 	
 map:pcm_role_at a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:PCM;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024>;
 	d2rq:property swc:isRoleAt .
 
 map:pcm_held_by a d2rq:PropertyBridge;
@@ -264,14 +264,14 @@ map:pcm_held_by a d2rq:PropertyBridge;
 # Research Papers
 map:ReserachPaper a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/paper/research/@@submission.#@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/paper/research/@@submission.#@@";
 	d2rq:condition "submission.`track #` = '2' AND submission.decision = 'accept'";	
 	d2rq:join "submission.# = author.submission #";
 	d2rq:class swrc:InProceedings .
 	
 map:research_paper_track a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:ReserachPaper;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/paper/research>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/paper/research>;
 	d2rq:property swc:relatedToEvent .
 	
 map:research_paper_title a d2rq:PropertyBridge;
@@ -282,7 +282,7 @@ map:research_paper_title a d2rq:PropertyBridge;
 	
 map:research_paper_year a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:ReserachPaper;
-	d2rq:constantValue "2016";
+	d2rq:constantValue "2024";
 	d2rq:property swrc:year .
 	
 map:research_paper_month a d2rq:PropertyBridge;
@@ -292,12 +292,12 @@ map:research_paper_month a d2rq:PropertyBridge;
 	
 map:research_paper_year a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:ReserachPaper;
-	d2rq:constantValue "2016";
+	d2rq:constantValue "2024";
 	d2rq:property swrc:year .
 	
 map:research_paper_is_part_of a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:ReserachPaper;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/proceedings>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/proceedings>;
 	d2rq:property swc:isPartOf .
 	
 map:research_paper_creator a d2rq:PropertyBridge;
@@ -316,21 +316,21 @@ map:research_paper_abstract a d2rq:PropertyBridge;
 	
 map:research_paper_is_part_of a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Proceedings;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/proceedings>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/proceedings>;
 	d2rq:property swrc:isPartOf .
 	
 # InUse Papers
 	
 map:InUsePaper a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/paper/inuse/@@submission.#@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/paper/inuse/@@submission.#@@";
 	d2rq:condition "submission.`track #` = '1' AND submission.decision = 'accept'";	
 	d2rq:join "submission.# = author.submission #";
 	d2rq:class swrc:InProceedings .
 	
 map:inuse_paper_track a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:InUsePaper;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/paper/inuse>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/paper/inuse>;
 	d2rq:property swc:relatedToEvent .
 	
 map:inuse_paper_title a d2rq:PropertyBridge;
@@ -341,7 +341,7 @@ map:inuse_paper_title a d2rq:PropertyBridge;
 	
 map:inuse_paper_year a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:InUsePaper;
-	d2rq:constantValue "2016";
+	d2rq:constantValue "2024";
 	d2rq:property swrc:year .
 	
 map:inuse_paper_month a d2rq:PropertyBridge;
@@ -351,7 +351,7 @@ map:inuse_paper_month a d2rq:PropertyBridge;
 	
 map:inuse_paper_is_part_of a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:InUsePaper;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/proceedings>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/proceedings>;
 	d2rq:property swc:isPartOf .
 	
 map:inuse_paper_creator a d2rq:PropertyBridge;
@@ -370,30 +370,30 @@ map:inuse_paper_abstract a d2rq:PropertyBridge;
 	
 map:inuse_paper_is_part_of a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Proceedings;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/proceedings>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/proceedings>;
 	d2rq:property swrc:isPartOf .
 	
 # Proceedings
 map:Proceedings a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2016/proceedings>;
+	d2rq:constantValue <http://data.semanticweb.org/conference/eswc/2024/proceedings>;
 	d2rq:class swrc:Proceedings .
 	
 map:proceedings_has_research_part a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Proceedings;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/paper/research/@@submission.#@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/paper/research/@@submission.#@@";
 	d2rq:condition "submission.decision = 'Paper is accepted' AND submission.`track #` = '2'";	
 	d2rq:property swrc:hasPart .
 
 map:proceedings_has_inuse_part a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Proceedings;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/paper/inuse/@@submission.#@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/paper/inuse/@@submission.#@@";
 	d2rq:condition "submission.decision = 'Paper is accepted' AND submission.`track #` = '1'";	
 	d2rq:property swrc:hasPart .
 	
 map:proceedings_label a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Proceedings;
-	d2rq:constantValue "Proceedings of ESWC 2016";	
+	d2rq:constantValue "Proceedings of ESWC 2024";	
 	d2rq:property rdfs:label .
 	
 # Organising
@@ -445,14 +445,14 @@ map:om_email_sha1 a d2rq:PropertyBridge;
 	
 map:om_role a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:OrganisingMember;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/@@organising.role@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/@@organising.role@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:property swc:holdsRole .
 	
 # Roles
 map:Role a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2016/@@organising.role@@";
+	d2rq:uriPattern "http://data.semanticweb.org/conference/eswc/2024/@@organising.role@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:class swc:Chair .
 	

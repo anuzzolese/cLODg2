@@ -19,8 +19,8 @@
 
 map:CommitteeOrganization a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	#d2rq:uriSqlExpression "CONCAT('${baseURI}organization/', LOWER(REPLACE(COMMITTEE.organization, ' ', '-')))";
-	d2rq:uriPattern "${baseURI}organization/@@COMMITTEE.organization@@";
+	#d2rq:uriSqlExpression "CONCAT('${baseURI}organization/', LOWER(REPLACE(COMMITTEE.affiliation, ' ', '-')))";
+	d2rq:uriPattern "${baseURI}organization/@@COMMITTEE.affiliation@@";
 	d2rq:translateWith map:UriTranslator;
 	d2rq:join "COMMITTEE.# = PCM.#";
 	d2rq:alias "COMMITTEE as PCM";
@@ -29,12 +29,12 @@ map:CommitteeOrganization a d2rq:ClassMap;
 map:organization_comm_name a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:CommitteeOrganization;
 	d2rq:property rdfs:label;
-    d2rq:column "COMMITTEE.organization" .
+    d2rq:column "COMMITTEE.affiliation" .
     
 map:organization_comm_foaf_name a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:CommitteeOrganization;
 	d2rq:property foaf:name;
-    d2rq:column "COMMITTEE.organization" .
+    d2rq:column "COMMITTEE.affiliation" .
     
 map:organization_comm_member a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:CommitteeOrganization;
@@ -79,8 +79,8 @@ map:committee_name a d2rq:PropertyBridge;
 map:committee_affiliation a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Committee;
 	d2rq:property swrc:affiliation;
-	#d2rq:uriSqlExpression "CONCAT('${baseURI}organization/', LOWER(REPLACE(COMMITTEE.organization, ' ', '-')))" .
-	d2rq:uriPattern "${baseURI}organization/@@COMMITTEE.organization@@";
+	#d2rq:uriSqlExpression "CONCAT('${baseURI}organization/', LOWER(REPLACE(COMMITTEE.affiliation, ' ', '-')))" .
+	d2rq:uriPattern "${baseURI}organization/@@COMMITTEE.affiliation@@";
 	d2rq:translateWith map:UriTranslator .
 
 map:committee_homepage a d2rq:PropertyBridge;

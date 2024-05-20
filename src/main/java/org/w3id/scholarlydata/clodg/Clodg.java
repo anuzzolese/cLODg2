@@ -46,7 +46,7 @@ public class Clodg {
     private static final Logger log = LoggerFactory.getLogger(Clodg.class);
 	
 	public static void main(String[] args) {
-		
+
 		/*
          * Set-up the options for the command line parser.
          */
@@ -72,7 +72,7 @@ public class Clodg {
         Option outputFileOption = optionBuilder.argName("folder")
                                  .hasArg()
                                  .required(true)
-                                 .desc("MANDATORY - Output directory used to storethe final RDF models.")
+                                 .desc("MANDATORY - Output directory used to store the final RDF models.")
                                  .longOpt(OUTPUT_FILE_LONG)
                                  .build();
         
